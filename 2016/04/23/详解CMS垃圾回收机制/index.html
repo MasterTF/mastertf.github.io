@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JAVA,CMS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="什么是CMS？Concurrent Mark Sweep。看名字就知道，CMS是一款并发、使用标记-清除算法的gc。CMS是针对老年代进行回收的GC。">
+<meta name="keywords" content="JAVA,CMS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解CMS垃圾回收机制">
+<meta property="og:url" content="http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/index.html">
+<meta property="og:site_name" content="Stay Hungry">
+<meta property="og:description" content="什么是CMS？Concurrent Mark Sweep。看名字就知道，CMS是一款并发、使用标记-清除算法的gc。CMS是针对老年代进行回收的GC。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/new_reference_old.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/concurrent_mark.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/referrence_changed.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/dirty_card.png">
+<meta property="og:updated_time" content="2021-11-18T14:58:45.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解CMS垃圾回收机制">
+<meta name="twitter:description" content="什么是CMS？Concurrent Mark Sweep。看名字就知道，CMS是一款并发、使用标记-清除算法的gc。CMS是针对老年代进行回收的GC。">
+<meta name="twitter:image" content="http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/new_reference_old.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/">
+
+
+
+
+
+  <title>详解CMS垃圾回收机制 | Stay Hungry</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungry</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于大帅">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">详解CMS垃圾回收机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-23T22:31:15+08:00">
+                2016-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/23/详解CMS垃圾回收机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/23/详解CMS垃圾回收机制/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/04/23/详解CMS垃圾回收机制/" class="leancloud_visitors" data-flag-title="详解CMS垃圾回收机制">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是CMS？"><a href="#什么是CMS？" class="headerlink" title="什么是CMS？"></a>什么是CMS？</h2><p>Concurrent Mark Sweep。<br>看名字就知道，CMS是一款并发、使用标记-清除算法的gc。<br>CMS是针对老年代进行回收的GC。</p>
+<a id="more"></a>
+<h2 id="CMS有什么用？"><a href="#CMS有什么用？" class="headerlink" title="CMS有什么用？"></a>CMS有什么用？</h2><p>CMS以获取最小停顿时间为目的。<br>在一些对响应时间有很高要求的应用或网站中，用户程序不能有长时间的停顿，CMS 可以用于此场景。</p>
+<h2 id="CMS如何执行？"><a href="#CMS如何执行？" class="headerlink" title="CMS如何执行？"></a>CMS如何执行？</h2><p>总体来说CMS的执行过程可以分为以下几个阶段：  </p>
+<h3 id="初始标记"><a href="#初始标记" class="headerlink" title="初始标记"></a>初始标记</h3><p>初始标记阶段需要STW(Stop The World)。<br>该阶段进行可达性分析，标记GC ROOT能直接关联到的对象。<br>注意是<strong>直接关联</strong>,间接关联的对象在下一阶段标记。</p>
+<h3 id="并发标记"><a href="#并发标记" class="headerlink" title="并发标记"></a>并发标记</h3><p>此阶段是和用户线程并发执行的过程。<br>该阶段进行GC ROOT TRACING，在第一个阶段被暂停的线程重新开始运行。<br>由前阶段标记过的对象出发，所有可到达的对象都在本阶段中标记。</p>
+<h3 id="并发预清理"><a href="#并发预清理" class="headerlink" title="并发预清理"></a>并发预清理</h3><p>并发预处理阶段做的工作还是标记，与3.4的重标记功能相似。<br>既然相似为什么要有这一步？<br>前面我们讲过，CMS是以获取最短停顿时间为目的的GC。<br>重标记需要STW，因此重标记的工作尽可能多的在并发阶段完成来减少STW的时间。<br>此阶段标记<strong>从新生代晋升的对象、新分配到老年代的对象</strong>以及在<strong>并发阶段被修改了的对象</strong>。</p>
+<hr>
+<p>此阶段比较复杂，从大家容易忽略或者说不理解的地方抛出一个问题大家思考下：<br>  ● <strong>如何确定老年代的对象是活着的？</strong><br>答案很简单，通过GC ROOT TRACING可到达的对象就是活着的。<br>继续延伸，如果存在以下场景怎么办：<br><img src="/2016/04/23/详解CMS垃圾回收机制/new_reference_old.png" title="new reference old">   </p>
+<p>老年代进行GC时如何确保上图中Current Obj标记为活着的？<br>（确认新生代的对象是活着的也存在相同问题，大家可以思考下，文章后面会给出答案）<br> 答案是必须扫描新生代来确保。<strong>这也是为什么CMS虽然是老年代的gc，但仍要扫描新生代的原因</strong>。(注意初始标记也会扫描新生代)<br>在CMS日志中我们可以清楚地看到扫描日志：</p>
+<blockquote>
+<p>[GC[YG occupancy: 820 K (6528 K)]<br>[Rescan (parallel) , 0.0024157 secs]<br>[weak refs processing, 0.0000143 secs]<br>[scrub string table, 0.0000258 secs]<br>[1 CMS-remark: 479379K(515960K)] 480200K(522488K), 0.0025249 secs]<br>[Times: user=0.01 sys=0.00, real=0.00 secs]<br>Rescan阶段(remark阶段的一个子阶段)会扫描新生代和老年代中的对象。在日志中可以看到此阶段标识为Rescan (parallel)，说明此阶段是并行进行的。</p>
+</blockquote>
+<p><strong>重点来了：全量的扫描新生代和老年代会不会很慢？</strong>肯定会。<br>CMS号称是停顿时间最短的GC，如此长的停顿时间肯定是不能接受的。<br>如何解决呢？<br>大家可以先思考下。</p>
+<p><strong>必须要有一个能够快速识别新生代和老年代活着的对象的机制。</strong><br><strong>先说新生代。</strong><br>新生代垃圾回收完剩下的对象全是活着的，并且活着的对象很少。<br><strong>如果在扫描新生代前进行一次Minor GC，情况是不是就变得好很多？</strong><br>CMS 有两个参数：<strong>CMSScheduleRemarkEdenSizeThreshold</strong>、<strong>CMSScheduleRemarkEdenPenetration</strong>，默认值分别是2M、50%。两个参数组合起来的意思是预清理后，eden空间使用超过2M时启动可中断的并发预清理（CMS-concurrent-abortable-preclean），直到eden空间使用率达到50%时中断，进入remark阶段。<br>如果能在可中止的预清理阶段发生一次Minor GC,那就万事大吉、天下太平了。<br>这里有一个小问题,<strong>可终止的预清理要执行多长时间来保证发生一次Minor GC?</strong><br>答案是没法保证。道理很简单，因为垃圾回收是JVM自动调度的,什么时候进行GC我们控制不了。<br>但此阶段总有一个执行时间吧？是的。<br>CMS提供了一个参数<strong>CMSMaxAbortablePrecleanTime</strong> ，默认为5S。<br>只要到了5S，不管发没发生Minor GC，有没有到CMSScheduleRemardEdenPenetration都会中止此阶段，进入remark。<br>如果在5S内还是没有执行Minor GC怎么办？<br>CMS提供CMSScavengeBeforeRemark参数，使remark前强制进行一次Minor GC。<br>这样做利弊都有。好的一面是减少了remark阶段的停顿时间;坏的一面是Minor GC后紧跟着一个remark pause。如此一来，停顿时间也比较久。<br>CMS日志如下：</p>
+<blockquote>
+<p>7688.150: [CMS-concurrent-preclean-start]<br>7688.186: [CMS-concurrent-preclean: 0.034/0.035 secs]<br>7688.186: [CMS-concurrent-abortable-preclean-start]<br>7688.465: [GC 7688.465: [ParNew: 1040940K-&gt;1464K(1044544K), 0.0165840 secs] 1343593K-&gt;304365K(2093120K),<br>0.0167509 secs]7690.093: [CMS-concurrent-abortable-preclean: 1.012/1.907 secs]  7690.095: [GC[YG occupancy: 522484 K (1044544 K)]<br>7690.095: [Rescan (parallel) , 0.3665541 secs]7690.462: [weak refs processing, 0.0003850 secs] [1 CMS-remark: 302901K(1048576K)] 825385K(2093120K), 0.3670690 secs]</p>
+</blockquote>
+<p><strong>7688.186启动了可终止的预清理，在随后的三秒内启动了Minor GC，然后进入了Remark阶段.</strong><br>实际上为了减少remark阶段的STW时间，预清理阶段会尽可能多做一些事情来减少remark停顿时间。<br>remark的rescan阶段是多线程的，为了便于多线程扫描新生代，<strong>预清理阶段会将新生代分块</strong>。<br>每个块中存放着多个对象，这样remark阶段就不需要从头开始识别每个对象的起始位置。<br>多个线程的职责就很明确了，把分块分配给多个线程，很快就扫描完。<br>遗憾的是，这种办法仍然是建立在发生了Minor GC的条件下。<br>如果没有发生Minor GC，top（下一个可以分配的地址空间）以下的所有空间被认为是一个块(这个块包含了新生代大部分内容)。<br>这种块对于remark阶段并不会起到多少作用，因此并行效率也会降低。</p>
+<hr>
+<p><strong>ok，新生代的机制讲完了，下面讲讲老年代</strong>。<br>老年代的机制与一个叫<strong>CARD TABLE</strong>的东西（这个东西其实就是个数组,数组中每个位置存的是一个byte）密不可分。<br>CMS将老年代的空间分成大小为512bytes的块，card table中的每个元素对应着一个块。<br>并发标记时，如果某个对象的引用发生了变化，就标记该对象所在的块为<strong> dirty card</strong>。<br>并发预清理阶段就会重新扫描该块，将该对象引用的对象标识为可达。<br>举个例子：<br>并发标记时对象的状态：<br><img src="/2016/04/23/详解CMS垃圾回收机制/concurrent_mark.png" title="concurrent mark"></p>
+<p><strong>但随后current obj的引用发生了变化：</strong><br><img src="/2016/04/23/详解CMS垃圾回收机制/referrence_changed.png" title="referrence changed"> </p>
+<p>current obj所在的块被标记为了dirty card。<br>随后到了pre-cleaning阶段，还记得该阶段的任务之一就是标记这些在并发标记阶段被修改了的对象么？之后那些通过current obj变得可达的对象也被标记了，变成下面这样：<br><img src="/2016/04/23/详解CMS垃圾回收机制/dirty_card.png" title="dirty card"></p>
+<p>同时dirty card标志也被清除。<br>老年代的机制就是这样。<br><strong>不过card table还有其他作用</strong>。<br>还记得前面提到的那个问题么？进行Minor GC时,如果有老年代引用新生代，怎么识别？<br>(有研究表明，在所有的引用中，老年代引用新生代这种场景不足1%.原因大家可以自己分析下)<br>当有老年代引用新生代，对应的card table被标识为相应的值（card table中是一个byte，有八位，约定好每一位的含义就可区分哪个是引用新生代，哪个是并发标记阶段修改过的）。<br><strong>所以，Minor GC通过扫描card table就可以很快的识别老年代引用新生代</strong>。<br>这里提一下，hotspot 虚拟机使用字节码解释器、JIT编译器、 write barrier维护 card table。<br>当字节码解释器或者JIT编译器更新了引用，就会触发write barrier操作card table.<br>再提一下，由于card table的存在，当老年代空间很大时会发生什么？（这里大家可以自由发挥想象）<br>至此，预清理阶段的工作讲完。</p>
+<h3 id="重标记-STW"><a href="#重标记-STW" class="headerlink" title="重标记(STW)"></a>重标记(STW)</h3><p>暂停所有用户线程，重新扫描堆中的对象，进行可达性分析,标记活着的对象。<br>有了前面的基础，这个阶段的工作量被大大减轻，停顿时间因此也会减少。<br>注意这个阶段是多线程的。</p>
+<h3 id="并发清理。"><a href="#并发清理。" class="headerlink" title="并发清理。"></a>并发清理。</h3><p>用户线程被重新激活，同时清理那些无效的对象。</p>
+<h3 id="重置"><a href="#重置" class="headerlink" title="重置"></a>重置</h3><p>CMS清除内部状态，为下次回收做准备。 </p>
+<hr>
+<p>CMS执行过程讲完了，重点讲解了并发预清理时的操作及CMS几个关键参数。你们可以消化一下，消化完了可以休息一下，因为事情还没结束。</p>
+<h2 id="CMS有什么问题"><a href="#CMS有什么问题" class="headerlink" title="CMS有什么问题"></a>CMS有什么问题</h2><p>every coin has two sides ——高中英语作文我经常用的一句话。<br>在我看来，<strong>CMS这三个字母就隐含了问题所在。并发+标记-清除算法 是问题的来源。</strong> </p>
+<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><h4 id="抢占CPU"><a href="#抢占CPU" class="headerlink" title="抢占CPU"></a>抢占CPU</h4><p>并发意味着多线程抢占CPU资源，即GC线程与用户线程抢占CPU。这可能会造成用户线程执行效率下降。<br>CMS默认的回收线程数是<strong>(CPU个数+3)/4</strong>。这个公式的意思是当CPU大于4个时,保证回收线程占用至少25%的CPU资源，这样用户线程占用75%的CPU，这是可以接受的。<br>但是，如果CPU资源很少，比如只有两个的时候怎么办？按照上面的公式，CMS会启动1个GC线程。相当于GC线程占用了50%的CPU资源，这就可能导致用户程序的执行速度忽然降低了50%，50%已经是很明显的降低了。<br>这种场景怎么处理呢？<br>我给的答案是可以不用考虑这种场景。现在的PC机中都至少有双核处理器，更别说大型的服务器了。<br>CMS的解决方案是提供了一个 incremental mode（增量模式）。<br>在这种模式下，进行并发标记、清理时让GC线程、用户线程交替运行，尽量减少GC线程独占CPU资源的时间。<br>这会造成GC时间更长，但对用户线程造成的影响就会少一些。<br>但实践证明，这种模式下CMS的表现很一般，并没有什么大的优化。<br>i-CMS已经被声明为“deprecated”，不再提倡使用。<br>(<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html#concurrent_mark_sweep_cms_collector" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html#concurrent_mark_sweep_cms_collector</a>)</p>
+<h4 id="浮动垃圾"><a href="#浮动垃圾" class="headerlink" title="浮动垃圾"></a>浮动垃圾</h4><p>并发清理阶段用户线程还在运行，这段时间就可能产生新的垃圾，新的垃圾在此次GC无法清除，只能等到下次清理。这些垃圾有个专业名词：浮动垃圾。<br>由于垃圾回收阶段用户线程仍在执行，必需预留出内存空间给用户线程使用。因此不能像其他回收器那样，等到老年代满了再进行GC。<br>CMS 提供了CMSInitiatingOccupancyFraction参数来设置老年代空间使用百分比,达到百分比就进行垃圾回收。<br>这个参数默认是92%，参数选择需要看具体的应用场景。<br>设置的太小会导致频繁的CMS GC，产生大量的停顿；反过来想，设置的太高会发生什么？<br>假设现在设置为99%，还剩1%的空间可以使用。<br>在并发清理阶段，若用户线程需要使用的空间大于1%，就会产生Concurrent  Mode Failure错误，意思就是说并发模式失败。<br>这时，虚拟机就会启动备案：使用Serial Old收集器重新对老年代进行垃圾回收.如此一来，停顿时间变得更长。<br>所以CMSInitiatingOccupancyFraction的设置要具体问题具体分析。<br>网上有一些设置此参数的公式，个人认为不是很严谨(原因就是CMS另外一个问题导致的),因此不写出来以免大家疑惑。</p>
+<p>其实CMS有动态检查机制。<br>CMS会根据历史记录，预测老年代还需要多久填满及进行一次回收所需要的时间。<br>在老年代空间用完之前，CMS可以根据自己的预测自动执行垃圾回收。<br>这个特性可以使用参数UseCMSInitiatingOccupancyOnly来关闭。</p>
+<p>这里提个问题，如果让你设计，<strong>如何预测什么时候开始自动执行</strong>？</p>
+<h3 id="标记-清除"><a href="#标记-清除" class="headerlink" title="标记-清除"></a>标记-清除</h3><p>4.3 前两个问题是由并发引起的，接下来要说的问题就是由标记-清除算法引起的。<br>使用标记-清除算法可能造成大量的空间碎片。空间碎片过多，就会给大对象分配带来麻烦。<br>往往老年代还有很大剩余空间，但无法找到足够大的连续空间来分配当前对象,不得不触发一次Full GC。<br>CMS的解决方案是使用UseCMSCompactAtFullCollection参数(默认开启)，在顶不住要进行Full GC时开启内存碎片整理。<br>这个过程需要STW，碎片问题解决了,但停顿时间又变长了。<br>虚拟机还提供了另外一个参数CMSFullGCsBeforeCompaction，用于设置执行多少次不压缩的Full GC后，跟着来一次带压缩的（默认为0，每次进入Full GC时都进行碎片整理）。<br>延伸一个“foreground collector”的东西给大家，这个玩意在Java8中也声明为deprecated。(<a href="https://bugs.openjdk.java.net/browse/JDK-8027132" target="_blank" rel="noopener">https://bugs.openjdk.java.net/browse/JDK-8027132</a>)<br>CMS存在的问题已经讲清楚，大家消化下。</p>
+<hr>
+<p>至此，CMS相关内容已经讲完。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>CMS采用了多种方式尽可能降低GC的暂停时间,减少用户程序停顿</strong>。<br><strong>停顿时间降低的同时牺牲了CPU吞吐量</strong> 。<br><strong>这是在停顿时间和性能间做出的取舍，可以简单理解为”空间(性能)”换时间</strong>。</p>
+<p>文中提到的几个问题大家可以把自己当成设计者来思考。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html#concurrent_mark_sweep_cms_collector" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html#concurrent_mark_sweep_cms_collector</a><br><a href="https://blogs.oracle.com/jonthecollector/entry/did_you_know" target="_blank" rel="noopener">https://blogs.oracle.com/jonthecollector/entry/did_you_know</a><br><a href="http://dept.cs.williams.edu/~freund/cs434/hotspot-gc.pdf" target="_blank" rel="noopener">http://dept.cs.williams.edu/~freund/cs434/hotspot-gc.pdf</a><br><a href="https://plumbr.eu/handbook/garbage-collection-algorithms-implementations" target="_blank" rel="noopener">https://plumbr.eu/handbook/garbage-collection-algorithms-implementations</a><br><a href="https://blogs.msdn.microsoft.com/abhinaba/2009/03/02/back-to-basics-generational-garbage-collection/" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/abhinaba/2009/03/02/back-to-basics-generational-garbage-collection/</a><br><a href="https://bugs.openjdk.java.net/browse/JDK-8027132" target="_blank" rel="noopener">https://bugs.openjdk.java.net/browse/JDK-8027132</a><br>《深入理解Java虚拟机 JVM高级特性与最佳实践》</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_pay.jpeg" alt="于大帅 wechat" style="width: 200px; max-width: 100%;">
+    <div>可以白嫖我的颜值，不能白嫖我的才华，打赏😆😆！！!</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏完了加微信白嫖颜值😁😁！！！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_ercode.jpeg" alt="于大帅 WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/CMS/" rel="tag"># CMS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/09/spring-拦截器/" rel="prev" title="spring 拦截器">
+                spring 拦截器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="于大帅">
+          <p class="site-author-name" itemprop="name">于大帅</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MasterTF" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5892078423" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/tianfang-yu-6b706296/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是CMS？"><span class="nav-number">1.</span> <span class="nav-text">什么是CMS？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMS有什么用？"><span class="nav-number">2.</span> <span class="nav-text">CMS有什么用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMS如何执行？"><span class="nav-number">3.</span> <span class="nav-text">CMS如何执行？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始标记"><span class="nav-number">3.1.</span> <span class="nav-text">初始标记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发标记"><span class="nav-number">3.2.</span> <span class="nav-text">并发标记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发预清理"><span class="nav-number">3.3.</span> <span class="nav-text">并发预清理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重标记-STW"><span class="nav-number">3.4.</span> <span class="nav-text">重标记(STW)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发清理。"><span class="nav-number">3.5.</span> <span class="nav-text">并发清理。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重置"><span class="nav-number">3.6.</span> <span class="nav-text">重置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMS有什么问题"><span class="nav-number">4.</span> <span class="nav-text">CMS有什么问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发"><span class="nav-number">4.1.</span> <span class="nav-text">并发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#抢占CPU"><span class="nav-number">4.1.1.</span> <span class="nav-text">抢占CPU</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮动垃圾"><span class="nav-number">4.1.2.</span> <span class="nav-text">浮动垃圾</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-清除"><span class="nav-number">4.2.</span> <span class="nav-text">标记-清除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">于大帅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mastertf-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/04/23/详解CMS垃圾回收机制/';
+          this.page.identifier = '2016/04/23/详解CMS垃圾回收机制/';
+          this.page.title = '详解CMS垃圾回收机制';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mastertf-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ktTDwm3aRUPalCDojHrT4I5k-gzGzoHsz", "cbwEPEqmLTkyREMfrBvV2aQu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

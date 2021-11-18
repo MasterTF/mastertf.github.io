@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="分布式系统,技术,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="数据分布方式 顾名思义就是利用多台计算机协同解决单台计算机所不能解决的计算、存储等问题。 单机系统与分布式系统的最大的区别在于问题的规模，即计算、存储的数据量的区别。 将一个单机问题使用分布式解决，首先要解决的就是如何将问题拆解为可以使用多机分布式解决，使得 分布式系统中的每台机器负责原问题的一个子集。由于无论是计算还是存储，其问题输入对象都是 数据，所以如何拆解分布式系统的输入数据成为分布式系统">
+<meta name="keywords" content="分布式系统,技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式系统数据分布方案">
+<meta property="og:url" content="http://yoursite.com/2021/01/26/分布式系统数据分布方案/index.html">
+<meta property="og:site_name" content="Stay Hungry">
+<meta property="og:description" content="数据分布方式 顾名思义就是利用多台计算机协同解决单台计算机所不能解决的计算、存储等问题。 单机系统与分布式系统的最大的区别在于问题的规模，即计算、存储的数据量的区别。 将一个单机问题使用分布式解决，首先要解决的就是如何将问题拆解为可以使用多机分布式解决，使得 分布式系统中的每台机器负责原问题的一个子集。由于无论是计算还是存储，其问题输入对象都是 数据，所以如何拆解分布式系统的输入数据成为分布式系统">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://km.woa.com/files/photos/pictures/202105/1621151834_80_w609_h195.png">
+<meta property="og:updated_time" content="2021-11-17T16:06:18.425Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式系统数据分布方案">
+<meta name="twitter:description" content="数据分布方式 顾名思义就是利用多台计算机协同解决单台计算机所不能解决的计算、存储等问题。 单机系统与分布式系统的最大的区别在于问题的规模，即计算、存储的数据量的区别。 将一个单机问题使用分布式解决，首先要解决的就是如何将问题拆解为可以使用多机分布式解决，使得 分布式系统中的每台机器负责原问题的一个子集。由于无论是计算还是存储，其问题输入对象都是 数据，所以如何拆解分布式系统的输入数据成为分布式系统">
+<meta name="twitter:image" content="https://km.woa.com/files/photos/pictures/202105/1621151834_80_w609_h195.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/01/26/分布式系统数据分布方案/">
+
+
+
+
+
+  <title>分布式系统数据分布方案 | Stay Hungry</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungry</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/26/分布式系统数据分布方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于大帅">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式系统数据分布方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-26T16:02:30+08:00">
+                2021-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/01/26/分布式系统数据分布方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/01/26/分布式系统数据分布方案/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2021/01/26/分布式系统数据分布方案/" class="leancloud_visitors" data-flag-title="分布式系统数据分布方案">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据分布方式"><a href="#数据分布方式" class="headerlink" title="数据分布方式"></a>数据分布方式</h2><ul>
+<li>顾名思义就是利用多台计算机协同解决单台计算机所不能解决的计算、存储等问题。</li>
+<li>单机系统与分布式系统的最大的区别在于问题的规模，即计算、存储的数据量的区别。</li>
+<li>将一个单机问题使用分布式解决，首先要解决的就是如何将问题拆解为可以使用多机分布式解决，使得 分布式系统中的每台机器负责原问题的一个子集。由于无论是计算还是存储，其问题输入对象都是 数据，所以如何拆解分布式系统的输入数据成为分布式系统的基本问题。</li>
+</ul>
+<a id="more"></a>
+<p>几种方案可以组合使用</p>
+<h3 id="普通哈希"><a href="#普通哈希" class="headerlink" title="普通哈希"></a>普通哈希</h3><p>按照数据的某一特征计算哈希值，并将哈希值与 机器中的机器建立映射关系，从而将不同哈希值的数据分布到不同的机器上</p>
+<p><strong>优点:</strong><br>哈希函数的散列特性较好时数据分布均匀。<br>元信息非常简单</p>
+<p><strong>缺点:</strong></p>
+<ol>
+<li><p>可扩展性不高:一旦集群规模需要扩展，则几乎所有的数据需要被迁移并重新分布。<br><strong>解决方案：</strong><br>维护额外的元数据：哈希值不与机器做除法取模映射，将对应关系作为元数据由专门的元数据服务器管理。<br>访问数据时：<br>1.1 计算哈希值<br>1.2. 哈希值取模个数大于机器个数，使同一台机器上负责多个哈希取模的余数<br>1.3. 查询元数据服务器，获得哈希值对应的机器。<br>1.4. 扩容时，将部分余数分配到新加入的机器并迁移对应的数据到新机器上</p>
+</li>
+<li><p>分布不均:一旦某数据特征值的数据严重不均，容易出现“数据倾斜”(data skew)问题<br><strong>解决方案：</strong>使用多个特征值计算哈希值，工程实践不容易落地</p>
+</li>
+</ol>
+<p><strong>工程实践</strong><br>1.Mola(<a href="https://developer.baidu.com/platform/s60" target="_blank" rel="noopener">developer.baidu.com/platform/s6…</a>)<br>2.Armor(分布式Key-Value系统)<br>3.Big Pipe(百度的消息传输系统)分布不均：一旦某数据特征值的数据严重不均，容易出现“数据倾斜”(data skew)问题</p>
+<h3 id="按范围"><a href="#按范围" class="headerlink" title="按范围"></a>按范围</h3><ul>
+<li>将数据按特征值的值域范围划分为不同的区间，使得集群中每台(组)服务器处理不同区间的数据。如id、时间、区域</li>
+<li>使用元数据服务器管理数据分布信息</li>
+</ul>
+<p><strong>优点:</strong>可以灵活的根据数据量的具体情况拆分原有数据区间， 拆分后的数据区间可以迁移到其他机器。<br><strong>缺点:</strong>当集群规模较大时，元信息的数据量也变得很大<br><strong>解决方案：</strong><br>1.利用动态划分区间的技术，使得每个区间中服务的数据量尽量的一样多。<br>2.当某个区间的数据量较大时，通过将区间“分裂”的方式拆分为两个区间，使得每个数据区间中的数据量都尽量维持在 一个较为固定的阈值之下。 </p>
+<p><strong>工程实践</strong><br>1.Big Table(<a href="https://cloud.google.com/bigtable/" target="_blank" rel="noopener">cloud.google.com/bigtable/</a>)<br>2.Hbase(<a href="https://hbase.apache.org/" target="_blank" rel="noopener">hbase.apache.org/</a>)<br>3.PNUTS(<a href="https://timyang.net/architecture/yahoo-pnuts/" target="_blank" rel="noopener">timyang.net/architectur…</a>)</p>
+<h3 id="按数据量"><a href="#按数据量" class="headerlink" title="按数据量"></a>按数据量</h3><ul>
+<li>将数据视为一个顺序增长的文件，并将数据按照某一较为固定的大小划分为若干数据块(chunk)，不同的数据块分布到不同的服务器上</li>
+<li>使用元数据服务器管理数据分布信息</li>
+</ul>
+<p><strong>优点:</strong>数据分布均匀<br><strong>缺点:</strong>数据分布均匀集群规模较大时，元信息的数据量很大;维护元数据逻辑复杂 </p>
+<p><strong>实践中比较好的数据分布方案</strong><br>按哈希值分段<br>1.按照用户ID的哈希值分数据，如果某个用户ID的数据量特别大时，统计用户的数据量，并按某一阈值将用户的数据切分为多个均匀的数据段<br>2.将数据段分布到集群中去。大部分用户的数据量不会超过阈值<br>3.元数据中仅仅保存超过阈值的用户的数据段分布信息。</p>
+<p><strong>工程实践:</strong><br>1.GFS(<a href="https://pdos.csail.mit.edu/6.824/papers/gfs.pdf" target="_blank" rel="noopener">pdos.csail.mit.edu/6.824/paper…</a>)<br>2.HDFS(<a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_design.html" target="_blank" rel="noopener">hadoop.apache.org/docs/r1.0.4…</a>)</p>
+<h3 id="一致性哈希"><a href="#一致性哈希" class="headerlink" title="一致性哈希"></a>一致性哈希</h3><ul>
+<li>使用一个哈希函数计算数据或数据特征的哈希值，令哈希函数的输出值域为一个封闭的环，将节点随机分布在这个环上，每个节点负责处理从自己开始顺时针到下一个节点的全部哈希值域上的数据。</li>
+<li>元数据维护虚拟节点与真实节点的映射</li>
+</ul>
+<p><strong>优点:</strong>可以任意动态添加、删除节点，每次仅影响一致性哈希环上相邻的节点。<br><strong>缺点:</strong>很难均匀分布<br><strong>解决方案：</strong><br>1.引入虚节点(virtual node)， 虚节点的个数远大于未来集群中机器的个数，将虚节点均匀分布到一致性哈希环上。<br>2.操作数据时，首先找到对应的虚节点，进而查找元数据找到对应的真实节点。</p>
+<p><strong>工程实践</strong><br>1.Dynamo(<a href="https://aws.amazon.com/cn/dynamodb/" target="_blank" rel="noopener">aws.amazon.com/cn/dynamodb…</a>)<br>2.Cassandra(<a href="http://cassandra.apache.org/" target="_blank" rel="noopener">cassandra.apache.org/</a>)</p>
+<h2 id="基本副本协议"><a href="#基本副本协议" class="headerlink" title="基本副本协议"></a>基本副本协议</h2><h3 id="中心化副本控制协议"><a href="#中心化副本控制协议" class="headerlink" title="中心化副本控制协议"></a>中心化副本控制协议</h3><p>由一个中心节点协调副本数据的更新、维护副本之间的一致性</p>
+<p><strong>优点:</strong><br>1.协议相对较为简单， 所有的副本相关的控制交由中心节点完成。<br>2.并发控制将由中心节点完成，从而使得一个分布式并发 控制问题，简化为一个单机并发控制问题</p>
+<p><strong>缺点:</strong>系统的可用性依赖于中心化节点</p>
+<h3 id="primary-secondary协议"><a href="#primary-secondary协议" class="headerlink" title="primary-secondary协议"></a>primary-secondary协议</h3><p>1.副本分为两大类，其中有且仅有一个副本作为 primary 副本， 除 primary 以外的副本都作为 secondary 副本。<br>2.维护 primary 副本的节点作为中心节点，中心节点负 责维护数据的更新、并发控制、协调副本的一致性。 </p>
+<p><strong>优点:</strong>兼顾了复杂、一致性与可用性<br><strong>缺点:</strong>牺牲一定的可用性<br><strong>工程实践:</strong><br>1.GFS<br>2.PNUTS<br>3.Niobe</p>
+<h3 id="去中心化副本控制协议"><a href="#去中心化副本控制协议" class="headerlink" title="去中心化副本控制协议"></a>去中心化副本控制协议</h3><p>没有中心节点，协议中所有的节点都是完全对等的，节点之间通过平等协商 达到一致 </p>
+<p><strong>优点:</strong>没有因为中心化节点异常而带来的停服务等问题<br><strong>缺点:</strong><br>1.协议过程通常比较复杂。尤其当需要实现强一致性时，协议流程变得复杂且不容易理解。<br>2.由于流程的复杂，去中心化 协议的效率或者性能一般也较中心化协议低。<br>3.一个不恰当的比方就是，中心化副本控制协议类似专 制制度，系统效率高但高度依赖于中心节点，一旦中心节点异常，系统受到的影响较大;去中心化 副本控制协议类似民主制度，节点集体协商，效率低下，但个别节点的异常不会对系统总体造成太 大影响。</p>
+<p><strong>工程实践</strong><br>基于paxos协议:<br>1.Dynamo/Cassandra<br>2.Chubby/Zookeeper</p>
+<h2 id="primary-secondary协议-1"><a href="#primary-secondary协议-1" class="headerlink" title="primary-secondary协议"></a>primary-secondary协议</h2><p>解决四大类问题:数据更新流程、数据读取方式、Primary 副本的确定和切换、数据同步(reconcile)</p>
+<h3 id="数据更新流程"><a href="#数据更新流程" class="headerlink" title="数据更新流程"></a>数据更新流程</h3><ul>
+<li>数据更新都由 primary 节点协调完成。</li>
+<li>外部节点将更新操作发给 primary 节点</li>
+<li>primary 节点进行并发控制即确定并发更新操作的先后顺序</li>
+<li>primary 节点将更新操作发送给 secondary 节点</li>
+<li>primary 根据 secondary 节点的完成情况决定更新是否成功并将结果返回外部节点<br><img src="https://km.woa.com/files/photos/pictures/202105/1621151834_80_w609_h195.png" alt="enter image description here"></li>
+</ul>
+<h3 id="数据读取方式"><a href="#数据读取方式" class="headerlink" title="数据读取方式"></a>数据读取方式</h3><p>保障强一致性的几种方法：</p>
+<ol>
+<li>始终读取primary副本</li>
+<li>由 primary 控制节点 secondary 节点的可用性。当 primary 更新某个 secondary 副本不成功 时，primary 将该 secondary 副本标记为不可用，从而用户不再读取该不可用的副本。不可用的 secondary 副本可以继续尝试与 primary 同步数据，当与 primary 完成数据同步后，primary 可以副本 标记为可用。</li>
+<li>Quorum方式读取<br>即 primary 成功更新 W 个副本(含 primary 本身)后向用户返回成功。读取数据时依照一致性要求的不 同可以有不同的做法:</li>
+</ol>
+<ul>
+<li>如果需要强一致性的立刻读取到最新的成功提交的数据，则可以简单的只读 取 primary 副本上的数据即可，也可以通过强一致的方式读取;</li>
+<li>如果需要会话一致性，则可以根据之前已经读到的数据版本号在各个副本上进行选择性读取;</li>
+<li>如果只需要弱一致性，则可以选择任意副本读取。</li>
+</ul>
+<h3 id="Primary-副本的确定和切换"><a href="#Primary-副本的确定和切换" class="headerlink" title="Primary 副本的确定和切换"></a>Primary 副本的确定和切换</h3><p>primary副本的确定： 属于元信息，由专门的元数据服务器维护<br>primary的切换：<br>1.如何确定primary副本异常：lease机制<br>2.切换primary副本时如何保障数据一致性：quorum机制</p>
+<h3 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h3><table>
+<thead>
+<tr>
+<th>数据不一致原因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>网络分化异常，secondary落后primary</td>
+<td>使用日志技术，回放primary上的操作日志(通常是redo日志)，追上进度</td>
+</tr>
+<tr>
+<td>某些协议下，secondary的数据是脏数据。（如primary没有更新，secondary更新了）</td>
+<td>1. 设计协议不产生脏数据<br>2. 丢弃脏数据<br>3. 使用undo日志删除脏数据</td>
+</tr>
+<tr>
+<td>secondary为新增副本，完全没有数据</td>
+<td>1. 直接拷贝 primary 副本的数据，回放日志追更新进度的方法快很多<br>2. 但拷贝数据时 primary 副本需要能够继续提供更新服务，要求 primary 副本支持快照(snapshot)功能。即对某一刻的副本数据形成快照，然后拷贝快照，拷贝 完成后使用回放日志的方式追快照形成后的更新操作</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_pay.jpeg" alt="于大帅 wechat" style="width: 200px; max-width: 100%;">
+    <div>可以白嫖我的颜值，不能白嫖我的才华，打赏😆😆！！!</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏完了加微信白嫖颜值😁😁！！！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_ercode.jpeg" alt="于大帅 WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式系统/" rel="tag"># 分布式系统</a>
+          
+            <a href="/tags/技术/" rel="tag"># 技术</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/16/Quorum机制/" rel="next" title="Quorum机制">
+                <i class="fa fa-chevron-left"></i> Quorum机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/22/产品思维/" rel="prev" title="产品思维">
+                产品思维 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="于大帅">
+          <p class="site-author-name" itemprop="name">于大帅</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MasterTF" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5892078423" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/tianfang-yu-6b706296/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据分布方式"><span class="nav-number">1.</span> <span class="nav-text">数据分布方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通哈希"><span class="nav-number">1.1.</span> <span class="nav-text">普通哈希</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按范围"><span class="nav-number">1.2.</span> <span class="nav-text">按范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按数据量"><span class="nav-number">1.3.</span> <span class="nav-text">按数据量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一致性哈希"><span class="nav-number">1.4.</span> <span class="nav-text">一致性哈希</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本副本协议"><span class="nav-number">2.</span> <span class="nav-text">基本副本协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中心化副本控制协议"><span class="nav-number">2.1.</span> <span class="nav-text">中心化副本控制协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#primary-secondary协议"><span class="nav-number">2.2.</span> <span class="nav-text">primary-secondary协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去中心化副本控制协议"><span class="nav-number">2.3.</span> <span class="nav-text">去中心化副本控制协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#primary-secondary协议-1"><span class="nav-number">3.</span> <span class="nav-text">primary-secondary协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据更新流程"><span class="nav-number">3.1.</span> <span class="nav-text">数据更新流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据读取方式"><span class="nav-number">3.2.</span> <span class="nav-text">数据读取方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Primary-副本的确定和切换"><span class="nav-number">3.3.</span> <span class="nav-text">Primary 副本的确定和切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据同步"><span class="nav-number">3.4.</span> <span class="nav-text">数据同步</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">于大帅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mastertf-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2021/01/26/分布式系统数据分布方案/';
+          this.page.identifier = '2021/01/26/分布式系统数据分布方案/';
+          this.page.title = '分布式系统数据分布方案';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mastertf-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ktTDwm3aRUPalCDojHrT4I5k-gzGzoHsz", "cbwEPEqmLTkyREMfrBvV2aQu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

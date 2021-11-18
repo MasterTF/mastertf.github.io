@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="架构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="尝试用“说人话”的方式讲清楚架构设计方法。如果你之前看过其他架构文章，emmm…..先忘了它 什么是架构对架构是否有以下疑问：  成天说的架构是在说什么？ 面试让画架构图该画什么？ 我知道这个东西很重要，但就是不知道怎么存在？ 什么是好的架构？ 如何做架构设计？ 知道有架构师岗位，他们在做什么？ 看到过一些文章，XXX高可用架构，XXX高性能实践，XXX架构演进，怎么说的都不一样？ 。。。欢迎补充">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="架构设计方法概述">
+<meta property="og:url" content="http://yoursite.com/2019/12/25/架构设计方法概述/index.html">
+<meta property="og:site_name" content="Stay Hungry">
+<meta property="og:description" content="尝试用“说人话”的方式讲清楚架构设计方法。如果你之前看过其他架构文章，emmm…..先忘了它 什么是架构对架构是否有以下疑问：  成天说的架构是在说什么？ 面试让画架构图该画什么？ 我知道这个东西很重要，但就是不知道怎么存在？ 什么是好的架构？ 如何做架构设计？ 知道有架构师岗位，他们在做什么？ 看到过一些文章，XXX高可用架构，XXX高性能实践，XXX架构演进，怎么说的都不一样？ 。。。欢迎补充">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/15772630513056.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15772632135617.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15772632971263.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15772633736611.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15772634271371.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15772637354780.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15772637614029.jpg">
+<meta property="og:updated_time" content="2021-11-18T14:57:10.735Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="架构设计方法概述">
+<meta name="twitter:description" content="尝试用“说人话”的方式讲清楚架构设计方法。如果你之前看过其他架构文章，emmm…..先忘了它 什么是架构对架构是否有以下疑问：  成天说的架构是在说什么？ 面试让画架构图该画什么？ 我知道这个东西很重要，但就是不知道怎么存在？ 什么是好的架构？ 如何做架构设计？ 知道有架构师岗位，他们在做什么？ 看到过一些文章，XXX高可用架构，XXX高性能实践，XXX架构演进，怎么说的都不一样？ 。。。欢迎补充">
+<meta name="twitter:image" content="http://yoursite.com/img/15772630513056.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/25/架构设计方法概述/">
+
+
+
+
+
+  <title>架构设计方法概述 | Stay Hungry</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungry</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/25/架构设计方法概述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于大帅">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">架构设计方法概述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-25T15:06:51+08:00">
+                2019-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统设计/" itemprop="url" rel="index">
+                    <span itemprop="name">系统设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/25/架构设计方法概述/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/25/架构设计方法概述/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/12/25/架构设计方法概述/" class="leancloud_visitors" data-flag-title="架构设计方法概述">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>尝试用“说人话”的方式讲清楚架构设计方法。<br>如果你之前看过其他架构文章，emmm…..先忘了它</p>
+<h2 id="什么是架构"><a href="#什么是架构" class="headerlink" title="什么是架构"></a>什么是架构</h2><p>对架构是否有以下疑问：</p>
+<ul>
+<li>成天说的架构是在说什么？</li>
+<li>面试让画架构图该画什么？</li>
+<li>我知道这个东西很重要，但就是不知道怎么存在？</li>
+<li>什么是好的架构？</li>
+<li>如何做架构设计？</li>
+<li>知道有架构师岗位，他们在做什么？</li>
+<li>看到过一些文章，XXX高可用架构，XXX高性能实践，XXX架构演进，怎么说的都不一样？</li>
+<li>。。。欢迎补充</li>
+</ul>
+<a id="more"></a>
+<p>“架构”这个东西不仅存在于软件领域，日常生活中随处可见！软件系统中的“架构”可能抽象了些产生上述各种疑问。</p>
+<p>在谈论什么是架构之前，先看下架构如何产生的会更合适，网上有篇文章说的比较好，我摘下：</p>
+<blockquote>
+<p><a href="https://www.infoq.cn/article/an-informal-discussion-on-architecture-part01" target="_blank" rel="noopener">https://www.infoq.cn/article/an-informal-discussion-on-architecture-part01</a><br>总结一下，什么是架构，就是：</p>
+<ol>
+<li>根据要解决的问题，对目标系统的边界进行界定。</li>
+<li>并对目标系统按某个原则的进行切分。切分的原则，要便于不同的角色，对切分出来的部分，并行或串行开展工作，一般并行才能减少时间。</li>
+<li>并对这些切分出来的部分，设立沟通机制。</li>
+<li>根据 3，使得这些部分之间能够进行有机的联系，合并组装成为一个整体，完成目标系统的所有工作。</li>
+</ol>
+</blockquote>
+<p><strong>说人话：解决问题的方式就是架构！！</strong></p>
+<p>生活中的例子：</p>
+<ul>
+<li>公司层面：组织架构 -&gt; 解决字节跳动整个公司的问题</li>
+<li>国家层面：政府机构 -&gt; 解决整个国家面临的问题</li>
+<li>学科层面：生物分类 -&gt; 解决XXX问题</li>
+</ul>
+<p>回到软件领域，看看我们用了哪些东西解决问题。这些“东西”组成了架构，可能包括了 服务、存储、机器、协议 等。这就是架构，它看起来可能长下面👇这个样子：<br><img src="/img/15772630513056.jpg" alt></p>
+<p>画的简单了些，但基本描述了我们解决问题的方式：<br>客户端：解决用户触达问题<br>api层：解决与客户端通信问题<br>服务层：解决数据读写问题<br>存储层：解决数据存储问题<br>基础组件：解决可用性、性能、统计 等问题。</p>
+<h2 id="架构挑战"><a href="#架构挑战" class="headerlink" title="架构挑战"></a>架构挑战</h2><h3 id="业务"><a href="#业务" class="headerlink" title="业务"></a>业务</h3><ul>
+<li>初期：探索阶段，业务策略不明确，需求变化快</li>
+<li>中期：快速增长阶段，功能多，越来越复杂</li>
+</ul>
+<h3 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h3><ul>
+<li>可用性</li>
+<li>性能</li>
+<li>扩展性</li>
+<li>安全</li>
+<li>正确性（幂等、一致性、业务逻辑等）<br>上面列的每一个点，都足以展开专项讲解。网上的一些架构文章通常离不开这几个方面：怎么达到4个9，怎么做故障恢复，监控怎么做，性能怎么保障，安全策略 等等等。</li>
+</ul>
+<p>技术架构可以通过架构五视图(架构五视图就不展开说明了)表达：</p>
+<ul>
+<li>逻辑架构</li>
+<li>数据架构</li>
+<li>运行架构</li>
+<li>部署架构</li>
+<li>开发架构</li>
+</ul>
+<p>技术维度的好坏可以评估：可用性几个9，性能多少，吞吐量多少，是否有安全问题等。</p>
+<h3 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h3><ul>
+<li>组织结构：团队职责划分、职责边界以及 及时调整组织结构。</li>
+<li>人员分工：人员技能、兴趣、发展空间。</li>
+</ul>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>降低复杂度、快速响应(应对变化)、风险可控</p>
+<h3 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h3><p><strong>说人话：将大的问题拆成小的问题，逐个解决。</strong></p>
+<p>拿前面管理国家例子作说明：<br>管理国家的问题域，将问题分解，建立相应政府机构：<br><img src="/img/15772632135617.jpg" alt></p>
+<ul>
+<li>每个政府机构解决自己领域擅长内的问题 -&gt; 复杂度降低；专业人做专业事情 -&gt; 高效。</li>
+<li>需要办事、政策调整 找到相应机构即可  -&gt; 边界清晰。</li>
+<li>某个机构出了问题对其他机构影响较小 -&gt; 风险可控。</li>
+</ul>
+<p>以上三点很好的说明了”高内聚、低耦合”系统的特点。<br>顺便提一下，耦合是必然的，因为单独模块完成不了全部功能。要做到的是尽可能降低耦合。</p>
+<h3 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h3><p><strong>说人话：逐级分类整理。</strong></p>
+<p>分治好像已经解决了所有问题为什么还需要抽象？因为上面的例子已经做了抽象。</p>
+<p>将问题拆解，得到的可能是膨胀的问题域，相应的解决方案也会膨胀。需要对问题域进行归纳总结。<br>继续拿国家举例子，问题域可能有这些：</p>
+<ul>
+<li>足球如何发展</li>
+<li>流行歌曲发展方向</li>
+<li>会计标准是否要改</li>
+<li>铁矿石进口量</li>
+<li>小麦增收</li>
+<li>养老金和退休政策如何制定</li>
+<li>要不要再建个水电站</li>
+<li>药品定价</li>
+<li>等等等等等等<br>如果任由问题域膨胀，不做梳理，问题域依然复杂。所以需要对问题进行抽象，统一管理，让“专业人做专业事情”。</li>
+<li>足球、体操、游泳 怎么抽象? -&gt; 体育</li>
+<li>国画、芭蕾、钢琴 怎么抽象? -&gt; 艺术</li>
+<li>体育、艺术、音乐 怎么抽象? -&gt; 文化</li>
+</ul>
+<p>抽象可以很好地将问题收敛，做到“高内聚”。<br>上面国务院政府机构图已经是对所有问题域高度抽象后的表示，每个政府机构还可以拆解成很多层。</p>
+<h4 id="如何抽象"><a href="#如何抽象" class="headerlink" title="如何抽象"></a>如何抽象</h4><ul>
+<li>有最佳实践按照最佳实践。如政府机构设置，都发展上千年了，大的框架不会变，照着弄就行。</li>
+<li>从未接触过的问题域：从下到上，将问题不重不漏列出来，做归纳总结。举个例子：生物分类，人类一开始不可能知道全部生物，随着知道的生物越多，归纳总结出一套分类方法：<br><img src="/img/15772632971263.jpg" alt></li>
+</ul>
+<ul>
+<li>说人话：没有对错，团队讨论达成一致就行，你说这样抽象那就这样抽象。 比如图书分类，一本书既是传记又是历史，但只能把他放到一个架子上，放哪个都说得通。这种情况需要让子弹飞一会儿，对业务有了更深理解后再去看如何调整。所以业务初期的方案满足当下需求就好，预估变化做预案，不需要实现，一旦发生变化能及时调整。<h3 id="迭代演进"><a href="#迭代演进" class="headerlink" title="迭代演进"></a>迭代演进</h3><strong>说人话：不可能一次做“对”，后续可以改。</strong></li>
+</ul>
+<p>架构设计不可能一蹴而就，也不可能一套方案能够应对后面所有变化。<br>或许经常看到以下新闻：</p>
+<ul>
+<li>某某政府机构撤销、合并</li>
+<li>XXX公司组织结构升级</li>
+<li>养老金&amp;退休政策调整</li>
+<li>XXXX的发现可能推翻现有科学体系</li>
+</ul>
+<p>调整原因大部分是面临的问题域发生了变化，原有的架构不能满足。<br>同样，软件架构体系也需要迭代演进。若不调整，可能出现各种各样的问题，表现可能是：</p>
+<ul>
+<li>业务出错变多</li>
+<li>性能变差</li>
+<li>可用性降低</li>
+<li>迭代变慢</li>
+<li>人员流失 </li>
+<li>等等等等。</li>
+</ul>
+<p>同理，软件架构的迭代演进可能是理解上的演进，也可能是架构的演进，需要 移动、合并、分解、新增等。<br><img src="/img/15772633736611.jpg" alt><br>讲个段子：<br>员工造了轮子，兴奋地跟老板说“我造了几个轮子，可牛X了，能解决XXXX问题，给我升职加薪！”<br>老板：好。<br>过段时间。<br>员工：“我融合掉了好几个轮子，节省了很多开销，给我升职加薪！”<br>老板内心os：“你tm逗我呢”</p>
+<p>这里解释下“理解上的演进”:</p>
+<blockquote>
+<p>冲突不在于客观事实本身，而在于人们的思考方式上。</p>
+</blockquote>
+<p>同一事实，看问题的角度不同，得到的结果也不同。</p>
+<ul>
+<li>应该都听过三个工人立墙的故事。一个人认为就是在立一面墙，一个人认为是在造一栋楼，一个人认为是在造一座城。</li>
+<li>再比如“写单测”。刚毕业同学可能认为没必要，多此一举；服务负责人认为是提升代码质量；项目负责人认为是“提升服务可用性”；换一个党员来看，可能认为在建设美好社会主义😆。<h4 id="在什么时间点调整"><a href="#在什么时间点调整" class="headerlink" title="在什么时间点调整"></a>在什么时间点调整</h4>可参考《重构》里提到的代码重构时机。</li>
+</ul>
+<ol>
+<li>当前版本调整：已经识别到此次需求需要调整架构，那么当前版本不仅要完成产品需求，还要完成技术改造。</li>
+<li>发生case时：找到case的根本原因，使用长期方案解决问题。短期方案是头痛医头，脚痛医脚。长期方案若需要对架构进行调整，不要担心成本大，果断执行，长期看收益还是值得的。</li>
+<li>专门的调整：某些问题已经很严重，单独的项目来做。</li>
+</ol>
+<h2 id="如何落地"><a href="#如何落地" class="headerlink" title="如何落地"></a>如何落地</h2><h3 id="业务-1"><a href="#业务-1" class="headerlink" title="业务"></a>业务</h3><p>DDD: 领域、限界上下文划分对服务化做了很好的指导。(不展开讲DDD,简单理解为面向对象的升级。)<br>比如供应链领域业务划分：</p>
+<ul>
+<li>核心域：系统的核心价值所在，承载着一个系统的重中之重。</li>
+<li>支撑域：专注于业务系统某一重要业务，支撑和完善业务系统。</li>
+<li>通用域：提供通用服务。<br><img src="/img/15772634271371.jpg" alt></li>
+</ul>
+<p>每个虚线圈是一个子领域，每个实线圈是一个限界上下文。</p>
+<ul>
+<li>一个服务 &lt;= 一个领域，避免服务内领域歧义</li>
+<li><p>一个服务 &gt;= 一个聚合，避免分布式事务。<br>按照上图的划分，技术架构应该有订单域、商品域等，里面会有订单服务、商品服务等，通过业务就能知道一些服务，技术架构也要体现业务含义。</p>
+</li>
+<li><p>虚线最重要的意义在于 合理划分边界，为后面的“高内聚、低耦合”打下基础。<br>细胞之所以会存在，是细胞膜定义了什么在细胞内，什么在细胞外，并且确定了什么物质可以通过细胞膜。</p>
+<ul>
+<li>业务架构没有量化指标看好坏，谁也不能确定业务这样划分、这样做一定是最好的。不同人理解不一样，团队内部达成一致即可。需要注意的是，这里的“团队”不仅仅指的是技术团队，而是和业务相关的所有团队：产品、技术、运营、设计等。大家讨论得出结论即可。这个划分不是一成不变，后续随着业务调整，对业务理解加深，相应的术语、划分都需要调整。题外话，为什么招聘有时候要求“相关经验”? “相关经验”的人对问题域理解深刻，可以避免采坑，来回调整多伤。</li>
+<li>这个大圈体现的是“供应链业务”，每个虚线圈还可以继续按照这种方式拆解：“供应链业务”就是从更大的圈中细化出来的。比如，“供应链业务”是在 “XX电商业务”的一个子域。想象有一个放大镜🔍，在电商业务看“供应链业务”就得到了这个圈。同样，“电商业务”可能是某个bg的子域，bg业务又是公司所有业务的一个子域。（ps:看到抽象了没）</li>
+</ul>
+</li>
+</ul>
+<h3 id="技术-1"><a href="#技术-1" class="headerlink" title="技术"></a>技术</h3><p>关注点分离。</p>
+<ul>
+<li>职责划分：功能维度，如优惠券场景，发券、领券等。</li>
+<li>稳定通用：变&amp;不变分离，通用&amp;专用分离。分层架构：横切竖割，纵向分层，横向模块化。</li>
+<li><p>技术维度</p>
+<ul>
+<li>读写分离</li>
+<li>多少分离：大v场景</li>
+<li>轻重分离：业务逻辑复杂的抽出来。</li>
+<li>快慢分离：耗时久的拆分出来，如一些离线任务等。</li>
+</ul>
+</li>
+<li><p>技术架构整体上分为 核心域、通用域、支撑域，每个领域内可以按照“关注点”分离进行服务化。类似开场的那张架构图。只不过技术架构需要体现业务架构，在逻辑上需要调整下：</p>
+<ul>
+<li>列出现有的所有服务，根据团队达成的结论，放到相应子域内。</li>
+<li>子域内部架构按照前面说的“关注点分离”进行设计，比如当前有api层、服务层等。</li>
+<li>子域内重复的服务可以废弃、合并，耦合的进行迁移，该拆分的拆分，该新增的新增。</li>
+<li>领域间只能通过接口访问 功能+数据。</li>
+</ul>
+</li>
+<li>每个子域都是有生命的“对象”，对象两大特点：行为+数据。 </li>
+<li><p>与过程化、模块化 建模区别：<br><img src="/img/15772637354780.jpg" alt></p>
+<ul>
+<li>过程化：直观化思维，关注特定功能过程化描述，不能复用。</li>
+<li>模块化：归纳性思维，数据建模，功能、数据复用，缺乏数据封装。</li>
+<li>领域化：抽象性思维，功能和数据聚合抽象成实体，功能和数据同等重要，统一进行封装。</li>
+</ul>
+</li>
+<li>功能复杂度与维护效率：<br>  <img src="/img/15772637614029.jpg" alt></li>
+</ul>
+<h3 id="团队-1"><a href="#团队-1" class="headerlink" title="团队"></a>团队</h3><p>大的原则：人跟事走。<br>康威定律：组织结构会通过系统设计表达出来。当架构确定之后，根据架构划分进行组织结构调整。<br>这部分就说这些，可能我理解不深，觉得没什么可以再说的了。</p>
+<p>此处讲解时举架构演进栗子🌰。</p>
+<p>最后，一个观点结尾：<br><strong>“能用产品解决的问题不要用服务，能用服务解决的问题不要用咨询”</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_pay.jpeg" alt="于大帅 wechat" style="width: 200px; max-width: 100%;">
+    <div>可以白嫖我的颜值，不能白嫖我的才华，打赏😆😆！！!</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏完了加微信白嫖颜值😁😁！！！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_ercode.jpeg" alt="于大帅 WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/08/谈判力/" rel="next" title="谈判力">
+                <i class="fa fa-chevron-left"></i> 谈判力
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/19/影响力/" rel="prev" title="影响力">
+                影响力 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="于大帅">
+          <p class="site-author-name" itemprop="name">于大帅</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MasterTF" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5892078423" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/tianfang-yu-6b706296/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是架构"><span class="nav-number">1.</span> <span class="nav-text">什么是架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构挑战"><span class="nav-number">2.</span> <span class="nav-text">架构挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务"><span class="nav-number">2.1.</span> <span class="nav-text">业务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术"><span class="nav-number">2.2.</span> <span class="nav-text">技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#团队"><span class="nav-number">2.3.</span> <span class="nav-text">团队</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">3.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">3.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分治"><span class="nav-number">3.2.</span> <span class="nav-text">分治</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象"><span class="nav-number">3.3.</span> <span class="nav-text">抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何抽象"><span class="nav-number">3.3.1.</span> <span class="nav-text">如何抽象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代演进"><span class="nav-number">3.4.</span> <span class="nav-text">迭代演进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在什么时间点调整"><span class="nav-number">3.4.1.</span> <span class="nav-text">在什么时间点调整</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何落地"><span class="nav-number">4.</span> <span class="nav-text">如何落地</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务-1"><span class="nav-number">4.1.</span> <span class="nav-text">业务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术-1"><span class="nav-number">4.2.</span> <span class="nav-text">技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#团队-1"><span class="nav-number">4.3.</span> <span class="nav-text">团队</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">于大帅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mastertf-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/12/25/架构设计方法概述/';
+          this.page.identifier = '2019/12/25/架构设计方法概述/';
+          this.page.title = '架构设计方法概述';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mastertf-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ktTDwm3aRUPalCDojHrT4I5k-gzGzoHsz", "cbwEPEqmLTkyREMfrBvV2aQu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="建模,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="将“业务到实现” 涉及的所有流程 进行拆解、细化，提供落地标准。并有例子说明，通俗易懂。 自己看了收获很大，改正以前很多不规范的地方，对软件方法有了新的认识。还需要消化吸收，和以前的知识融合一下。  👇一句话来自书中，算是《穷查理宝典》中“保持终生学习”的具体例子，与大家分享：  有的开发人员的“十年工作经验”实际上是“一年工作经验用了十年”，一直在热热闹闹的民工层次徘徊，没有积累和成长。">
+<meta name="keywords" content="建模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件方法">
+<meta property="og:url" content="http://yoursite.com/2020/02/18/软件方法/index.html">
+<meta property="og:site_name" content="Stay Hungry">
+<meta property="og:description" content="将“业务到实现” 涉及的所有流程 进行拆解、细化，提供落地标准。并有例子说明，通俗易懂。 自己看了收获很大，改正以前很多不规范的地方，对软件方法有了新的认识。还需要消化吸收，和以前的知识融合一下。  👇一句话来自书中，算是《穷查理宝典》中“保持终生学习”的具体例子，与大家分享：  有的开发人员的“十年工作经验”实际上是“一年工作经验用了十年”，一直在热热闹闹的民工层次徘徊，没有积累和成长。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/15821964238040.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15819977056852.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820141120683.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820171202731.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820176190795.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820957453397.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820391680024.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820975332487.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820975515426.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820980716809.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820981435456.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820981891022.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820982873968.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820986230122.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15820987785916.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821021333360.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821025768466.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821112801334.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821118893421.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821119047011.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821130593917.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821136913874.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821138626719.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821144368789.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821144564392.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821144690940.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821167977987.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821168101447.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821169595191.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821170688791.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821698345468.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821887399316.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821700533595.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821701313448.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821864396413.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821873849016.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821880419484.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821893030969.jpg">
+<meta property="og:image" content="http://yoursite.com/img/15821955145522.jpg">
+<meta property="og:updated_time" content="2021-11-18T14:57:54.397Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件方法">
+<meta name="twitter:description" content="将“业务到实现” 涉及的所有流程 进行拆解、细化，提供落地标准。并有例子说明，通俗易懂。 自己看了收获很大，改正以前很多不规范的地方，对软件方法有了新的认识。还需要消化吸收，和以前的知识融合一下。  👇一句话来自书中，算是《穷查理宝典》中“保持终生学习”的具体例子，与大家分享：  有的开发人员的“十年工作经验”实际上是“一年工作经验用了十年”，一直在热热闹闹的民工层次徘徊，没有积累和成长。">
+<meta name="twitter:image" content="http://yoursite.com/img/15821964238040.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/18/软件方法/">
+
+
+
+
+
+  <title>软件方法 | Stay Hungry</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungry</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/18/软件方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于大帅">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-18T11:22:25+08:00">
+                2020-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统设计/" itemprop="url" rel="index">
+                    <span itemprop="name">系统设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/02/18/软件方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/02/18/软件方法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/02/18/软件方法/" class="leancloud_visitors" data-flag-title="软件方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>将“业务到实现” 涉及的所有流程 进行拆解、细化，提供落地标准。并有例子说明，通俗易懂。</li>
+<li>自己看了收获很大，改正以前很多不规范的地方，对软件方法有了新的认识。还需要消化吸收，和以前的知识融合一下。</li>
+</ul>
+<p>👇一句话来自书中，算是《穷查理宝典》中“保持终生学习”的具体例子，与大家分享：</p>
+<blockquote>
+<p>有的开发人员的“十年工作经验”实际上是“一年工作经验用了十年”，一直在热热闹闹的民工层次徘徊，没有积累和成长。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="建模和UML"><a href="#建模和UML" class="headerlink" title="建模和UML"></a>建模和UML</h2><h3 id="利润-需求-设计"><a href="#利润-需求-设计" class="headerlink" title="利润 = 需求 - 设计"></a>利润 = 需求 - 设计</h3><ol>
+<li>“子系统”不是从需求直接映射出来的，需要设计人员的想象力</li>
+<li><p>需求和设计的区别<br> <img src="/img/15821964238040.jpg" alt="-w391"></p>
+</li>
+<li><p>要拥有全局视角，不能从需求出发进行方案设计。作者拿”人体”系统作为例子，很形象。</p>
+<blockquote>
+<p>人体的功能(能做什么)是走路、跑步、跳跃、举 重、投掷、游泳……但是设计人体的结构时，不能从需求直接映射到设计，得到“走路子系统”、“跑步 子系统”、“跳跃子系统”……人体的“子系统”是“呼吸子系统”、“消化子系统”、“血液循环子系统”、 “神经子系统”、“内分泌子系统”……“子系统”不是从需求直接映射出来的，需要设计人员的想象力 ——本例子的设计人员就是造物主了。同样，也不能从设计推导出需求:因为人有心肝脾肺肾，所以 人的用例是“心管理”、“肝管理”。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="建模工作流"><a href="#建模工作流" class="headerlink" title="建模工作流"></a>建模工作流</h3><ol>
+<li><p>业务建模：描述组织内部各系统(人脑系统、电脑系统……)如何协作，使得组织可以为其 他组织提供有价值的服务。（<strong>还没弄清楚全景图，系统、组织、业务的关系，系统、组织、业务定义是什么，”组织”之上是否还有一层。我目前先把组织和系统理解为不同高度的抽象，用不同的词语更方便表述。如大系统里包含多个子系统，大系统就是组织，小系统就是系统。小系统里有更小的系统，那么小系统又变成了组织。</strong>） <strong>如果通过业务建模推导新系统的需求，而不是拍脑袋得出，假的“需求变更”会大大减少。</strong><br>书上有个图说明边界，但我仍没完全弄懂：</p>
+<p><img src="/img/15819977056852.jpg" alt></p>
+</li>
+<li><p>需求：描述为了解决组织的问题，系统必须具有的表现——功能和性能。严防“做”污染“卖”。需求工作流的结果——需求规约是“卖”和“做”的衔接点。</p>
+</li>
+<li>分析：提炼、封装核心域。</li>
+<li>设计：核心域如何映射到选定平台上实现。</li>
+</ol>
+<h3 id="建模和敏捷"><a href="#建模和敏捷" class="headerlink" title="建模和敏捷"></a>建模和敏捷</h3><ol>
+<li>愿景、业务建模方法，帮助迅速定位最重要的需求;领域分析方法，帮助厘清各种概念的变和不变。</li>
+<li>不要让“面向过程”、“敏捷”成为偷懒的庇护所。</li>
+</ol>
+<p><img src="/img/15820141120683.jpg" alt></p>
+<h2 id="业务建模之愿景"><a href="#业务建模之愿景" class="headerlink" title="业务建模之愿景"></a>业务建模之愿景</h2><h3 id="什么是愿景"><a href="#什么是愿景" class="headerlink" title="什么是愿景"></a>什么是愿景</h3><p>以一个待引入系统为研究对象，其愿景的定义是:在目标组织代表(<strong>老大</strong>)看来，引进该系统应该给<strong>组织</strong>带来的改进。（ <a href="https://baike.baidu.com/item/%E6%84%BF%E6%99%AF/520147?fr=aladdin" target="_blank" rel="noopener">百度百科-愿景</a> )</p>
+<h3 id="定位目标组织和老大"><a href="#定位目标组织和老大" class="headerlink" title="定位目标组织和老大"></a>定位目标组织和老大</h3><ul>
+<li>目标组织：待引入系统将改进其流程的组织。它可以是一个机构，也可以是一个人群。</li>
+<li>老大：目标组织的代表。</li>
+</ul>
+<p><img src="/img/15820171202731.jpg" alt></p>
+<h4 id="【步骤】定位目标人群和老大"><a href="#【步骤】定位目标人群和老大" class="headerlink" title="【步骤】定位目标人群和老大"></a>【步骤】定位目标人群和老大</h4><ul>
+<li>方法:不断追问“谁比谁更像?”、“为什么?” </li>
+<li>常见错误：<ol>
+<li>从功能加上“人群”二字得到目标人群</li>
+<li>吃窝边草</li>
+<li>虚构老大</li>
+</ol>
+</li>
+</ul>
+<h4 id="【步骤】定位机构范围和老大"><a href="#【步骤】定位机构范围和老大" class="headerlink" title="【步骤】定位机构范围和老大"></a>【步骤】定位机构范围和老大</h4><p>（个人理解为垂类领域，如erp、crm等专业系统。因为任何机构都由人组成，但既然称为“机构”，一定专注于某一特定领域，该领域有自己的规则。听上去和“目标人群”又有些一样了。）</p>
+<ul>
+<li>方法：最开始机构中的某个涉众(可能不是老大) 提到要做一个什么系统，还提供了一些模糊的目标，建模人员根据这些素材推敲到机构范围，再定位 老大，揣摩老大的愿景，再从愿景来判断之前的范围是否要调整。如果范围变化，老大可能也要再做 调整……循环往复，逐步逼近。</li>
+</ul>
+<p><img src="/img/15820176190795.jpg" alt="-w651"></p>
+<ul>
+<li>常见错误：<ol>
+<li>目标机构的 IT 主管是老大：IT 主管不是老大，因为系统要改进的不是目标机构 IT 部门的流程，而是业务部门的流程。所以， 老大应该是业务部门主管或机构负责人，视系统改进波及的范围而定。以看病做类比。患者病情比较严重或者患者不便交流的时候，和医生频繁打交道的可能是患者的 家属，但切不可因此把患者家属架上手术台。</li>
+<li>机构之上的大领导是老大。</li>
+<li>谁出钱谁是老大：还是以看病做类比。患者治病的钱可能是自己出，也可能是家属出，政府出，同房病友捐赠，甚 至由医院免单。不管怎样，上手术台的还是患者。</li>
+<li>把其他涉众当作老大</li>
+</ol>
+</li>
+</ul>
+<h4 id="【步骤】定位目标机构"><a href="#【步骤】定位目标机构" class="headerlink" title="【步骤】定位目标机构"></a>【步骤】定位目标机构</h4><p>系统是为某一类机构服务。那么，除了第 2 种情况中要做的工作之外，还需要插入一步:定位目标机构。（更加精确）定位目标机构的思考方法和定位目标人群的思考方法是一样的。</p>
+<h3 id="提炼改进目标"><a href="#提炼改进目标" class="headerlink" title="提炼改进目标"></a>提炼改进目标</h3><ol>
+<li><p>思考度量指标，可以用以下方法（这部分是系统思考方法，需要找几本书看看）：</p>
+<ul>
+<li>针对形容词来思考符合这个形容词和不符合这个形容词的情况。（常见的一种系统思考方法）</li>
+<li>从初步设想的解决方案倒推。可以这样思考:如果没有这个解决方案，涉众要付出什么代价?</li>
+<li>借鉴机构的 KPI。</li>
+</ul>
+</li>
+<li><p>改进目标描述的是系统给目标组织带来的改进，应该从老大和目标组织的视角来定义。</p>
+</li>
+</ol>
+<h2 id="业务建模-之-业务用例图"><a href="#业务建模-之-业务用例图" class="headerlink" title="业务建模 之 业务用例图"></a>业务建模 之 业务用例图</h2><ul>
+<li><p>有了愿景，我们知道老大对他所代表的组织的现状的某些指标不满意。接下来就可以研究组织，<strong>弄清楚到底是组织的哪些环节造成了这些指标比较差，这就是业务建模(Business Modeling)的主 要内容。</strong> <strong>“业务建模”这个名字其实起得不好，应该更名为“组织建模”。</strong> 出于对过去叫法的尊重，本书依 然称为“业务建模”。</p>
+</li>
+<li><p>开发团队经常发现需求“容易变化”。根源之一是需求的来路不正，没有把系统当作一个零件放在组织中来看，靠拍脑袋得出需求，导致得到的系统需求是错的。系统投入使用后，发现和组织的其他零件格格不入，自然要改。“需求变化剧烈”是一个假象，真正的需求没有变，只不过一开始得到的需 求是假的。如果能正确运用业务建模技能，“需求变化”就会消于无形。（这不也是正确的废话，谁能保证建模正确。）</p>
+</li>
+<li><p>在业务建模工作流，我们从内外两个视角来研究组织。从外部看，组织是一些价值的集合，我们 可以用业务用例图表示;从内部看，组织是一些系统的集合，我们可以用业务序列图来表示。</p>
+</li>
+</ul>
+<h3 id="【步骤】识别业务执行者"><a href="#【步骤】识别业务执行者" class="headerlink" title="【步骤】识别业务执行者"></a>【步骤】识别业务执行者</h3><h4 id="业务执行者"><a href="#业务执行者" class="headerlink" title="业务执行者"></a>业务执行者</h4><ul>
+<li>以某组织为研究对象，在组织之外和组织交互的其他组织(人群或机构)就是该组织的执行者。 因为研究对象是一个组织，所以叫业务执行者。</li>
+</ul>
+<h4 id="业务工人和业务实体"><a href="#业务工人和业务实体" class="headerlink" title="业务工人和业务实体"></a>业务工人和业务实体</h4><ul>
+<li>组织内的人称为业务工人(Business Worker)，例如某商业银行里面的营业员。业务执行者和业 务工人的区别是:一个在组织外面，一个在组织里面;一个是组织不可替换的服务对象，一个是组织 可以替换的零件。</li>
+<li>业务工人是可以被替换的人脑零件，它可能会被其他业务工人替换，但更有可能被业务实体替换。业务实体是组织中的非人智能系统，例如银行的 ATM、点钞机、营业系统。</li>
+<li>责任转移的思想对识别待引入系统的需求很有帮助。开发人员说，“我在开发一个新系统”，其实说的就是“我在开发一个新的业务实体，取代现有业务工人或业务实体的一些责任”。这样，探索需求的思路就出来了——我们画好现状的业务序列图，然后寻找改进点改进业务序列图。（平时是这样做的，但没抽象出方法论）</li>
+<li>业务工人和业务实体不在业务用例图中出现，因为它们不是组织的价值，而是成本。在识别业务执行者时，不需要画业务工人和业务实体。</li>
+<li>在接下来画业务用例的实现——业务序列图的时候，将业务工人和业务实体作为类(Class)的一 个构造型，放在名为“业务对象”的包里。组织的业务工人和业务实体协作完成业务用例，系统的类协作完成系统用例。</li>
+</ul>
+<h4 id="识别业务执行者"><a href="#识别业务执行者" class="headerlink" title="识别业务执行者"></a>识别业务执行者</h4><p>（<strong>《金字塔原理》《重构》中都有同样观点：在同一抽象层次上描述。</strong>）</p>
+<ul>
+<li>直觉上观察到的不是组织之间的交互，而是组织派出的系统之间的交互，但是一定要把它理解成组织之间的 交互，因为谈论业务执行者时，研究对象是组织，所以外部对应物——业务执行者也应该是组织。</li>
+</ul>
+<h3 id="【步骤】识别业务用例"><a href="#【步骤】识别业务用例" class="headerlink" title="【步骤】识别业务用例"></a>【步骤】识别业务用例</h3><ul>
+<li>业务用例指业务执行者希望通过和所研究组织交互获得的价值。</li>
+<li>业务用例是为业务执行者服务，不是为业务工人服务。这不是什么规范问题，背后有它的道理。 </li>
+<li>要从业务执行者的角度去看，才能看得清楚组织的本质价值。</li>
+<li>组织里发生的一切都是为了给业务执行者提供价值。这样的思路对改进业务流程有非常大的帮助:先归纳出组织对外提供什么价值，再思考如何更好地优化组织内部流程来实现这些价值。</li>
+</ul>
+<h4 id="正确理解价值"><a href="#正确理解价值" class="headerlink" title="正确理解价值"></a>正确理解价值</h4><ul>
+<li><p>价值是<strong>期望和承诺的平衡点、买卖的平衡点。</strong><br><img src="/img/15820957453397.jpg" alt="-w782"></p>
+</li>
+<li><p><strong>业务用例是组织对组织的服务</strong>，相对于系统为系统提供的服务(系统用例)来说，所需要的时间是比较长的，<strong>不能把用例实现过程中的某个交互片段当成用例。</strong></p>
+</li>
+<li>一个典型的执行者使用系统做了某事，达到了某个结果，然后离开系统去做别的事情，如果离开时他心里认为得到目前的结果已经不算白做，就可以把 做某事作为一个系统用例。<strong>有一些词汇带有浓浓的“系统”味道，例如新增、查看、录入、查询、修 改、配置……带有这些词汇的用例，很可能不是组织提供的价值，而是某系统提供的价值。</strong></li>
+</ul>
+<h4 id="边界框问题"><a href="#边界框问题" class="headerlink" title="边界框问题"></a>边界框问题</h4><ul>
+<li>讨论“是不是用例”、“有哪些用例”的时候，必须先说清楚研究对象，否则讨论没有意义。</li>
+<li>画用例图时，能加上边界框尽量加上。</li>
+</ul>
+<h4 id="识别业务用例的思路和常犯错误"><a href="#识别业务用例的思路和常犯错误" class="headerlink" title="识别业务用例的思路和常犯错误"></a>识别业务用例的思路和常犯错误</h4><p>识别业务用例有两条思路：</p>
+<ul>
+<li>从业务执行者开始，思考业务执行者和组织交互的目的。</li>
+<li>通过观察组织的内部活动，一直问为什么，向外推导出组织外部的某个业务执行者。<br>第一条路线 是主要的，第二条路线用于补漏。</li>
+</ul>
+<p>识别业务用例本来应该是很简单的事情，但是，许多程序员出身的需求人员受到了以往工作经历的影响，往往把简单的事情变得复杂，常见错误：</p>
+<ul>
+<li><strong>把业务工人的行为当作业务用例。</strong>这里反映了建模人员常见的一个问题:<strong>分不清问题和问题的解决方案。</strong></li>
+<li><strong>业务用例随待引入系统伸缩。</strong>一个组织，甚至组织的一条流程都涉及许许多多的系统。在开发不同的系统时，研究业务用例和 业务流程，发现得到的结果和开发另一个系统时的研究结果差不多，这是很正常的。建模人员不必因 此感到惊慌，更不要因为“业务用例太少”、“业务用例太简单了”不自觉地改变研究对象，把待引入 系统的用例搬上来。</li>
+<li><strong>把害怕漏掉的扩展路径片段提升为业务用例。</strong> 可以使用扩展路径来解决。</li>
+<li><strong>管理型业务用例。</strong> 从“药师盘点药品”推导出背后的好处，然后画成“管理型业务用例”。它没有特定组织的味道，哪家营利机构不是为了赚钱?另外，也很 容易和愿景、涉众利益混在一起，发展下去，就会有“顾客→希望东西更便宜”之类的“用例”。</li>
+</ul>
+<p><img src="/img/15820391680024.jpg" alt="-w736"></p>
+<h2 id="业务建模-之-业务序列图"><a href="#业务建模-之-业务序列图" class="headerlink" title="业务建模 之 业务序列图"></a>业务建模 之 业务序列图</h2><p>描述业务用例的实现，即业务流程，然后改进它，<strong>推导出待引入系统的用例。</strong></p>
+<h3 id="序列图和活动图比较"><a href="#序列图和活动图比较" class="headerlink" title="序列图和活动图比较"></a>序列图和活动图比较</h3><ol>
+<li>活动图只关注人，序列图把人当作系统：活动图描述业务流程时，建模人员往往只注意人或部门的活动，忽略了非人智能系统的责任。<strong>本书选择序列图的原因是把人脑系统和电脑系统平等看待。</strong></li>
+<li>活动图表示动作，序列图强迫思考动作背后的目的:使用序列图来做业务建模，“对象协作以完成用例”的思想就可以统一地贯彻业务建模和系统建模的始终。</li>
+<li>活动图“灵活”，序列图不“灵活”:灵活是双刃剑。</li>
+</ol>
+<h3 id="业务序列图要点"><a href="#业务序列图要点" class="headerlink" title="业务序列图要点"></a>业务序列图要点</h3><h4 id="消息代表责任分配而不是数据流动"><a href="#消息代表责任分配而不是数据流动" class="headerlink" title="消息代表责任分配而不是数据流动"></a>消息代表责任分配而不是数据流动</h4><p>序列图最重要的要点是消息的含义。A 指向 B 的消息，代表“A 请求 B 做某事”，或者“A 调用 B 做某事的服务”，做某事是 B 的一个责任。</p>
+<p><img src="/img/15820975332487.jpg" alt="-w918"></p>
+<p>数据流仅仅作为消息的输入输出参数存在。如果不了解这一点，就容易把消息的方向当成数据流动的方向，不但消息名称没写对，还会出现成对的消息。</p>
+<p><img src="/img/15820975515426.jpg" alt="-w418"></p>
+<h4 id="抽象级别是系统之间的协作"><a href="#抽象级别是系统之间的协作" class="headerlink" title="抽象级别是系统之间的协作"></a>抽象级别是系统之间的协作</h4><p>业务建模的研究对象是组织，出现在业务序列图生命线上的对象，其最小颗粒是系统，包括人和 非人系统。<br>几种错误：</p>
+<ol>
+<li>表达过细，系统内部的细节也表现出来，这些是在分析、设计阶段表现。</li>
+</ol>
+<p><img src="/img/15820980716809.jpg" alt="-w766"></p>
+<ol>
+<li><p>业务序列图内容和业务用例图差不多：建模人员根本不了解 组织内部有哪些岗位，各自承担什么责任。</p>
+<p> <img src="/img/15820981435456.jpg" alt="-w617"></p>
+</li>
+<li><p>把不具备任何智能的物体放到了业务序列图的生命线上。<br><img src="/img/15820981891022.jpg" alt="-w759"></p>
+</li>
+</ol>
+<p>可能有的读者纳闷，我怎么记得看过的书里经常有序列图上出现订单、申请单对象?那是分析序 列图。我们用对象的思想去构思我们所开发的系统的内部结构和行为，就得到了订单、申请单等假想 的有生命的对象。</p>
+<p><img src="/img/15820982873968.jpg" alt="-w556"></p>
+<h4 id="只画核心域相关的系统"><a href="#只画核心域相关的系统" class="headerlink" title="只画核心域相关的系统"></a>只画核心域相关的系统</h4><p>大致的判断标准是:如果是核心域相关的系统，应该出现在业务序列图中，如果不是，可以不出现。<br>（类似《ddd》中，不同的领域内聚合根、实体、值对象是不一样的。在不同场景，核心域相关的系统也不同）</p>
+<h4 id="把时间看作特殊的业务实体"><a href="#把时间看作特殊的业务实体" class="headerlink" title="把时间看作特殊的业务实体"></a>把时间看作特殊的业务实体</h4><p>时间和定时器不是一个概念。时间是外系统，定时器是其他系统用来和时间打交道的边界 类，如图 4-19 所示。世界上只有一个时间系统，但有无数的定时器。有的建模人员在识别系统用例时 说“执行者是定时器”，这样说是错的，执行者是时间。</p>
+<p><img src="/img/15820986230122.jpg" alt="-w928"></p>
+<h5 id="为业务对象分配合适的责任"><a href="#为业务对象分配合适的责任" class="headerlink" title="为业务对象分配合适的责任"></a>为业务对象分配合适的责任</h5><p><img src="/img/15820987785916.jpg" alt="-w1000"></p>
+<p>###【步骤】现状业务序列图<br>尽力描绘出<strong>真实</strong>的现状，说起来非常简单，做到却极其困难。为了克服困难，建模人员甚至应当 在心里暗暗发誓:如果不尽力去靠近真相，天打雷劈!（😆😆）</p>
+<h4 id="错误1-把想象中的改进当成现状"><a href="#错误1-把想象中的改进当成现状" class="headerlink" title="错误1:把想象中的改进当成现状"></a>错误1:把想象中的改进当成现状</h4><p>背后的原因很可能是根本没有深入到组织流程中去做观察和访谈，对现状没有认识，只好想像一 个改进后的场景来应付。</p>
+<h4 id="错误2-把“现状”误解为“纯手工”"><a href="#错误2-把“现状”误解为“纯手工”" class="headerlink" title="错误2:把“现状”误解为“纯手工”"></a>错误2:把“现状”误解为“纯手工”</h4><p>简单讲就是只考虑“人”，忽略了“非人系统”。</p>
+<h4 id="错误3-把“现状”误解为“本开发团队未参与之前”"><a href="#错误3-把“现状”误解为“本开发团队未参与之前”" class="headerlink" title="错误3:把“现状”误解为“本开发团队未参与之前”"></a>错误3:把“现状”误解为“本开发团队未参与之前”</h4><h4 id="错误4-把“现状”误解为“规范”"><a href="#错误4-把“现状”误解为“规范”" class="headerlink" title="错误4:把“现状”误解为“规范”"></a>错误4:把“现状”误解为“规范”</h4><p>建模人员在建模业务流程时，照搬组织制定的规范，没有去观察实际工作中人们是如何做的，或者即使观察到了人们实际没有按照规范做，却依然按照规范建模。<strong>如果视而不见，也就丧失了许多有价值的改进 机会。</strong></p>
+<h4 id="错误5-“我是创新，没有现状-”"><a href="#错误5-“我是创新，没有现状-”" class="headerlink" title="错误5:“我是创新，没有现状!”"></a>错误5:“我是创新，没有现状!”</h4><h4 id="错误6-“我做产品，没有现状"><a href="#错误6-“我做产品，没有现状" class="headerlink" title="错误6:“我做产品，没有现状!"></a>错误6:“我做产品，没有现状!</h4><p>做需求时把产品当项目做”的道理，就不会困惑了。“现状”指 目标组织的现状，是具体而且有最佳答案的。</p>
+<h3 id="【步骤】改进业务序列图"><a href="#【步骤】改进业务序列图" class="headerlink" title="【步骤】改进业务序列图"></a>【步骤】改进业务序列图</h3><h4 id="改进模式1-物流变成信息流"><a href="#改进模式1-物流变成信息流" class="headerlink" title="改进模式1:物流变成信息流"></a>改进模式1:物流变成信息流</h4><p><img src="/img/15821021333360.jpg" alt="-w903"></p>
+<ul>
+<li>注意观察各种物的流动，并<strong>提炼物背后承载的信息。</strong> 注意，不要忘了还有人的流动，人可是一个几十公斤的物。</li>
+<li>目前各领域在“物流变成信息流”方面留下的改进空间已经不 多。随之而来要面对的是信息流转不通畅的问题。</li>
+</ul>
+<h4 id="改进模式2-改善信息流转"><a href="#改进模式2-改善信息流转" class="headerlink" title="改进模式2:改善信息流转"></a>改进模式2:改善信息流转</h4><ul>
+<li>把各软件系统之间的协调工作改为由一个软件系统来完成，人只需要和单个软件系统打交道，信息的流转就改进了。</li>
+<li>人和人的协作中，可能隐藏了信息流转不畅的情况。（<strong>能够自动化的不要手动化，能通过程序的不要通过人。</strong>）</li>
+</ul>
+<h4 id="改进模式3-封装领域逻辑"><a href="#改进模式3-封装领域逻辑" class="headerlink" title="改进模式3:封装领域逻辑"></a>改进模式3:封装领域逻辑</h4><p>(感觉和2差不多。)</p>
+<ul>
+<li>提炼人脑中封装的领域逻辑，改为封装 到软件系统中，用软件系统代替人脑，业务流程就得到了改进。<br><img src="/img/15821025768466.jpg" alt="-w939"></li>
+</ul>
+<h4 id="阿布思考法"><a href="#阿布思考法" class="headerlink" title="阿布思考法"></a>阿布思考法</h4><ul>
+<li>假设有充足的资源去解决问题，得到一个完美的方案。（目标要定的高，最理想的情况是什么样）</li>
+<li>用手上现有的资源去山寨这个完美方案。</li>
+</ul>
+<p>如果有一个方案，花费完美方案 1%的资源，能达到完美方案 20%效果。这个方案已经是目前最 好的方案了，因为它是在突破思维限制以后一步步往后退得来的。（是不是最好的存疑，但做事方式要朝着最好的方向努力。）</p>
+<h2 id="需求-之-系统用例图"><a href="#需求-之-系统用例图" class="headerlink" title="需求 之 系统用例图"></a>需求 之 系统用例图</h2><ul>
+<li>看看如何从业务序列图映射出系统用例图。</li>
+<li>系统用例的定义:系统能够为执行者提供的、涉众可以接受的价值。</li>
+<li>和第3章的业务用例相比较，研究对象从组织变成了系统。</li>
+<li>要理解好系统用例，重点依然是之前所强调的买卖平衡点、期望和承诺平衡点。</li>
+</ul>
+<h3 id="系统执行者要点"><a href="#系统执行者要点" class="headerlink" title="系统执行者要点"></a>系统执行者要点</h3><p>系统执行者的定义: 在所研究系统外，与该系统发生功能性交互的其他系统。</p>
+<h4 id="系统是能独立对外提供服务的整体"><a href="#系统是能独立对外提供服务的整体" class="headerlink" title="系统是能独立对外提供服务的整体"></a>系统是能独立对外提供服务的整体</h4><ul>
+<li>封装了自身的数据和行为，能独立对外提供服务的东西才能称为系统。不了解这一点，建模人员 很容易把“添加一些功能”当作“研发新系统”。</li>
+</ul>
+<h4 id="系统边界是责任的边界"><a href="#系统边界是责任的边界" class="headerlink" title="系统边界是责任的边界"></a>系统边界是责任的边界</h4><ul>
+<li>系统执行者不是所研究系统的一部分，是该系统边界外的另一个系统。<strong>这里的系统边界不是物理 的边界，而是责任的边界。</strong></li>
+<li>涉众根本不在意系统划分成几个组件以及组件之间如何分布和交互。建模人员如果没有学会从 涉众视角看问题，只是从自己角度看问题，就会犯这样的错误。（<strong>这块没懂，一个大的系统里面可能有很多子系统，子系统下面还有更小的系统，怎么确定系统的范围？</strong>）</li>
+<li>边界越模糊，越需要执行者来帮助理清。</li>
+</ul>
+<h4 id="系统执行者和系统有交互"><a href="#系统执行者和系统有交互" class="headerlink" title="系统执行者和系统有交互"></a>系统执行者和系统有交互</h4><p><strong>换言之，没有交互就不是系统执行者</strong></p>
+<ul>
+<li>系统执行者和重要无关。系统执行者只关注哪个外系统和所研究系统接口。</li>
+<li>用例必须在它的路径、步骤和补充约束中考虑这些涉众的利益。<br><img src="/img/15821112801334.jpg" alt="-w987"></li>
+</ul>
+<h4 id="交互是功能性交互"><a href="#交互是功能性交互" class="headerlink" title="交互是功能性交互"></a>交互是功能性交互</h4><ul>
+<li>执行者和系统发生的交互是系统的功能需求。</li>
+</ul>
+<h4 id="系统执行者可以是人或非人系统"><a href="#系统执行者可以是人或非人系统" class="headerlink" title="系统执行者可以是人或非人系统"></a>系统执行者可以是人或非人系统</h4><ul>
+<li>用例技术中“执行者”和“涉众”的概念，把演员和观众分开了。 演员(执行者)在台上表演，观众(涉众)在台下看，演员表演什么是由观众的口味决定的，演员可 以不是人，但观众肯定是人。</li>
+<li>用例使用“执行者”和“涉众”代替了原来的“用户”，这是一个非常大的突破。“用户”这个词 混淆了演员和观众的区别。过去经常说“找用户调研需求”，这是错误的。所谓“用户”，就是上台表演的人类演员。找用户调研需求，相当于找演员问剧本应该是什么内容，岂不是很荒谬?剧本应该由编剧向观众调研编写出来，然后由各路演员在台上演绎。</li>
+<li>建立“执行者和系统在台上表演，涉众在台下看表 演”的概念，在执行者为非人系统时对捕获需求很有帮助。</li>
+</ul>
+<h3 id="【步骤】识别系统执行者"><a href="#【步骤】识别系统执行者" class="headerlink" title="【步骤】识别系统执行者"></a>【步骤】识别系统执行者</h3><h4 id="从业务序列图映射系统执行者"><a href="#从业务序列图映射系统执行者" class="headerlink" title="从业务序列图映射系统执行者"></a>从业务序列图映射系统执行者</h4><ul>
+<li>业务序列图上，和所研究系统有实线相连的对象映射为所研究系统的执行者。<br><img src="/img/15821118893421.jpg" alt="-w880"><br><img src="/img/15821119047011.jpg" alt="-w653"></li>
+</ul>
+<p>图 5-12 中执行者不再带有斜杠，因为这时候研究对象是系统。有的执行者画在边界框左边，有的 则画在右边，是为了方便表达主执行者和辅执行者。</p>
+<h3 id="系统用例要点"><a href="#系统用例要点" class="headerlink" title="系统用例要点"></a>系统用例要点</h3><h4 id="价值是买卖的平衡点"><a href="#价值是买卖的平衡点" class="headerlink" title="价值是买卖的平衡点"></a>价值是买卖的平衡点</h4><ul>
+<li>用例之前的许多需求方法学，把需求定义为思考系统“做什么”，用例把需求提升到思考系统“卖 什么”的高度。</li>
+<li>这种思考是非常艰难的，因为它没有标准答案，只有最佳答案。</li>
+<li><strong>要得到这个最佳答案，不能靠拍脑袋，必须揣摩涉众。要得到合适的用例，需要有一颗善于体察他人的心。</strong></li>
+</ul>
+<h4 id="价值不等于“可以这样做”"><a href="#价值不等于“可以这样做”" class="headerlink" title="价值不等于“可以这样做”"></a>价值不等于“可以这样做”</h4><ul>
+<li>建模人员只能根据目标涉众心中对系统的期望来确定系统 应该提供什么样的服务。</li>
+<li><strong>举得权限例子没看懂，按照书中所讲的用例，用例岂不是膨胀很多</strong></li>
+<li>最常犯的错误是把步骤当作用例。Include 的目的是为了复用在 多个用例中重复出现的步骤集合，形状往往是多个用例 Include 一个用例。看到这种一个用例 Include 许多个用例的形状，基本上可以判断它犯了把步骤当作用例的错误。<br><img src="/img/15821130593917.jpg" alt="-w628"><br>正确的做法是:把右侧的“验密 码”和“扣除金额”作为步骤写在用例规约中。</li>
+</ul>
+<h4 id="增删改查用例的根源是从设计映射需求"><a href="#增删改查用例的根源是从设计映射需求" class="headerlink" title="增删改查用例的根源是从设计映射需求"></a>增删改查用例的根源是从设计映射需求</h4><ul>
+<li>需求工作中，我们所写的每一个字，所画的每一张图都必须对好卖有推动作用，否则还不如不做。</li>
+<li><strong>即使再难，也只能从 涉众的视角来定义需求</strong>，不能贪图方便选择一个自己熟悉的视角应付了事。</li>
+<li>老老实实去研究业务流程，做好业务建模，尽量从业务序列图中映射出 系统用例</li>
+</ul>
+<h4 id="从设计映射需求错误二-“复用”用例"><a href="#从设计映射需求错误二-“复用”用例" class="headerlink" title="从设计映射需求错误二:“复用”用例"></a>从设计映射需求错误二:“复用”用例</h4><ul>
+<li>用例是涉众愿意“购买”的、对系统的一种“用法”，只要涉众愿意“购买”，当然是越多越好。 </li>
+<li>同样的制作材料，变出更多可卖的价值，说明您的设计能力强，制作成本低，何乐而不为?</li>
+<li>可惜建模人员经常会犯傻，不自觉地合并用例，相当于告诉涉众说，你真笨，你买我这些功能，其实都是我用同样几个类作为零件灵活组装出来的。干脆，你成本价把我的零件买走，自己去组装吧!</li>
+<li>需求的基本要点:<strong>需求不考虑“复用”，如果在考虑“复用”，要警惕自己是不是已经转换到了设计视角来思考问题。</strong></li>
+</ul>
+<p><img src="/img/15821136913874.jpg" alt="-w339"></p>
+<ul>
+<li>图 5-17、图 5-22 和图 5-24 的错误用例图有一个共同点:多个执行者指向同一个用例。<strong>已完工的用例图不应该出现这样的形状，如果出现，可以有两种修改方法。</strong><ol>
+<li>要是我们揣摩系统的这个用例针对 这几个执行者来说并无区别，就泛化出抽象的执行者，或者不需要泛化关系，直接用单个更合适的执 行者代替;</li>
+<li>反之，如果对不同执行者来说有区别，就把该用例分成几个不同的用例。这种往往更常见。<br><img src="/img/15821138626719.jpg" alt="-w837"></li>
+</ol>
+</li>
+</ul>
+<h4 id="系统用例不存在层次问题"><a href="#系统用例不存在层次问题" class="headerlink" title="系统用例不存在层次问题"></a>系统用例不存在层次问题</h4><ul>
+<li><p>系统用例的研究对象就是某特定系统，不是组织，也不是系统内的组件。如果存在“层次”上的 疑惑，背后的原因是研究对象不知不觉改变了。（仍然有前面的疑惑）<br>  <img src="/img/15821144368789.jpg" alt="-w671"></p>
+</li>
+<li><p>用例很多时可以将用例分包，但用例包是从外部对系统用例所做的分包，里面 的用例依然是系统的用例，不是用例包或“模块”的用例。<br>  <img src="/img/15821144564392.jpg" alt="-w822"><br>  <img src="/img/15821144690940.jpg" alt="-w771"></p>
+</li>
+</ul>
+<h4 id="用例的命名是动宾结构"><a href="#用例的命名是动宾结构" class="headerlink" title="用例的命名是动宾结构"></a>用例的命名是动宾结构</h4><ul>
+<li>动词前面可以加状语，宾语前面可以加定语，把一句话 的主语砍掉，剩下的可以作为用例的名字。</li>
+<li>给用例起名时不要使用弱动词。</li>
+<li>如果“名词+动词”已经成为行业中的一个术语，也未必要严格的动宾结构。</li>
+</ul>
+<h3 id="【步骤】识别系统用例"><a href="#【步骤】识别系统用例" class="headerlink" title="【步骤】识别系统用例"></a>【步骤】识别系统用例</h3><p>认真做好业务建模，从业务序列图上映射系统用例，得到的结果自然就会符合上面说的这些要点。</p>
+<ul>
+<li><p>业务序列图中，从外部指向所研究系统的消息，可以映射为该系统的用例。<br><img src="/img/15821167977987.jpg" alt="-w832"><br><img src="/img/15821168101447.jpg" alt="-w625"><br>有的箭头是从执行者指向用例，这样的执行者称为用例的主执行者，有的箭 头是从用例指向执行者，这样的执行者称为用例的辅执行者。<strong>主执行者主动发起用例的交互，辅执行 者在交互的过程中被动参与进来。</strong></p>
+</li>
+<li><p>辅执行者这个概念是被误用比较多的。<strong>最常见的错误是把信息的接收者或者将来可能使用信息的人当成辅执行者。箭头代表的是责任分配。</strong>  图 5-35 的意思是:线索部经理使用线索管理系统分配名单的过程中需要外呼人员的帮忙，如果外呼人员睡着了没有响应，用例的目标就受到影响。显然，这不符合事实。<br><img src="/img/15821169595191.jpg" alt="-w658"></p>
+</li>
+<li><p>另一种辅执行者的误用刚好反过来，把信息的来源当作辅执行者。如图 5-36，建模人员认为外呼 人员要想使用线索管理系统来查看本人当天名单，“依赖于”线索部经理事先分配好名单。这同样是错 误的，在用例进行过程中不需要线索部经理的参与。<br><img src="/img/15821170688791.jpg" alt="-w725"></p>
+</li>
+<li><p>一般来说，<strong>辅执行者是非人智能系统的情况较多，人脑系统作为辅执行者的情况比较少，所以碰到辅执行者是人的时候，要多留心。</strong></p>
+</li>
+<li>主、辅执行者是针对某个用例来说的，一个外系统可以是这个用例的辅执行者， 同时也可以是另外一个用例的主执行者。“××是系统的主(辅)执行者”的说法是错误的。</li>
+</ul>
+<h2 id="需求-之-系统用例规约"><a href="#需求-之-系统用例规约" class="headerlink" title="需求 之 系统用例规约"></a>需求 之 系统用例规约</h2><p>用例规约就是以用例为核心来组织需求内容的需求规约。有了用例规约，可以不需要另外写其他格式的需求规约。<br><img src="/img/15821698345468.jpg" alt="-w794"></p>
+<p><img src="/img/15821887399316.jpg" alt="-w572"></p>
+<h3 id="前置条件和后置条件"><a href="#前置条件和后置条件" class="headerlink" title="前置条件和后置条件"></a>前置条件和后置条件</h3><p>用例通过前置条件(precondition)、后置条件(postcondition)以契约的形式表达需求。用例相当于系统的一个承诺:<strong>在满足前置条件时开始，按照里面的路径步骤走，系统就能到达后置条件。</strong></p>
+<ul>
+<li>前置条件:用例开始前，系统需要满足的约束。</li>
+<li>后置条件:用例成功结束后，系统需要满足的约束。</li>
+</ul>
+<h4 id="前置条件、后置条件必须是系统能检测的。"><a href="#前置条件、后置条件必须是系统能检测的。" class="headerlink" title="前置条件、后置条件必须是系统能检测的。"></a>前置条件、后置条件必须是系统能检测的。</h4><p><img src="/img/15821700533595.jpg" alt="-w671"></p>
+<h4 id="前置条件必须是用例开始前系统能检测到的。"><a href="#前置条件必须是用例开始前系统能检测到的。" class="headerlink" title="前置条件必须是用例开始前系统能检测到的。"></a>前置条件必须是用例开始前系统能检测到的。</h4><p><img src="/img/15821701313448.jpg" alt="-w935"></p>
+<h4 id="前置后置条件是状态，不是动作。"><a href="#前置后置条件是状态，不是动作。" class="headerlink" title="前置后置条件是状态，不是动作。"></a>前置后置条件是状态，不是动作。</h4><p>例如，“经理→批假”的前置条件不能写“员工提交请假单”，因为是一个动作不是状态，应改为 “存在待审批的请假单”。特别要注意的是，写成“员工已经提交请假单”很可能也是不对的，因为状 态和导致达到某个状态的行为不是一一对应的，请假单未必是员工自己提交，也可以组长负责帮本组 人员请假，也可能是从另外的系统批量导入。</p>
+<h4 id="前置后置条件要用核心域词汇描述。"><a href="#前置后置条件要用核心域词汇描述。" class="headerlink" title="前置后置条件要用核心域词汇描述。"></a>前置后置条件要用核心域词汇描述。</h4><p>不要写“XX成功”、“XX正常运行”，要体现领域知识，如“订单信息已保存”。</p>
+<h4 id="“已登录”不应作为前置条件。"><a href="#“已登录”不应作为前置条件。" class="headerlink" title="“已登录”不应作为前置条件。"></a>“已登录”不应作为前置条件。</h4><p>例子讲得好</p>
+<h3 id="涉众利益"><a href="#涉众利益" class="headerlink" title="涉众利益"></a>涉众利益</h3><p><strong>涉众利益即针对某件事情，某类人担心什么和希望什么。</strong><br>(“涉众”先理解为我以前的模型”干系人”)</p>
+<ul>
+<li>前置条件是起点，后置条件是终点，中间的路该怎么走?这就要由涉众利益决定了。如果只考虑目标而没有考虑到涉众利益，正确的需求是出不来的。</li>
+<li>认识到需求由涉众利益的冲突和平衡来决定，我们的需求过程就会充满“人”的味道，</li>
+<li>为了寻找用例的涉众，可以用“醉酒法”思考。假设台上的演员“喝醉”(“喝醉”加了引号是因 为在台上的未必是人)了在台上表演，谁看到这个场面会担心自己的直接利益受到侵害?担心的人就是这个用例的涉众。</li>
+</ul>
+<h4 id="涉众利益来源"><a href="#涉众利益来源" class="headerlink" title="涉众利益来源"></a>涉众利益来源</h4><ol>
+<li>人类执行者：用例的执行者如果是人类，当然是用例的涉众。执行者如果不是人类，就不是涉众，因为它没有利益主张。</li>
+<li>上游</li>
+<li>下游</li>
+<li>信息的主人</li>
+</ol>
+<p><strong>业务建模对于识别涉众非常有帮助。</strong>如果我们在需求之前做了业务建模，会更了解一件事情的前因后果，大多数涉众都能够从业务序列图中看出来。</p>
+<h4 id="寻找涉众利益"><a href="#寻找涉众利益" class="headerlink" title="寻找涉众利益"></a>寻找涉众利益</h4><ul>
+<li>要“亲兄弟，明算账”，把不同涉众各自关注的利益体现出来，而不是写成一模一样。</li>
+<li>避免正确的废话，要具体。</li>
+</ul>
+<h4 id="善于积累涉众利益"><a href="#善于积累涉众利益" class="headerlink" title="善于积累涉众利益"></a>善于积累涉众利益</h4><ul>
+<li>很多需求中的两难，都是因为信息不足导致的。</li>
+<li>如果我们能善于积累涉众利益，把目标组织内部各种人的小算盘搞得一清二楚，对方稍微说句话，我们就已经知道他心里的小九九，而且还知道他的 要求对谁有利，对谁有害，从而可以自如应对。</li>
+</ul>
+<h3 id="基本路径"><a href="#基本路径" class="headerlink" title="基本路径"></a>基本路径</h3><p>“观众已经一排排坐好，接下来就要让演员们上台演戏了。把演戏的场景描述出来，就得到了用例 的路径和步骤。”</p>
+<ul>
+<li>一个用例会有多个场景，其中有一个场景描述了最成功的情况，执行者和系统的交互非常顺利， 一路绿灯直抵用例的后置条件。这个场景称为<strong>基本路径</strong>。</li>
+<li>用例把基本路径分离出来先写.</li>
+</ul>
+<p>书写路径步骤的时候需要注意以下一些要点:</p>
+<h4 id="按照交互四步曲书写"><a href="#按照交互四步曲书写" class="headerlink" title="按照交互四步曲书写"></a>按照交互四步曲书写</h4><p><img src="/img/15821864396413.jpg" alt="-w544"></p>
+<ul>
+<li>在一个回合中，请求是必须的，同时还需要其他三类步骤中的至少一类.</li>
+<li>对于时间为主执行者的用例，回合中的请求步骤不写“时间告知时间周期到了”，而是写“当 到达时间周期时”。</li>
+<li>验证步骤不写“是否”。例如图 6-18 中，第 4 步写“系统验证注册信息充分”，不写“系 统验证注册信息是否充分”，目的是要表达“充分”是基本路径期望的验证结果</li>
+<li>系统和辅执行者之间的交互可以看作是一种回应步骤，写成“系统请求辅执行者做某事”， 例如“系统请求邮件列表系统群发邮件”。</li>
+</ul>
+<h4 id="只写系统能感知和承诺的内容"><a href="#只写系统能感知和承诺的内容" class="headerlink" title="只写系统能感知和承诺的内容"></a>只写系统能感知和承诺的内容</h4><p><img src="/img/15821873849016.jpg" alt="-w971"></p>
+<h4 id="使用主动语句理清责任"><a href="#使用主动语句理清责任" class="headerlink" title="使用主动语句理清责任"></a>使用主动语句理清责任</h4><ul>
+<li>把动作的责任人放在主语的位置。</li>
+<li>规规矩矩说话，把责任理清楚。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>错误示例</th>
+<th>评价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>会员进入系统</td>
+<td>像黑客帝国一样脑门插插头进去？</td>
+</tr>
+<tr>
+<td>会员打开系统</td>
+<td>用手撕开？</td>
+</tr>
+<tr>
+<td>系统自动计算订单价格</td>
+<td>系统当然是自动的</td>
+</tr>
+<tr>
+<td>会员提交订单信息给系统</td>
+<td>“给系统”冗余</td>
+</tr>
+</tbody>
+</table>
+<h4 id="主语只能是主执行者或系统"><a href="#主语只能是主执行者或系统" class="headerlink" title="主语只能是主执行者或系统"></a>主语只能是主执行者或系统</h4><ul>
+<li>写需求，就是要把系统当作一个黑箱，描述它对外提供的功能以及功能附带的质量需求。</li>
+<li>系统如何构造，不属于需求描述的范围，除非是涉众强加的设计约束。</li>
+<li>系统边界是责任边界，而非物理边界。</li>
+</ul>
+<h4 id="使用核心域术语描述"><a href="#使用核心域术语描述" class="headerlink" title="使用核心域术语描述"></a>使用核心域术语描述</h4><h4 id="不要涉及界面细节"><a href="#不要涉及界面细节" class="headerlink" title="不要涉及界面细节"></a>不要涉及界面细节</h4><p><img src="/img/15821880419484.jpg" alt="-w595"></p>
+<h4 id="不要涉及交互细节"><a href="#不要涉及交互细节" class="headerlink" title="不要涉及交互细节"></a>不要涉及交互细节</h4><ul>
+<li>用例的步骤应该把焦点放在系统必须接收什么输入、系统必须输出什么信息以及系统必须做什么处理这三个重点上，加上字段列表、业务规则、可用性需求等约束，足以表达各种需求。</li>
+</ul>
+<h4 id="需求是“不这样不行”"><a href="#需求是“不这样不行”" class="headerlink" title="需求是“不这样不行”"></a>需求是“不这样不行”</h4><ul>
+<li>需求是“不这样不行”，而不是“这样也行”。</li>
+<li>在需求里大量描述设计，相当于医生没有能力去定位患者得的什么病，干脆拍脑袋开药，然后用 正楷把药的说明书抄一遍，抄到自己都感动了，以为这样就可以治好患者了。</li>
+</ul>
+<h3 id="扩展路径"><a href="#扩展路径" class="headerlink" title="扩展路径"></a>扩展路径</h3><p>基本路径上的每个步骤都有可能发生意外，其中某些意外是系统要负责处理的，<strong>处理意外的路径就是扩展路径。</strong></p>
+<ul>
+<li>和辅执行者交互的步骤很有可能会出现扩展。在系统请求辅执行者做某事时，如果辅执行者出现 故障，系统无法得到想要的结果，很有可能会导致系统行为的变化。</li>
+<li><strong>主要由 ”验证“和“辅助系统”产生，如果不是这两种，要特别小心是不是需求</strong></li>
+</ul>
+<h4 id="能感知和要处理的意外才是扩展。"><a href="#能感知和要处理的意外才是扩展。" class="headerlink" title="能感知和要处理的意外才是扩展。"></a>能感知和要处理的意外才是扩展。</h4><h4 id="设计技能不足导致的错误不是扩展。"><a href="#设计技能不足导致的错误不是扩展。" class="headerlink" title="设计技能不足导致的错误不是扩展。"></a>设计技能不足导致的错误不是扩展。</h4><h4 id="不引起交互行为变化的选择不是扩展。"><a href="#不引起交互行为变化的选择不是扩展。" class="headerlink" title="不引起交互行为变化的选择不是扩展。"></a>不引起交互行为变化的选择不是扩展。</h4><h4 id="界面跳转不是扩展。"><a href="#界面跳转不是扩展。" class="headerlink" title="界面跳转不是扩展。"></a>界面跳转不是扩展。</h4><ul>
+<li>在书写用例规约时，应该把具体的界面看作不存在，把其他用例也看作不存在，专注于典型执行 者为了达到本用例目标必须要和系统发生的交互以及不可避免要处理的意外和分支。</li>
+</ul>
+<h3 id="补充约束"><a href="#补充约束" class="headerlink" title="补充约束"></a>补充约束</h3><p><img src="/img/15821893030969.jpg" alt="-w598"></p>
+<h4 id="字段列表"><a href="#字段列表" class="headerlink" title="字段列表"></a>字段列表</h4><ul>
+<li>字段列表不同于数据模型。</li>
+<li>字段列表不等于数据字典</li>
+</ul>
+<h4 id="业务规则"><a href="#业务规则" class="headerlink" title="业务规则"></a>业务规则</h4><ul>
+<li>只要涉众能理解，行业上适用的任何方式(例如数学、物理公式)都可以用来表达业务规则。</li>
+</ul>
+<h4 id="质量需求"><a href="#质量需求" class="headerlink" title="质量需求"></a>质量需求</h4><h5 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h5><ul>
+<li>可用性需求是对人类执行者和系统之间交互质量的度量。</li>
+</ul>
+<h5 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h5><h5 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h5><h5 id="可支持性"><a href="#可支持性" class="headerlink" title="可支持性"></a>可支持性</h5><h4 id="设计约束"><a href="#设计约束" class="headerlink" title="设计约束"></a>设计约束</h4><ul>
+<li>设计约束是在实现系统时必须要遵守的一些约束，包括界面样式、报表格式、平台、语言等。</li>
+<li>设计约束既不是功能需求，也不是质量需求。</li>
+<li>设计约束是需求的一种，也一样要从涉众的视角来描述。</li>
+</ul>
+<h2 id="需求启发"><a href="#需求启发" class="headerlink" title="需求启发"></a>需求启发</h2><p>需求模型的质量依赖于需求的素材。从涉众处获取需求素材的工作叫做需求启发。</p>
+<h3 id="需求启发要点"><a href="#需求启发要点" class="headerlink" title="需求启发要点"></a>需求启发要点</h3><ul>
+<li>需求的一个启发障碍是知识的诅咒(Curse of Knowledge)，意思是:一旦知道某个东西，就很 难想像不知道它会是什么样子。（人类误判心理学中有提到：错误衡量易得性倾向)</li>
+<li>需求启发的另一个障碍是做和定义的不同。涉众会做一件事情，不代表他能够把这件事定义出来 教给其他人。</li>
+</ul>
+<h4 id="和涉众交流的形式应该采用视图，而不是模型。"><a href="#和涉众交流的形式应该采用视图，而不是模型。" class="headerlink" title="和涉众交流的形式应该采用视图，而不是模型。"></a>和涉众交流的形式应该采用视图，而不是模型。</h4><h4 id="和涉众交流的内容应该聚焦涉众利益，而不是需求。"><a href="#和涉众交流的内容应该聚焦涉众利益，而不是需求。" class="headerlink" title="和涉众交流的内容应该聚焦涉众利益，而不是需求。"></a>和涉众交流的内容应该聚焦涉众利益，而不是需求。</h4><ul>
+<li>涉众没有资格提供需求。</li>
+<li>系统的需求是平衡各种涉众利益得到的，不由单一涉众决定</li>
+<li>涉众没有责任提供需求。</li>
+</ul>
+<h3 id="需求启发手段"><a href="#需求启发手段" class="headerlink" title="需求启发手段"></a>需求启发手段</h3><h4 id="研究资料"><a href="#研究资料" class="headerlink" title="研究资料"></a>研究资料</h4><ul>
+<li>研究资料往往是需求启发的第一步，目的是为了获取核心域的初步知识，为下一步的启发工作作 知识准备。</li>
+</ul>
+<h4 id="问卷调查"><a href="#问卷调查" class="headerlink" title="问卷调查"></a>问卷调查</h4><h4 id="访谈"><a href="#访谈" class="headerlink" title="访谈"></a>访谈</h4><h5 id="涉众"><a href="#涉众" class="headerlink" title="涉众"></a>涉众</h5><ul>
+<li>选择的涉众代表必须名副其实，不要把“代表”等同于“主管”。例如，要访谈车间的操 作工，那就要选真正的操作工，不能用车间主任来做代表。</li>
+</ul>
+<h5 id="需求人员"><a href="#需求人员" class="headerlink" title="需求人员"></a>需求人员</h5><ul>
+<li>需求人员的态度要让涉众觉得自己被尊重。</li>
+</ul>
+<h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><ul>
+<li>问题的内容聚焦于业务流程和涉众利益，而非直接的系统需求。</li>
+<li>问题的形式和新闻记者提问一样:5W+1H。谁(Who)、什么(What)、什么时候(When)、 什么地点(Where)、为什么(Why)、怎么进行(How)。</li>
+<li>提问的时候尽量采用领域词汇，不要采用涉及软件实现的专业术语。</li>
+<li>问问题的时候，可以跟随涉众的阐述，不断问为什么，深入探索背后的真正需求。</li>
+</ul>
+<h5 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h5><ul>
+<li>尽可能在涉众的工作环境里访谈。涉众在自己的工作环境中会想起许多工作中的喜怒哀乐.</li>
+<li>有人嫌在涉众的工作环境里访谈经常会被打断，但那也是一种真实的工作状态。</li>
+</ul>
+<h5 id="观察"><a href="#观察" class="headerlink" title="观察"></a>观察</h5><ul>
+<li>观察就是需求人员跟在涉众旁边观察他的工作，甚至亲身去体验涉众的工作。<strong>这是最直接的需求启发技术，也最费时间。</strong></li>
+</ul>
+<h5 id="研究竞争对手"><a href="#研究竞争对手" class="headerlink" title="研究竞争对手"></a>研究竞争对手</h5><h3 id="需求人员的素质培养"><a href="#需求人员的素质培养" class="headerlink" title="需求人员的素质培养"></a>需求人员的素质培养</h3><ul>
+<li>一名优秀需求人员所需要的素质归纳成一所房屋的样子。房屋以好奇心为根基，有探索力、沟通力、表达力三根柱子，以热情作为屋顶。</li>
+</ul>
+<p><img src="/img/15821955145522.jpg" alt="-w312"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_pay.jpeg" alt="于大帅 wechat" style="width: 200px; max-width: 100%;">
+    <div>可以白嫖我的颜值，不能白嫖我的才华，打赏😆😆！！!</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏完了加微信白嫖颜值😁😁！！！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_ercode.jpeg" alt="于大帅 WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/建模/" rel="tag"># 建模</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/05/乌合之众/" rel="next" title="乌合之众">
+                <i class="fa fa-chevron-left"></i> 乌合之众
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/16/缓存/" rel="prev" title="缓存">
+                缓存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="于大帅">
+          <p class="site-author-name" itemprop="name">于大帅</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MasterTF" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5892078423" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/tianfang-yu-6b706296/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建模和UML"><span class="nav-number">1.</span> <span class="nav-text">建模和UML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利润-需求-设计"><span class="nav-number">1.1.</span> <span class="nav-text">利润 = 需求 - 设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模工作流"><span class="nav-number">1.2.</span> <span class="nav-text">建模工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模和敏捷"><span class="nav-number">1.3.</span> <span class="nav-text">建模和敏捷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模之愿景"><span class="nav-number">2.</span> <span class="nav-text">业务建模之愿景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是愿景"><span class="nav-number">2.1.</span> <span class="nav-text">什么是愿景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位目标组织和老大"><span class="nav-number">2.2.</span> <span class="nav-text">定位目标组织和老大</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位目标人群和老大"><span class="nav-number">2.2.1.</span> <span class="nav-text">【步骤】定位目标人群和老大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位机构范围和老大"><span class="nav-number">2.2.2.</span> <span class="nav-text">【步骤】定位机构范围和老大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位目标机构"><span class="nav-number">2.2.3.</span> <span class="nav-text">【步骤】定位目标机构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提炼改进目标"><span class="nav-number">2.3.</span> <span class="nav-text">提炼改进目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模-之-业务用例图"><span class="nav-number">3.</span> <span class="nav-text">业务建模 之 业务用例图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别业务执行者"><span class="nav-number">3.1.</span> <span class="nav-text">【步骤】识别业务执行者</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#业务执行者"><span class="nav-number">3.1.1.</span> <span class="nav-text">业务执行者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务工人和业务实体"><span class="nav-number">3.1.2.</span> <span class="nav-text">业务工人和业务实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别业务执行者"><span class="nav-number">3.1.3.</span> <span class="nav-text">识别业务执行者</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别业务用例"><span class="nav-number">3.2.</span> <span class="nav-text">【步骤】识别业务用例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确理解价值"><span class="nav-number">3.2.1.</span> <span class="nav-text">正确理解价值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边界框问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">边界框问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别业务用例的思路和常犯错误"><span class="nav-number">3.2.3.</span> <span class="nav-text">识别业务用例的思路和常犯错误</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模-之-业务序列图"><span class="nav-number">4.</span> <span class="nav-text">业务建模 之 业务序列图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列图和活动图比较"><span class="nav-number">4.1.</span> <span class="nav-text">序列图和活动图比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务序列图要点"><span class="nav-number">4.2.</span> <span class="nav-text">业务序列图要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#消息代表责任分配而不是数据流动"><span class="nav-number">4.2.1.</span> <span class="nav-text">消息代表责任分配而不是数据流动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象级别是系统之间的协作"><span class="nav-number">4.2.2.</span> <span class="nav-text">抽象级别是系统之间的协作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只画核心域相关的系统"><span class="nav-number">4.2.3.</span> <span class="nav-text">只画核心域相关的系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#把时间看作特殊的业务实体"><span class="nav-number">4.2.4.</span> <span class="nav-text">把时间看作特殊的业务实体</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为业务对象分配合适的责任"><span class="nav-number">4.2.4.1.</span> <span class="nav-text">为业务对象分配合适的责任</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误1-把想象中的改进当成现状"><span class="nav-number">4.2.5.</span> <span class="nav-text">错误1:把想象中的改进当成现状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误2-把“现状”误解为“纯手工”"><span class="nav-number">4.2.6.</span> <span class="nav-text">错误2:把“现状”误解为“纯手工”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误3-把“现状”误解为“本开发团队未参与之前”"><span class="nav-number">4.2.7.</span> <span class="nav-text">错误3:把“现状”误解为“本开发团队未参与之前”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误4-把“现状”误解为“规范”"><span class="nav-number">4.2.8.</span> <span class="nav-text">错误4:把“现状”误解为“规范”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误5-“我是创新，没有现状-”"><span class="nav-number">4.2.9.</span> <span class="nav-text">错误5:“我是创新，没有现状!”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误6-“我做产品，没有现状"><span class="nav-number">4.2.10.</span> <span class="nav-text">错误6:“我做产品，没有现状!</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】改进业务序列图"><span class="nav-number">4.3.</span> <span class="nav-text">【步骤】改进业务序列图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式1-物流变成信息流"><span class="nav-number">4.3.1.</span> <span class="nav-text">改进模式1:物流变成信息流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式2-改善信息流转"><span class="nav-number">4.3.2.</span> <span class="nav-text">改进模式2:改善信息流转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式3-封装领域逻辑"><span class="nav-number">4.3.3.</span> <span class="nav-text">改进模式3:封装领域逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阿布思考法"><span class="nav-number">4.3.4.</span> <span class="nav-text">阿布思考法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求-之-系统用例图"><span class="nav-number">5.</span> <span class="nav-text">需求 之 系统用例图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统执行者要点"><span class="nav-number">5.1.</span> <span class="nav-text">系统执行者要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统是能独立对外提供服务的整体"><span class="nav-number">5.1.1.</span> <span class="nav-text">系统是能独立对外提供服务的整体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统边界是责任的边界"><span class="nav-number">5.1.2.</span> <span class="nav-text">系统边界是责任的边界</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统执行者和系统有交互"><span class="nav-number">5.1.3.</span> <span class="nav-text">系统执行者和系统有交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交互是功能性交互"><span class="nav-number">5.1.4.</span> <span class="nav-text">交互是功能性交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统执行者可以是人或非人系统"><span class="nav-number">5.1.5.</span> <span class="nav-text">系统执行者可以是人或非人系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别系统执行者"><span class="nav-number">5.2.</span> <span class="nav-text">【步骤】识别系统执行者</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从业务序列图映射系统执行者"><span class="nav-number">5.2.1.</span> <span class="nav-text">从业务序列图映射系统执行者</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统用例要点"><span class="nav-number">5.3.</span> <span class="nav-text">系统用例要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#价值是买卖的平衡点"><span class="nav-number">5.3.1.</span> <span class="nav-text">价值是买卖的平衡点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#价值不等于“可以这样做”"><span class="nav-number">5.3.2.</span> <span class="nav-text">价值不等于“可以这样做”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增删改查用例的根源是从设计映射需求"><span class="nav-number">5.3.3.</span> <span class="nav-text">增删改查用例的根源是从设计映射需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从设计映射需求错误二-“复用”用例"><span class="nav-number">5.3.4.</span> <span class="nav-text">从设计映射需求错误二:“复用”用例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统用例不存在层次问题"><span class="nav-number">5.3.5.</span> <span class="nav-text">系统用例不存在层次问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用例的命名是动宾结构"><span class="nav-number">5.3.6.</span> <span class="nav-text">用例的命名是动宾结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别系统用例"><span class="nav-number">5.4.</span> <span class="nav-text">【步骤】识别系统用例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求-之-系统用例规约"><span class="nav-number">6.</span> <span class="nav-text">需求 之 系统用例规约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置条件和后置条件"><span class="nav-number">6.1.</span> <span class="nav-text">前置条件和后置条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前置条件、后置条件必须是系统能检测的。"><span class="nav-number">6.1.1.</span> <span class="nav-text">前置条件、后置条件必须是系统能检测的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置条件必须是用例开始前系统能检测到的。"><span class="nav-number">6.1.2.</span> <span class="nav-text">前置条件必须是用例开始前系统能检测到的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置后置条件是状态，不是动作。"><span class="nav-number">6.1.3.</span> <span class="nav-text">前置后置条件是状态，不是动作。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置后置条件要用核心域词汇描述。"><span class="nav-number">6.1.4.</span> <span class="nav-text">前置后置条件要用核心域词汇描述。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“已登录”不应作为前置条件。"><span class="nav-number">6.1.5.</span> <span class="nav-text">“已登录”不应作为前置条件。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#涉众利益"><span class="nav-number">6.2.</span> <span class="nav-text">涉众利益</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#涉众利益来源"><span class="nav-number">6.2.1.</span> <span class="nav-text">涉众利益来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寻找涉众利益"><span class="nav-number">6.2.2.</span> <span class="nav-text">寻找涉众利益</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#善于积累涉众利益"><span class="nav-number">6.2.3.</span> <span class="nav-text">善于积累涉众利益</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本路径"><span class="nav-number">6.3.</span> <span class="nav-text">基本路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按照交互四步曲书写"><span class="nav-number">6.3.1.</span> <span class="nav-text">按照交互四步曲书写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只写系统能感知和承诺的内容"><span class="nav-number">6.3.2.</span> <span class="nav-text">只写系统能感知和承诺的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用主动语句理清责任"><span class="nav-number">6.3.3.</span> <span class="nav-text">使用主动语句理清责任</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主语只能是主执行者或系统"><span class="nav-number">6.3.4.</span> <span class="nav-text">主语只能是主执行者或系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用核心域术语描述"><span class="nav-number">6.3.5.</span> <span class="nav-text">使用核心域术语描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要涉及界面细节"><span class="nav-number">6.3.6.</span> <span class="nav-text">不要涉及界面细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要涉及交互细节"><span class="nav-number">6.3.7.</span> <span class="nav-text">不要涉及交互细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需求是“不这样不行”"><span class="nav-number">6.3.8.</span> <span class="nav-text">需求是“不这样不行”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展路径"><span class="nav-number">6.4.</span> <span class="nav-text">扩展路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#能感知和要处理的意外才是扩展。"><span class="nav-number">6.4.1.</span> <span class="nav-text">能感知和要处理的意外才是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计技能不足导致的错误不是扩展。"><span class="nav-number">6.4.2.</span> <span class="nav-text">设计技能不足导致的错误不是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不引起交互行为变化的选择不是扩展。"><span class="nav-number">6.4.3.</span> <span class="nav-text">不引起交互行为变化的选择不是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#界面跳转不是扩展。"><span class="nav-number">6.4.4.</span> <span class="nav-text">界面跳转不是扩展。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充约束"><span class="nav-number">6.5.</span> <span class="nav-text">补充约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字段列表"><span class="nav-number">6.5.1.</span> <span class="nav-text">字段列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务规则"><span class="nav-number">6.5.2.</span> <span class="nav-text">业务规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#质量需求"><span class="nav-number">6.5.3.</span> <span class="nav-text">质量需求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可用性"><span class="nav-number">6.5.3.1.</span> <span class="nav-text">可用性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#性能"><span class="nav-number">6.5.3.2.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可靠性"><span class="nav-number">6.5.3.3.</span> <span class="nav-text">可靠性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可支持性"><span class="nav-number">6.5.3.4.</span> <span class="nav-text">可支持性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计约束"><span class="nav-number">6.5.4.</span> <span class="nav-text">设计约束</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求启发"><span class="nav-number">7.</span> <span class="nav-text">需求启发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求启发要点"><span class="nav-number">7.1.</span> <span class="nav-text">需求启发要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#和涉众交流的形式应该采用视图，而不是模型。"><span class="nav-number">7.1.1.</span> <span class="nav-text">和涉众交流的形式应该采用视图，而不是模型。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#和涉众交流的内容应该聚焦涉众利益，而不是需求。"><span class="nav-number">7.1.2.</span> <span class="nav-text">和涉众交流的内容应该聚焦涉众利益，而不是需求。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求启发手段"><span class="nav-number">7.2.</span> <span class="nav-text">需求启发手段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#研究资料"><span class="nav-number">7.2.1.</span> <span class="nav-text">研究资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问卷调查"><span class="nav-number">7.2.2.</span> <span class="nav-text">问卷调查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访谈"><span class="nav-number">7.2.3.</span> <span class="nav-text">访谈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#涉众"><span class="nav-number">7.2.3.1.</span> <span class="nav-text">涉众</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#需求人员"><span class="nav-number">7.2.3.2.</span> <span class="nav-text">需求人员</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题"><span class="nav-number">7.2.3.3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境"><span class="nav-number">7.2.3.4.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#观察"><span class="nav-number">7.2.3.5.</span> <span class="nav-text">观察</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#研究竞争对手"><span class="nav-number">7.2.3.6.</span> <span class="nav-text">研究竞争对手</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求人员的素质培养"><span class="nav-number">7.3.</span> <span class="nav-text">需求人员的素质培养</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">于大帅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mastertf-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/02/18/软件方法/';
+          this.page.identifier = '2020/02/18/软件方法/';
+          this.page.title = '软件方法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mastertf-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ktTDwm3aRUPalCDojHrT4I5k-gzGzoHsz", "cbwEPEqmLTkyREMfrBvV2aQu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
