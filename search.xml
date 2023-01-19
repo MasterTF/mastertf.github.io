@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>设计模式</title>
-    <url>/2022/12/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <title>设计模式初学者指南</title>
+    <url>/2022/12/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%9D%E5%AD%A6%E8%80%85%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><ul>
 <li>编码是最后一步，是设计的实现。</li>
 <li>既然代码是设计的实现，想得到优雅代码需要有好的设计，得到好的设计需要有好的分析，过程为：用例 -&gt; 分析 -&gt; 设计。</li>
