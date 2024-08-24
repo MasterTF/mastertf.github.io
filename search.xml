@@ -1433,14 +1433,14 @@
 <li>马斯洛需求层次</li>
 <li>七宗罪：暴食、懒惰、贪婪、淫欲、愤怒、嫉妒、骄傲</li>
 </ol>
-<p><img src="../img/image-20240824175905458.png" alt="image-20240824175905458" style="zoom: 50%;"></p>
+<p><img src="/img/image-20240824175905458.png" alt="image-20240824175905458" style="zoom: 50%;"></p>
 <a id="more"></a>
 <h3 id="关于机会的判断"><a href="#关于机会的判断" class="headerlink" title="关于机会的判断"></a>关于机会的判断</h3><ol>
 <li>痛点：痛点是恐惧</li>
 <li>痒点：痒点是满足虚拟自我(想象中那个理想的自己)</li>
 <li>爽点：爽点是快速获得，即时满足</li>
 </ol>
-<h3 id="需求分析法：卡诺-KANO-模型"><a href="#需求分析法：卡诺-KANO-模型" class="headerlink" title="需求分析法：卡诺(KANO)模型"></a>需求分析法：卡诺(KANO)模型</h3><p>根据不同类型的需求与⽤户满意度之间的关系，可将需求分为五类：基本型需求、期望型需求、兴奋型需求、⽆差异需求、反向型需求。<br><img src="../../../../Library/Application Support/typora-user-images/image-20240824180023124.png" alt="image-20240824180023124"></p>
+<h3 id="需求分析法：卡诺-KANO-模型"><a href="#需求分析法：卡诺-KANO-模型" class="headerlink" title="需求分析法：卡诺(KANO)模型"></a>需求分析法：卡诺(KANO)模型</h3><p>根据不同类型的需求与⽤户满意度之间的关系，可将需求分为五类：基本型需求、期望型需求、兴奋型需求、⽆差异需求、反向型需求。<br><img src="/img/image-20240824180023124.png" alt="image-20240824180023124"></p>
 <table>
 <thead>
 <tr>
@@ -1492,10 +1492,10 @@
 <li>问卷中的每⼀道题⽬都要设计正反两⾯。</li>
 <li>关于选项的说明：<br>⾮常喜欢：让你感到满意、开⼼、惊喜<br>理应如此：你觉得是应该的，必备的功能/服务<br>⽆所谓：⽆所谓喜不喜欢，都可以接受<br>勉强接受：你不喜欢，最好是没有，有的话勉强凑合<br>很不喜欢：让你感到不开⼼甚⾄沮丧，⽆法接受。</li>
 </ul>
-<p><img src="../img/image-20240824180053507.png" alt="image-20240824180053507"></p>
-<p>下图是问卷题⽬的评分对应表：<br><img src="../img/image-20240824180108746.png" alt="image-20240824180108746"><br>A: 兴奋型<br>O: 期望型<br>M: 基础型<br>I：无差异型<br>R: 反向型<br>Q: 可以结果<br>统计所有的合理数据，计算出各项的占⽐，数据最大的就是该需求的分类。<br>注：“通讯录中的拨打电话功能”这个需求的分类是：兴奋型36.6%，如果提供此功能，⽤户满意度⼤⼤提升，如果不提供此功能，⽤户满意度不降低</p>
-<p><img src="../img/image-20240824180152440.png" alt="image-20240824180152440"></p>
-<p>如果涉及多个需求的优先级排序，需要计算better-worse系数<br>Better=(A+O)/(A+O+M+I)<br>提供某功能以后的满意系数，正值。值越⼤（接近1），对⽤户的满意度影响越⼤<br>Worse=-1*(O+M)/(A+O+M+I)<br>移除某功能以后的不满意系数，负值。值越⼤（接近-1），对⽤户的不满意度影响越⼤<br><img src="../img/image-20240824180206714.png" alt="image-20240824180206714"></p>
+<p><img src="/img/image-20240824180053507.png" alt="image-20240824180053507"></p>
+<p>下图是问卷题⽬的评分对应表：<br><img src="/img/image-20240824180108746.png" alt="image-20240824180108746"><br>A: 兴奋型<br>O: 期望型<br>M: 基础型<br>I：无差异型<br>R: 反向型<br>Q: 可以结果<br>统计所有的合理数据，计算出各项的占⽐，数据最大的就是该需求的分类。<br>注：“通讯录中的拨打电话功能”这个需求的分类是：兴奋型36.6%，如果提供此功能，⽤户满意度⼤⼤提升，如果不提供此功能，⽤户满意度不降低</p>
+<p><img src="/img/image-20240824180152440.png" alt="image-20240824180152440"></p>
+<p>如果涉及多个需求的优先级排序，需要计算better-worse系数<br>Better=(A+O)/(A+O+M+I)<br>提供某功能以后的满意系数，正值。值越⼤（接近1），对⽤户的满意度影响越⼤<br>Worse=-1*(O+M)/(A+O+M+I)<br>移除某功能以后的不满意系数，负值。值越⼤（接近-1），对⽤户的不满意度影响越⼤<br><img src="/img/image-20240824180206714.png" alt="image-20240824180206714"></p>
 <h2 id="为什么要实现这些需求"><a href="#为什么要实现这些需求" class="headerlink" title="为什么要实现这些需求"></a>为什么要实现这些需求</h2><p>产品的商业价值以及关于产品设计的顶层思考。<br>点：个体努⼒所能换来的回报，单点的业务突破。<br>线：将有价值的个体串联起来，注重线性优化。<br>⾯：开放的协同⽹络，对传统的供应链是典型的降维打击。打开传统供应链中的封闭结构，纳⼊更多的点。讲好⼀个平台的故事：淘宝、拼多多、滴滴、美团、携程、⽠⼦⼆⼿⻋<br>体：在“⾯”扩张的过程中衍⽣出更多的“⾯”，进⽽形成经济体。千亿美元市值公司应该考虑的问题（阿⾥）。<br>Q1思考：当你想要做⼀个新产品的时候，最好从什么⼊⼿（点/线/⾯/体）？<br>Q2思考：为什么跟谁学做O2O(2014)失败了、做B2C⽹校(2018)反⽽却成功了？</p>
 <h3 id="产品设计的顶层思考：波特三种竞争战略"><a href="#产品设计的顶层思考：波特三种竞争战略" class="headerlink" title="产品设计的顶层思考：波特三种竞争战略"></a>产品设计的顶层思考：波特三种竞争战略</h3><table>
 <thead>
@@ -1591,12 +1591,12 @@
 </tr>
 </tbody>
 </table>
-<p><img src="../img/image-20240824180252452.png" alt="image-20240824180252452"></p>
-<h2 id="做好一款产品有哪些小建议"><a href="#做好一款产品有哪些小建议" class="headerlink" title="做好一款产品有哪些小建议"></a>做好一款产品有哪些小建议</h2><h3 id="任务拆解：MECE"><a href="#任务拆解：MECE" class="headerlink" title="任务拆解：MECE"></a>任务拆解：MECE</h3><h3 id="产品设计：Fogg行为模型-FBM"><a href="#产品设计：Fogg行为模型-FBM" class="headerlink" title="产品设计：Fogg行为模型(FBM)"></a>产品设计：Fogg行为模型(FBM)</h3><p>B=MAP，Behavior=Motivation+Ability+Prompt<br>⼈的⾏为是由动机，能⼒，触发条件三要素组成的。三要素同时满⾜才会产⽣⾏为。<br>通俗来说，⼀个⼈不做某件事，要么是不想做（没动机），要么是不能做或者不会做（没能⼒），要么就是忘了做（没触发）<br>⽤户的转化⾏为，发⽣在动机很强、成本很低的时候。<br>也就是下图阈值的上方，当然有的时候，动机强和成本低两者不可能完全满足，这时就要保证不能出现成本又高，用户动机又不够的设计。<br><img src="../img/image-20240824180324913.png" alt="image-20240824180324913"></p>
+<p><img src="/img/image-20240824180252452.png" alt="image-20240824180252452"></p>
+<h2 id="做好一款产品有哪些小建议"><a href="#做好一款产品有哪些小建议" class="headerlink" title="做好一款产品有哪些小建议"></a>做好一款产品有哪些小建议</h2><h3 id="任务拆解：MECE"><a href="#任务拆解：MECE" class="headerlink" title="任务拆解：MECE"></a>任务拆解：MECE</h3><h3 id="产品设计：Fogg行为模型-FBM"><a href="#产品设计：Fogg行为模型-FBM" class="headerlink" title="产品设计：Fogg行为模型(FBM)"></a>产品设计：Fogg行为模型(FBM)</h3><p>B=MAP，Behavior=Motivation+Ability+Prompt<br>⼈的⾏为是由动机，能⼒，触发条件三要素组成的。三要素同时满⾜才会产⽣⾏为。<br>通俗来说，⼀个⼈不做某件事，要么是不想做（没动机），要么是不能做或者不会做（没能⼒），要么就是忘了做（没触发）<br>⽤户的转化⾏为，发⽣在动机很强、成本很低的时候。<br>也就是下图阈值的上方，当然有的时候，动机强和成本低两者不可能完全满足，这时就要保证不能出现成本又高，用户动机又不够的设计。<br><img src="/img/image-20240824180324913.png" alt="image-20240824180324913"></p>
 <h4 id="动机-Motivation"><a href="#动机-Motivation" class="headerlink" title="动机 Motivation"></a>动机 Motivation</h4><p>a.感觉：追求快乐、远离痛苦<br>b.期待：拥有希望、逃避恐惧<br>c.归属感：渴望被认同、害怕被拒绝</p>
 <h4 id="能力-成本-Ability-Simplicity"><a href="#能力-成本-Ability-Simplicity" class="headerlink" title="能力/成本 Ability/Simplicity"></a>能力/成本 Ability/Simplicity</h4><p>用户有能力完成转化，说白了就是成本在他可以接受的范围内。<br>Fogg 认为用户最在乎的是成本。<br> <strong>与其用更多的诱惑增加他做一件事的动机，不如思考降低他做这件事的成本。</strong><br>a. 时间<br>b. 金钱<br>c. 体力劳动: 相比走两个小时的路而言，打车就会显得更简单。<br>d. 脑力劳动: 有些人就是不喜欢动脑子，你让他答题得奖这件事就太复杂。<br>e. 社会压力: 如果要做有悖常理的事情，这个成本也会很高。<br>f. 习惯的力量: 如果要做这件事破坏了他日常的习惯，会有额外的成本。</p>
 <h4 id="转化因素-Trigger"><a href="#转化因素-Trigger" class="headerlink" title="转化因素 Trigger"></a>转化因素 Trigger</h4><p>a. 刺激 Spark：当用户没有足够的动机时，需要用文字或者视频等，刺激用户产生动机。<br>b. 辅助 Facilitator：当用户已经有足够的动机了，但有的时候他不知道怎么做，⽤户有⼀定的动机但是不知道该怎么做，需要耐⼼地引导<br>c. 信号 Signal：⽤户既有动机有知道该怎么做，只是需要⼀个提醒就够了。当然，如果这时候信号过量，也会起反效果</p>
-<h2 id="产品做完了，然后呢"><a href="#产品做完了，然后呢" class="headerlink" title="产品做完了，然后呢"></a>产品做完了，然后呢</h2><h3 id="评估产品能力：AARRR模型"><a href="#评估产品能力：AARRR模型" class="headerlink" title="评估产品能力：AARRR模型"></a>评估产品能力：AARRR模型</h3><p><img src="../img/image-20240824180411416.png" alt="image-20240824180411416"></p>
+<h2 id="产品做完了，然后呢"><a href="#产品做完了，然后呢" class="headerlink" title="产品做完了，然后呢"></a>产品做完了，然后呢</h2><h3 id="评估产品能力：AARRR模型"><a href="#评估产品能力：AARRR模型" class="headerlink" title="评估产品能力：AARRR模型"></a>评估产品能力：AARRR模型</h3><p><img src="/img/image-20240824180411416.png" alt="image-20240824180411416"></p>
 <h3 id="量化用户价值：RFM模型"><a href="#量化用户价值：RFM模型" class="headerlink" title="量化用户价值：RFM模型"></a>量化用户价值：RFM模型</h3><table>
 <thead>
 <tr>
