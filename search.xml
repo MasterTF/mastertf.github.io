@@ -83,7 +83,6 @@
 </ul>
 ]]></content>
       <categories>
-        <category>通用能力</category>
         <category>认知</category>
       </categories>
       <tags>
@@ -1420,6 +1419,7 @@
 <h3 id="防止异变"><a href="#防止异变" class="headerlink" title="防止异变"></a>防止异变</h3><p>问题：如何设计对象、子系统和系统，使其内部的变化或不稳定性不会对其他元素产生不良影响？<br>方案：识别预计变化或不稳定之处，分配职责用以在这些变化之外创建稳定接口。“接口”指的是广泛意义上的访问视图，而不仅仅是诸如Java接口等字面含义。</p>
 ]]></content>
       <categories>
+        <category>技术</category>
         <category>系统设计</category>
       </categories>
       <tags>
@@ -2204,6 +2204,7 @@
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p><img src="/img/16213457042232.jpg" alt="-w545"></p>
 ]]></content>
       <categories>
+        <category>技术</category>
         <category>系统设计</category>
       </categories>
       <tags>
@@ -2994,6 +2995,7 @@
 <p><img src="/img/15821955145522.jpg" alt="-w312"></p>
 ]]></content>
       <categories>
+        <category>技术</category>
         <category>系统设计</category>
       </categories>
       <tags>
@@ -3137,11 +3139,11 @@
 <p>剩下的几章没什么重点，只做目录梳理，需要的时候再看书    </p>
 <h3 id="犯罪群体"><a href="#犯罪群体" class="headerlink" title="犯罪群体"></a>犯罪群体</h3><h3 id="重罪法庭的陪审团"><a href="#重罪法庭的陪审团" class="headerlink" title="重罪法庭的陪审团"></a>重罪法庭的陪审团</h3><h3 id="选民群体"><a href="#选民群体" class="headerlink" title="选民群体"></a>选民群体</h3><h3 id="议会群体"><a href="#议会群体" class="headerlink" title="议会群体"></a>议会群体</h3>]]></content>
       <categories>
-        <category>通用能力</category>
         <category>心理学</category>
       </categories>
       <tags>
         <tag>心理学</tag>
+        <tag>乌合之众</tag>
       </tags>
   </entry>
   <entry>
@@ -3242,11 +3244,11 @@
 </ul>
 ]]></content>
       <categories>
-        <category>通用能力</category>
         <category>心理学</category>
       </categories>
       <tags>
         <tag>心理学</tag>
+        <tag>影响力</tag>
       </tags>
   </entry>
   <entry>
@@ -3427,6 +3429,7 @@
 <p>最后，一个观点结尾：<br><strong>“能用产品解决的问题不要用服务，能用服务解决的问题不要用咨询”</strong></p>
 ]]></content>
       <categories>
+        <category>技术</category>
         <category>系统设计</category>
       </categories>
       <tags>
@@ -3617,7 +3620,6 @@
 </ul>
 ]]></content>
       <categories>
-        <category>通用能力</category>
         <category>心理学</category>
       </categories>
       <tags>
@@ -3777,7 +3779,6 @@
 </ul>
 ]]></content>
       <categories>
-        <category>通用能力</category>
         <category>认知</category>
       </categories>
       <tags>
@@ -3861,8 +3862,7 @@
 <h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p>一篇讲增长的文章：<a href="https://mp.weixin.qq.com/s/w83PtvGewwCjwvuIBDa2bw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/w83PtvGewwCjwvuIBDa2bw</a> 根据很多资料总结的。</p>
 ]]></content>
       <categories>
-        <category>通用能力</category>
-        <category>系统思维</category>
+        <category>企业</category>
       </categories>
       <tags>
         <tag>企业</tag>
@@ -3948,7 +3948,6 @@
 </ol>
 ]]></content>
       <categories>
-        <category>通用能力</category>
         <category>项目管理</category>
       </categories>
       <tags>
@@ -4850,7 +4849,6 @@
 <p><a href="http://www.ruanyifeng.com/blog/2016/05/time-management.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/05/time-management.html</a></p>
 ]]></content>
       <categories>
-        <category>通用能力</category>
         <category>时间管理</category>
       </categories>
       <tags>
@@ -5004,6 +5002,7 @@
 </ol>
 ]]></content>
       <categories>
+        <category>技术</category>
         <category>算法</category>
       </categories>
       <tags>
@@ -5016,6 +5015,7 @@
     <url>/2017/05/06/Double-Array-Trie/</url>
     <content><![CDATA[]]></content>
       <categories>
+        <category>技术</category>
         <category>算法</category>
       </categories>
       <tags>
