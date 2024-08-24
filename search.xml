@@ -1,6 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>设计模式初学者指南</title>
+    <url>/2022/12/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%9D%E5%AD%A6%E8%80%85%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><ul>
+<li><strong>为了真正有效地应用设计模式，必须知道如何设计以及设计的过程。不要期望简单地在代码中即兴使用设计模式就会得到好的代码，这样做不会使程序得到太大改进，甚至可能让程序变得更糟。</strong></li>
+<li>编码是最后一步，是设计的实现。</li>
+<li>既然代码是设计的实现，想得到优雅代码需要有好的设计，得到好的设计需要有好的分析，过程为：用例 -&gt; 分析 -&gt; 设计 -&gt; 代码。</li>
+</ul>
+<a id="more"></a>
+<h2 id="面向对象与设计模式"><a href="#面向对象与设计模式" class="headerlink" title="面向对象与设计模式"></a>面向对象与设计模式</h2><h3 id="究竟什么是设计模式"><a href="#究竟什么是设计模式" class="headerlink" title="究竟什么是设计模式"></a>究竟什么是设计模式</h3><ol>
+<li>设计模式是被发现而不是被发明出来的。</li>
+<li>设计模式使用来解决一类相关问题的通用技术，而不是及决问题的特解。解决具体问题时仍要具体问题具体分析。</li>
+<li>每种设计模式不是“固定”的：每种模式描述了所处理的问题和对应的解决方法(“四人帮”书中成为“意图”(intent))。比如想设计一个通风的房子，总结出一个“穿堂风”模式，其意图为“允许空气在半人搞得高度直接水平地穿过房间，从而减少闷热并使房间更加舒适”。<strong>任何符合“意图”的架构机制都是该模式合法的具体化(reification)。</strong></li>
+<li>不能简单地通过结构(UML图)来识别模式，要弄清对象和类的意图。</li>
+</ol>
+<h3 id="模式的分类"><a href="#模式的分类" class="headerlink" title="模式的分类"></a>模式的分类</h3><p><img src="/img/image-20230119171459687.png" alt="image-20230119171459687"></p>
+<p>“四人帮”将模式分为两大类：类模式(class pattern)和对象模式(object pattern).</p>
+<p>在每个大类内部，模式进一步被分为三类：</p>
+<ul>
+<li>创建型模式：关注的都是对象的创建，如抽象工厂模式提供了一种可以在不知道对象的实际类型的情况下生成对象。</li>
+<li>结构型模式：都是静态模型模式，关注与程序的机构化组织方式。</li>
+<li>行为型模式：都是动态型模式，关注与各个对象在运行时如何交互。</li>
+</ul>
+<h3 id="模式与设计"><a href="#模式与设计" class="headerlink" title="模式与设计"></a>模式与设计</h3><p>OOD(面向对象设计)与OOP(面向对象编程)有很大不同，很多人将编程和设计混淆了。</p>
+<p>拿建筑行业做一个类比：建筑是由建筑师“设计”出来的，但却是由工人“建造”的。同样，面向对象系统是由面向对象设计人员设计、由面向对象程序员实现的。这两个角色可以由同一人充当，也可以由不同人充当。</p>
+<p>优秀的编码者可以不懂设计，但可以将设计人员的设计方案转换为漂亮的代码。在华为，有专门的的SE做方案设计，然后由编码者进行实现。</p>
+<p>不要将易于维护和降低复杂性混淆。面向对象的系统通常比面向过程的系统更加复杂，但更易于维护：其思想是将实际的软件系统内的必然的复杂性组织起来，而不是减少其复杂性——对于减少复杂性这一目标，面向对象设计人员认为是不可能达到的。</p>
+<ul>
+<li><p>编码是最后一步，是设计的实现。</p>
+</li>
+<li><p>既然代码是设计的实现，想得到优雅代码需要有好的设计，得到好的设计需要有好的分析，过程为：用例 -&gt; 分析 -&gt; 设计 -&gt; 代码。</p>
+</li>
+<li><p><strong>为了真正有效地应用设计模式，必须知道如何设计以及设计的过程。不要期望简单地在代码中即兴使用设计模式就会得到好的代码，这样做不会使程序得到太大改进，甚至可能让程序变得更糟。</strong></p>
+</li>
+<li><p>本篇讲的是模式，是关于将面向对象设计转变为具体的实现，关于OOAD自行学习。</p>
+</li>
+</ul>
+<h2 id="使用接口和创建型模式编程"><a href="#使用接口和创建型模式编程" class="headerlink" title="使用接口和创建型模式编程"></a>使用接口和创建型模式编程</h2><h3 id="为什么组合优于继承"><a href="#为什么组合优于继承" class="headerlink" title="为什么组合优于继承"></a>为什么组合优于继承</h3><p>经常说 “组合由于继承”，这是为什么呢？工作中是如何实践的？有意识到遵循这项原则吗？</p>
+<h3 id="extends的问题"><a href="#extends的问题" class="headerlink" title="extends的问题"></a>extends的问题</h3><ul>
+<li>强耦合</li>
+<li>脆弱的基类问题：用一种表面上安全的方式修改基类，但修改后，可能会导致派生类不能正常运行。</li>
+</ul>
+<h4 id="强耦合"><a href="#强耦合" class="headerlink" title="强耦合"></a>强耦合</h4><p>例子：通过继承ArrayList实现栈。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span> <span class="keyword">extends</span> <span class="title">ArrayList</span> </span>&#123; </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> topOfStack = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">( Object article )</span> </span>&#123;   </span><br><span class="line">    add( topOfStack++, article );</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> remove( --topOfStack ); </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushMany</span><span class="params">( Object[] articles )</span> </span>&#123; </span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; articles.length; ++i )</span><br><span class="line">         push( articles[i] );</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好像没什么问题，考虑以下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Stack aStack = <span class="keyword">new</span> Stack(); </span><br><span class="line">aStack.push(<span class="string">"1"</span>); </span><br><span class="line">aStack.push(<span class="string">"2"</span>); </span><br><span class="line">aStack.clear();</span><br></pre></td></tr></table></figure>
+<p>调用clear方法时没有重置 topOfStack，导致下次调用push方法会存放到ArrayList的第三个位置，与预期不一致。</p>
+<p>有人可能想到重写clear方法，调用stack的clear方法时直接抛出异常。这种做法并不好：</p>
+<ul>
+<li>stack也是ArrayList，其他以ArrayList作为参数的方法，调用clear方法时不会期望得到异常</li>
+<li>将编译期的错误转移到了运行时。</li>
+<li>从概念上来看，stack不是ArrayList：ArrayList提供的方法对于Stack 来说大部分都不需要，这些方法对Stack是无意义的。</li>
+</ul>
+<p>设计Stack类更好的方法是使用封装而不是派生来进行设计，这样讲就无需担心不想要的方法会被继承下来：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>&#123; </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> topOfStack = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> ArrayList theData = <span class="keyword">new</span> ArrayList();</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">( Object article )</span> </span>&#123; </span><br><span class="line">        theData.add( topOfStack++, article ); </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span></span>&#123; </span><br><span class="line">        <span class="keyword">return</span> theData.remove( --topOfStack ); </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushMany</span><span class="params">( Object[] articles )</span> </span>&#123; </span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; articles.length; ++i )</span><br><span class="line">            push( articles[i] );</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="comment">// current stack size. </span></span><br><span class="line">        <span class="keyword">return</span> theData.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="错弱的基类问题"><a href="#错弱的基类问题" class="headerlink" title="错弱的基类问题"></a>错弱的基类问题</h4><p>假设想丰富stack的能力，希望能跟踪一段时间内栈最大值和最小值。</p>
+<p>通过增加“高水位”和“低水位”标记的方法实现该功能：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MonitorableStack</span> <span class="keyword">extends</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> highWaterMark = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lowWaterMark = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">( Object o )</span> </span>&#123;   </span><br><span class="line">        push(o);</span><br><span class="line">        <span class="keyword">if</span>( size() &gt; highWaterMark ) </span><br><span class="line">            highWaterMark = size();</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        Object poppedItem = pop(); </span><br><span class="line">        <span class="keyword">if</span>( size() &lt; lowWaterMark )</span><br><span class="line">            lowWaterMark = size(); </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> poppedItem;	</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumSize</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> highWaterMark; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumSize</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> lowWaterMark; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">resetMarks</span> <span class="params">()</span> </span>&#123; highWaterMark = lowWaterMark = size(); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看上去是正常的。该类没有重写pashMany()方法，pushMany方法是通过push()方法来工作。</p>
+<p>调用了push()，highWaterMark才会变更。</p>
+<p>某天，某人发现基类stack性能有问题，为提高性能，使用数组替换ArrayList：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> topOfStack = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> Object[] theData = <span class="keyword">new</span> Object[<span class="number">1000</span>];</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">( Object article )</span> </span>&#123; </span><br><span class="line">        theData[ ++topOfStack ] = article; </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        Object popped = theData[ topOfStack-- ];</span><br><span class="line">        theData[topOfStack] = <span class="keyword">null</span>; <span class="comment">// prevent memory leak</span></span><br><span class="line">        <span class="keyword">return</span> popped;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushMany</span><span class="params">( Object[] articles )</span> </span>&#123; </span><br><span class="line">        <span class="keyword">assert</span> (topOfStack + articles.length) &lt; theData.length;</span><br><span class="line">        System.arraycopy(articles, <span class="number">0</span>, theData, topOfStack+<span class="number">1</span>, articles.length);</span><br><span class="line">        topOfStack += articles.length; </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;  <span class="comment">// current stack size.</span></span><br><span class="line">        <span class="keyword">return</span> topOfStack + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意新的pushMany()不再多次调用push()。导致子类MonitorableStack再也不能正常工作。</strong></p>
+<hr>
+<p><strong>不仅修改已有的方法可能导致问题，在基类添加方法也可能有问题：</strong></p>
+<p>假设要提供批量清空栈的能力，但不希望通过显示地弹出栈中每一个元素来完成，于是在stack中加入以下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">discardAll</span><span class="params">()</span> </span>&#123; </span><br><span class="line">  stack = <span class="keyword">new</span> Object[<span class="number">1000</span>];</span><br><span class="line">  topOfStack = -<span class="number">1</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>似乎安全且合理。但discardAll()没有调用pop()方法，导致<strong>MonitorableStack</strong>虽然清空了，但高水位和低水位没有被更新。</p>
+<hr>
+<p>所以，每次修改基类时，为避免发生错误，<strong>需要子类重写每个方法</strong>。</p>
+<p><strong>当重写所有方法时，实际上就不是继承，而是实现接口。</strong></p>
+<h4 id="使用接口减少脆弱基类问题"><a href="#使用接口减少脆弱基类问题" class="headerlink" title="使用接口减少脆弱基类问题"></a>使用接口减少脆弱基类问题</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*; </span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span>    <span class="title">push</span><span class="params">( Object o )</span></span>;</span><br><span class="line">    <span class="function">Object  <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span>    <span class="title">pushMany</span><span class="params">( Object[] articles )</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span>     <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleStack</span> <span class="keyword">implements</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>       topOfStack = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> ArrayList theData    = <span class="keyword">new</span> ArrayList();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">( Object article )</span></span>&#123; </span><br><span class="line">        theData.add( topOfStack++, article );</span><br><span class="line">    &#125; </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;   </span><br><span class="line">        <span class="keyword">return</span> theData.remove( --topOfStack );</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushMany</span><span class="params">( Object[] articles )</span> </span>&#123; </span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; articles.length; ++i )</span><br><span class="line">            push( articles[i] );</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="comment">// current stack size. </span></span><br><span class="line">        <span class="keyword">return</span> theData.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MonitorableStack</span> <span class="keyword">implements</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> highWaterMark = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lowWaterMark = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    SimpleStack stack = <span class="keyword">new</span> SimpleStack();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">( Object o )</span> </span>&#123;   </span><br><span class="line">        stack.push(o);</span><br><span class="line">        <span class="keyword">if</span>( size() &gt; highWaterMark ) </span><br><span class="line">            highWaterMark = size();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Object returnValue = stack.pop();</span><br><span class="line">        <span class="keyword">if</span>( stack.size() &lt; lowWaterMark )</span><br><span class="line">            lowWaterMark = stack.size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> returnValue;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushMany</span><span class="params">( Object[] articles )</span> </span>&#123; </span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; articles.length; ++i )</span><br><span class="line">            push( articles[i] );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( stack.size() &gt; highWaterMark )</span><br><span class="line">            highWaterMark = stack.size();</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span>  <span class="title">maximumSize</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> highWaterMark; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span>  <span class="title">minimumSize</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> lowWaterMark;  &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">resetMarks</span> <span class="params">()</span> </span>&#123; highWaterMark = lowWaterMark = size(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span>  <span class="title">size</span><span class="params">()</span>        </span>&#123; <span class="keyword">return</span> stack.size(); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="如何替换extends"><a href="#如何替换extends" class="headerlink" title="如何替换extends"></a>如何替换extends</h3><h4 id="优先使用组合"><a href="#优先使用组合" class="headerlink" title="优先使用组合"></a>优先使用组合</h4><p>总是能通过实现接口而不用extends就能得到继承。其做法是将默认实现放在接口中，并在接口中定义方法来访问所包含的默认实现:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Implementation</span> <span class="keyword">implements</span> <span class="title">Base</span> </span>&#123; </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;<span class="comment">/*...*/</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Effectively extend both Something and Base.Implementation:</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">Something</span> <span class="keyword">implements</span> <span class="title">Base</span> </span>&#123;   </span><br><span class="line">    Base delegate = <span class="keyword">new</span> Base.Implementation();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;   </span><br><span class="line">        delegate.f();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用创建型模式"><a href="#使用创建型模式" class="headerlink" title="使用创建型模式"></a>使用创建型模式</h4><p>进行重构时，将extend改为接口，原来new某个类的地方都要改为new 某个接口，需要进行大量的修改。</p>
+<p>最好将new抛弃或者隐藏。</p>
+<h4 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h4><p>抽象工厂有不同的变种，如工厂是具体的。但都有一个共同主题：<strong>使用工厂来创建确切类型尚不知道的对象。</strong></p>
+<p>只知道创建的对象实现的接口，但并不知道对象具体的类。</p>
+<p>Java中的collection是抽象工厂的优秀例子：工厂和产品都是抽象的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Collection</span></span>&#123;</span><br><span class="line">    <span class="function">Iterator <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span></span>&#123;</span><br><span class="line">    <span class="function">Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">client</span><span class="params">(Collection c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(Iterator i = c.iterator(); c.hasNext();)&#123;</span><br><span class="line">        doSth(i.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>抽象工厂的主要优点是 隔离创建对象的过程，严格按照接口编程。</strong></p>
+<h4 id="命令和策略模式"><a href="#命令和策略模式" class="headerlink" title="命令和策略模式"></a>命令和策略模式</h4><p>策略模式也能以抽象的方式创建对象，策略模式是命令模式的特例。</p>
+<p><strong>命令模式的基本思想是将如何作模式的知识封装在对象中，进而可以将其到处传送。</strong>如Java中创建线程的方式。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommandObject</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123; </span><br><span class="line">        <span class="comment">// stuff to do on the thread goes here &#125;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    Thread controller = <span class="keyword">new</span> Thread( <span class="keyword">new</span> CommandObject() ); </span><br><span class="line">    controller.start(); <span class="comment">//fire up the thread</span></span><br></pre></td></tr></table></figure>
+<p>Commond对象封装了线程中要运行的代码。Thread对象完全是通用的，只负责创建及管理线程，单不需要负责线程会做什么事情。</p>
+<p><strong>命令模式的主要特性是 客户类（使用命令对象的类）不知道命令对象将会做什么事情。</strong></p>
+<p><strong>策略模式思想也很简单：</strong>使用命令对象来定义<strong>某些操作</strong>的策略，并在运行时<strong>传递给其他对象</strong></p>
+<p>在实践中，大部分代码只是给类起名叫XXXStrategy，直接实例化类并调用方法，并没有传递。</p>
+<p>Java中使用策略模式的优秀例子是java.awt.Container及其派生类使用的LayoutManager。可以向Container添加可视化对象(按钮等)，Container通过委派策略对象来处理布局。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Frame container = <span class="keyword">new</span> Frame();</span><br><span class="line"><span class="comment">// 添加四个按钮并排布局</span></span><br><span class="line">container.setLayout( <span class="keyword">new</span> FlowLayout() );</span><br><span class="line">container.add( <span class="keyword">new</span> Button(<span class="string">"1"</span>) ); </span><br><span class="line">container.add( <span class="keyword">new</span> Button(<span class="string">"2"</span>) ); </span><br><span class="line">container.add( <span class="keyword">new</span> Button(<span class="string">"3"</span>) ); </span><br><span class="line">container.add( <span class="keyword">new</span> Button(<span class="string">"3"</span>) );</span><br><span class="line"></span><br><span class="line">Frame container = <span class="keyword">new</span> Frame();</span><br><span class="line"><span class="comment">// 添加四个按钮，2*2的方式布局</span></span><br><span class="line">container.setLayout( <span class="keyword">new</span> GridLayout(<span class="number">2</span>,<span class="number">2</span>) );</span><br><span class="line">container.add( <span class="keyword">new</span> Button(<span class="string">"1"</span>) ); </span><br><span class="line">container.add( <span class="keyword">new</span> Button(<span class="string">"2"</span>) ); </span><br><span class="line">container.add( <span class="keyword">new</span> Button(<span class="string">"3"</span>) ); </span><br><span class="line">container.add( <span class="keyword">new</span> Button(<span class="string">"3"</span>) );</span><br></pre></td></tr></table></figure>
+<p>如果使用继承方式，则必须写两个子类，一个叫FlowFrame,完成流式风格的布局，还要写一个GridFrame，完成网格风格的布局。</p>
+<p>而使用LayoutManager策略对象(实现了LayoutManager接口但不继承任何类)免除了使用继承，并简化实现。</p>
+<p><strong>策略模式是工厂方法的很好替代品，使用策略模式就不需要使用继承对创建对象的方法进行重写.</strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>为了在需求变化时能够容易的对程序进行修改，代码中超过80%的内容应该通过接口来编写而不是具体的类。</p>
+<p>以下几种模式可以做到只知道接口而不知道实际类来创建对象：</p>
+<ol>
+<li>单例：一个对象，一种类型只有一个</li>
+<li>抽象工厂：一个“工厂”，由其创建一组相关对象。仅知道对象的接口，但具体的类是隐藏(外部看不到，内部可以看到，因为总要在工厂里创建具体的对象)。</li>
+<li>模板方法：一个占位方法，位于基类层次中，在派生类中被重写(不推荐，有脆弱的基类问题)。要有节制的使用。另外模板方法只是多态的普通应用，不配叫“模式”。</li>
+<li>工厂方法：一种模板方法，在具体类 未知的情况下创建对象。工厂方法的名字容易造造成误解，认为任何创建对象的方法都是工厂方法，但还有其他创建型的方法。与抽象工厂的区别在于工厂是具体的。</li>
+<li>命令：一个对象，封装了一个未知的算法。</li>
+<li>策略：一个对象，封装了解决已知问题的策略。在创建型模式的上下文中，可以向创建者传递一个工厂对象，工厂中封装了实例化其他对象的策略。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>软件开发复杂性</title>
+    <url>/2022/06/20/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%A4%8D%E6%9D%82%E6%80%A7/</url>
+    <content><![CDATA[<blockquote>
+<p>软件的复杂性是一个基本特征，而不是偶然如此。从根本上来说，我们可以掌握这种复杂性，但不能消除这种复杂性。</p>
+</blockquote>
+<ul>
+<li>对公司来讲，做业务要有利润。利润=收入-成本。在软件开发中，需求解决【提升收入】的问题，设计解决【降低成本】的问题。公式可以改为【利润=需求-设计】</li>
+<li>研发团队能做的是设计好的方案，【降低成本】。但好的方案不是唾手可得，有难度。为什么有难度？因为软件开发是复杂的。为什么是复杂的，复杂在哪儿？如何掌控？</li>
+</ul>
+<a id="more"></a>
+<h2 id="复杂性来源"><a href="#复杂性来源" class="headerlink" title="复杂性来源"></a>复杂性来源</h2><ul>
+<li><strong>问题域的复杂性</strong>：包括需求及质量要求。需求已经比较复杂了，还要在此基础上考虑质量要求(性能、可用性、安全、正确性、扩展性等)。再加上出方案时“随心所欲”，时间越久问题越复杂。</li>
+<li><strong>可变性：</strong> 需求可以随意变动且不能通过模型预测，即使有一套方法能够自动生成代码，也是基于模型匹配的基础上。但真实世界的需求不可能和目标模型匹配，<strong>所以软件行业还是一个劳动密集型的产业。</strong></li>
+<li><strong>一致性：</strong> 因为是劳动密集型产业，团队人数多，管理开发过程就有很大挑战，挑战在于维持设计的一致性和完整性。 </li>
+<li><strong>不可见性：</strong> 产品是具体的，代码是抽象的。方案是否合理？代码行数是不是太多？代码质量怎么样？监控告警是否全面？效能如何 等，缺少可视化工具呈现，存在较多盲区。就像装修一样，外面看着挺好，墙背后的各种线、水电气等 都是盲区，诸多隐患没被发现。</li>
+</ul>
+<h2 id="如何控制复杂性"><a href="#如何控制复杂性" class="headerlink" title="如何控制复杂性"></a>如何控制复杂性</h2><h3 id="1-问题域的复杂性"><a href="#1-问题域的复杂性" class="headerlink" title="1.问题域的复杂性"></a>1.问题域的复杂性</h3><h4 id="1-1需求的复杂性"><a href="#1-1需求的复杂性" class="headerlink" title="1.1需求的复杂性"></a>1.1需求的复杂性</h4><ul>
+<li>问题：<ul>
+<li>需求规则没人知道，只能靠口口相传。</li>
+<li>分不清用例、步骤、规则，理解需求时揉在一起，不够清晰。</li>
+<li>不知道如何拆分需求，做不到尽早交付价值。</li>
+<li>没有想清楚交付什么价值，大部分情况下用例(价值)是不变的，变得是步骤和规则(实现价值的方式)</li>
+</ul>
+</li>
+<li>解决1：使用工具沉淀需求。目前互联网公司“流行”的做法是口口相传，沉淀远远不够。沉淀需求对于在技术层面做业务监控、可用性监控等有很大意义。</li>
+<li>解决2：使用面向对象方法，从业务建模开始找到用例，画出用例图。用例图很好解答了 哪个组织/系统 对谁(涉众)提供了什么价值(用例)三个问题。想清楚价值，可以帮助判断方案能否达成价值以及是否有更好的方案。</li>
+</ul>
+<p><img src="/img/image-20230118162528384.png" alt="image-20230118162528384"></p>
+<h4 id="1-2技术的复杂性"><a href="#1-2技术的复杂性" class="headerlink" title="1.2技术的复杂性"></a>1.2技术的复杂性</h4><p>技术的复杂性在于既要完成需求，又要考虑质量要求，<strong>技术复杂性=需求复杂性X质量要求(性能、可用性、安全、扩展性、正确性等)</strong></p>
+<ul>
+<li>问题1：忽视质量要求。需求已经比较复杂了，设计满足需求的方案可能已经精疲力竭了，哪顾得上质量要求。</li>
+<li>建议：给时间+模板+把关。</li>
+</ul>
+<hr>
+<ul>
+<li>问题2：对问题域不够了解，设计的方案偏离真实世界，导致不断“重构”。美其名曰重构，可能是迭代不下去了，怎么保证重构后的不被重构呢？</li>
+<li>建议1：不急于出设计，在设计之前先 <strong>分析</strong> ，先调查研究问题。没有充分理解问题，解决方案很可能是错的。就像面试，没弄懂面试官的问题，回答大概率是错的，做对也是蒙的。</li>
+<li>建议2：【设计】之前画一下【分析类图】，找出对象及之间的关系，也是可视化的过程，比在脑子里硬想要高效。设计方案以及评审时就不用死盯着内容很多且不精确的PRD了。</li>
+</ul>
+<hr>
+<ul>
+<li><p>问题3：知识爆炸。业务规则及实现要看代码及口口相传。混淆的名词及代词影响正确性和效率。混淆的各种名词，沟通时使用各种代词，“他们” “我们”，涉及的系统多了就跟不上讲的人思路了</p>
+</li>
+<li><p>建议：增加<strong>分析</strong>流程，输出精准的、简洁的、可以理解的现实世界的模型。最重要的是分析类图，其次是分析序列图。</p>
+<ul>
+<li><strong>分析类图：关注数据，从现实世界捕获对系统重要的概念及关系。</strong></li>
+<li><strong>分析序列图:关注协作，分配职责，完成用例。</strong> 讲流程时就不用说他们、我们了，把这个图丢出去就够了。</li>
+<li><p><strong>状态机图：关注时序，对象的生命周期及状态流转条件。</strong></p>
+<p>不要觉得这个没用或者很简单，画的过程中一定会有很多疑问：</p>
+</li>
+</ul>
+<ol>
+<li>该不该画这个类？这是类还是属性？是哪个类的属性？</li>
+<li>该不该连线？多重性是什么？</li>
+<li>是泛化还是枚举？是泛化还是关联？</li>
+<li>反映了现实世界吗？</li>
+<li>这个操作该由哪个类完成？</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>问题4：未能区分真正的复杂还是由“随心所欲”引入的复杂。</p>
+<ul>
+<li><p>既然已经认识到复杂是无法避免的，就不要再引入“随心所欲”的复杂了。扪心自问，平时说的系统复杂，有多少是我们自己引入的？</p>
+</li>
+<li><p>追求设计出“简单”的方案。“简单”是指对用的人或者对以后简单，而不是思考过程简单。“简单”绝不是忽视复杂性，相反要付出巨大的努力，还大概率做不到。比如交互设计领域，iOS足够简单，四岁小孩都会用，为什么其他公司设计不出来更好的呢？</p>
+<p>  我们做技术方案也类似：</p>
+<ul>
+<li>当解决方案很容易想到时，要警惕，是不是草率了，这次简单了，以后是不是麻烦了？</li>
+<li>当解决方案很复杂时，不要洋洋得意，要反思，是不是有更好的没有找到？或者这样想：让一个更厉害的人来做，是不是能设计出更“简单”的方案。</li>
+<li>做减法，加法导致东西越来越多，多就会带来复杂性。</li>
+</ul>
+</li>
+<li><p>把系统做复杂不是本事，做复杂谁都可以，四岁小孩儿随意画的画也能很复杂(图1)</p>
+</li>
+<li><p>不要图1的复杂，要图2的复杂：结果可以是复杂的，但复杂的结果可以由“简单”的方案演化出来。像大自然、语言、围棋等，由简单的元素就能演化出复杂的结果。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180417/1df5da33bfb54242b02899cf7beeea54.jpeg" alt="看到宝宝乱写乱画，你会上去制止吗？"></p>
+<p><img src="/img/image-20230118163840124.png" alt="image-20230118163840124" style="zoom:150%;"></p>
+<h3 id="2-一致性"><a href="#2-一致性" class="headerlink" title="2.一致性"></a>2.一致性</h3><ul>
+<li>要专业。引入的“随心所欲”复杂性，本质是因为自身不专业，下面的例子一定不陌生：<ul>
+<li>相同变量名，不同含义</li>
+<li>相同含义，不同变量名</li>
+<li>单位不一致</li>
+<li>中英文不一致</li>
+<li>工程命名方式不一致</li>
+<li>迷惑的变量名</li>
+<li>工程命名方式不一致</li>
+<li>变量名与业务语义不一致</li>
+</ul>
+</li>
+</ul>
+<p>看上去都是很小的点，多了会不会有千疮百孔的感觉？如果觉得这些case很小，系统中是否存在更大的不一致？比如注释与实现不一致，实现与设计不一致，<strong>设计与真实世界不一致</strong>(这可能是最大的不一致)。</p>
+<ul>
+<li>不要重复：保持一致的有效方式是只有一个。但重复经常发生，导致不一致：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>重复的类型</th>
+<th><strong>解释</strong></th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>强加的重复</td>
+<td>环境似乎要求重复，别无选择</td>
+<td>代码 vs 注释 vs 文档<br>周报 vs 周会<br>MySQL VS Redis VS ES</td>
+</tr>
+<tr>
+<td>无意的重复</td>
+<td>没有意识到在重复</td>
+<td>派生信息，存了出生年月又存年龄<br> 类名已经表明对象了，方法名还要加上对象名：XXClass.createXX。<br></td>
+</tr>
+<tr>
+<td>无耐心的重复</td>
+<td>偷懒，因为这样可能更容易</td>
+<td>重复代码<br>上面提到的不专业的例子</td>
+</tr>
+<tr>
+<td>开发者之间的重复</td>
+<td>同一团队（或不同团队）重复了同样的信息</td>
+<td>重复的轮子<br>业务语义相同的常量各团队都定义了一份</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>建议：<ul>
+<li>避免破窗：发现一个改一个。就怕习以为常了，没意识到是债务。</li>
+<li>用业务语言设计、写码，避免出现无业务语义的产物。如果在设计前，画了【分析类图】，可以避免很多问题。</li>
+<li>第一种重复要慎重，二、三、四要避免。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-可变性"><a href="#3-可变性" class="headerlink" title="3.可变性"></a>3.可变性</h3><ul>
+<li>没想到好方法。人是不靠谱的，尽量用工具替代人。是个长期过程，平时多留意可以沉淀出工具的地方。</li>
+</ul>
+<h3 id="4-不可见性"><a href="#4-不可见性" class="headerlink" title="4.不可见性"></a><strong>4.不可见性</strong></h3><ul>
+<li>提升研发效率需要配套相关的可视化工具，如各种可视化监控，各种报表统计等。方便大家了解研发过程、研发结果的各种数据。</li>
+</ul>
+<p><strong>总结：</strong></p>
+<ul>
+<li>利润=需求-设计，设计就是成本。工作时想想是在增加成本还是【降低成本】？目标是做一个“简单”的方案，“简单”符合人性，也符合自然规律。</li>
+<li>为了做出“简单”的方案，要充分理解问题。在【设计】之前先【分析】，输出【分析类图】【分析序列图】。【分析】是把思考放在前头，由【分析】驱动设计，不是问题驱动，也不是重构驱动。</li>
+<li>复杂不能消除，只能被管理。避免引入“随心所欲”的复杂，“随心所欲”是不专业的表现。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>软件</tag>
+        <tag>开发</tag>
+        <tag>复杂性</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>产品思维</title>
     <url>/2021/05/30/%E4%BA%A7%E5%93%81%E6%80%9D%E7%BB%B4-1/</url>
     <content><![CDATA[<p>小龙的产品思维讲的是大原则，是他自己的经验总结。这种级别的大佬不会面面俱到的介绍各种事项。<br>小龙讲的会颠覆大部分人的想法，但内容又是大家平时经常听到的。</p>
@@ -1770,6 +2045,7 @@
 <p>在项目早期，CCP原则会比REP原则更重要，因为这一阶段研发速度比复用性更重要。</p>
 <p>一般来说，一个软件项目的重心会从该三角区域的右侧开始，先期主要牺牲的是复用性。然后，随着项目逐渐成熟，其他项目会逐渐开始对其产生依赖，项目重心就会逐渐向该三角区域的左侧滑动。</p>
 <p>很好理解，因为项目一开始也不知道哪些能复用，所以不会拆分组件，通常逻辑都放在了一个组件中。随着迭代，功能越来越多，对业务理解更深刻，就会剥离出可复用的组件。</p>
+<p><strong>不知道是不是Bob大叔创造的名词。ccp和crp可以简单映射为单体架构和微服务架构。造出来这些名词，让人难以理解。</strong></p>
 <h3 id="组件如何耦合"><a href="#组件如何耦合" class="headerlink" title="组件如何耦合"></a>组件如何耦合</h3><p>组件依赖结构图并不是用来描述应用程序功能的，它更像是应用程序在构建性与维护性方面的一张地图。这就是组件的依赖结构图不能在项目的开始阶段被设计出来的原因——当时该项目还没有任何被构建和维护的需要，自然也就不需要一张地图来指引。</p>
 <p>组件结构图的重要目标是如何隔离频繁的变更。软件架构师需要设计一套组件关系依赖图，以便将稳定的高价值组件与常变的组件隔离开。</p>
 <h4 id="ADP-THE-ACYCLIC-DEPENDENCIES-PRINCIPLE（无依赖环原则）"><a href="#ADP-THE-ACYCLIC-DEPENDENCIES-PRINCIPLE（无依赖环原则）" class="headerlink" title="ADP: THE ACYCLIC DEPENDENCIES PRINCIPLE（无依赖环原则）"></a>ADP: THE ACYCLIC DEPENDENCIES PRINCIPLE（无依赖环原则）</h4><p>这个原则很好理解。<br>如何打破循环依赖？</p>
@@ -2056,12 +2332,33 @@
 <ul>
 <li>把数据更新到DB中，成功后，让Cache失效</li>
 </ul>
-<p><strong>存在的问题</strong><br>并发问题<br><img src="/img/16211560315197.jpg" alt></p>
-<ol>
-<li>先来了Query操作，未命中缓存，然后到DB取数据。</li>
-<li>此时来了Update操作，更新了DB数据。</li>
-<li>此时Query操作获取的就是旧数据，并将旧数据放到了缓存中。</li>
+<h4 id="为什么删缓存，而不是更新缓存"><a href="#为什么删缓存，而不是更新缓存" class="headerlink" title="为什么删缓存，而不是更新缓存"></a><strong>为什么删缓存，而不是更新缓存</strong></h4><ol>
+<li>性能：删除 比 更新 快，在写多的场景下，减少浪费。</li>
+<li>正确性：在并发场景下，在写请求中更新缓存可能会引发数据的不一致问题。线程1比线程2早到，但线程1在线程2之后更新。导致缓存中存的是线程1的旧数据。线程3读到的就是旧数据。</li>
 </ol>
+<p><img src="/img/image-20211229154930217.png" alt="image-20211229154930217"></p>
+<h4 id="为什么先更新数据库，而不是先删缓存"><a href="#为什么先更新数据库，而不是先删缓存" class="headerlink" title="为什么先更新数据库，而不是先删缓存"></a><strong>为什么先更新数据库，而不是先删缓存</strong></h4><ol>
+<li><p>防止缓存穿透：先删缓存，请求都打到DB，增大缓存穿透概率。</p>
+</li>
+<li><p>正确性：</p>
+<ul>
+<li>并发场景下，线程1写数据，先删缓存。</li>
+<li>线程2读数据，缓存不存在，读DB。读完DB更新缓存。</li>
+<li>线程1删完缓存，更新DB。</li>
+<li><p>此时缓存中是旧数据。线程3读到的是旧数据。</p>
+<p><img src="/img/image-20211229155618523.png" alt="image-20211229155618523"></p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="cache-aside存在的问题"><a href="#cache-aside存在的问题" class="headerlink" title="cache-aside存在的问题"></a><strong>cache-aside存在的问题</strong></h4><p>并发问题：</p>
+<ol>
+<li>线程1查询未命中缓存，到DB取数据。</li>
+<li>线程2更新操作，更新了DB数据，并删除缓存</li>
+<li>线程1更新缓存(3.1)晚于线程2删除(2.2)，将旧数据放到了缓存中。</li>
+<li>线程3读到的是旧数据。</li>
+</ol>
+<p><img src="/img/image-20211229161832900.png" alt="image-20211229161832900"></p>
 <p><strong>解决办法</strong></p>
 <ul>
 <li>分析出现概率：低</li>
@@ -2082,7 +2379,7 @@
 <li>命中：先更新Cache，再更新DB</li>
 <li>未命中：更新DB后直接返回。</li>
 </ul>
-<h3 id="Write-Behind-Caching"><a href="#Write-Behind-Caching" class="headerlink" title="Write Behind Caching"></a>Write Behind Caching</h3><p><img src="/img/16211561999312.jpg" alt></p>
+<h3 id="Write-Behind-Caching"><a href="#Write-Behind-Caching" class="headerlink" title="Write Behind Caching"></a>Write Behind Caching</h3><p><img src="/img/wecom-temp-50f0656639bd0f98f5655924bfffd3bc.png" alt="wecom-temp-50f0656639bd0f98f5655924bfffd3bc" style="zoom:80%;"></p>
 <ul>
 <li>更新数据时，只更新缓存，不更新数据库</li>
 <li>缓存异步、批量更新数据库</li>
@@ -2153,7 +2450,6 @@
 <h3 id="缓存脏数据"><a href="#缓存脏数据" class="headerlink" title="缓存脏数据"></a>缓存脏数据</h3><p>指更新后的缓存数据与数据库数据不一致，导致影响业务。</p>
 <p><strong>解决办法</strong></p>
 <ul>
-<li>严格cr，全方面测试</li>
 <li>防御性编程：缓存更新成功后，检查cache与DB是否一致</li>
 <li>限制缓存写入点</li>
 <li>建立缓存数据正确性监控/告警机制</li>
@@ -2210,11 +2506,11 @@
 </li>
 </ol>
 <h3 id="建模工作流"><a href="#建模工作流" class="headerlink" title="建模工作流"></a>建模工作流</h3><ol>
-<li><p>业务建模：描述组织内部各系统(人脑系统、电脑系统……)如何协作，使得组织可以为其 他组织提供有价值的服务。（<strong>还没弄清楚全景图，系统、组织、业务的关系，系统、组织、业务定义是什么，”组织”之上是否还有一层。我目前先把组织和系统理解为不同高度的抽象，用不同的词语更方便表述。如大系统里包含多个子系统，大系统就是组织，小系统就是系统。小系统里有更小的系统，那么小系统又变成了组织。</strong>） <strong>如果通过业务建模推导新系统的需求，而不是拍脑袋得出，假的“需求变更”会大大减少。</strong><br>书上有个图说明边界，但我仍没完全弄懂：</p>
-<p><img src="/img/15819977056852.jpg" alt></p>
-</li>
-<li><p>需求：描述为了解决组织的问题，系统必须具有的表现——功能和性能。严防“做”污染“卖”。需求工作流的结果——需求规约是“卖”和“做”的衔接点。</p>
-</li>
+<li>业务建模：描述组织内部各系统(人脑系统、电脑系统……)如何协作，使得组织可以为其 他组织提供有价值的服务。 <strong>如果通过业务建模推导新系统的需求，而不是拍脑袋得出，假的“需求变更”会大大减少。</strong></li>
+</ol>
+<p>   <img src="/img/15819977056852.jpg" alt></p>
+<ol start="2">
+<li>需求：描述为了解决组织的问题，系统必须具有的表现——功能和性能。严防“做”污染“卖”。需求工作流的结果——需求规约是“卖”和“做”的衔接点。</li>
 <li>分析：提炼、封装核心域。</li>
 <li>设计：核心域如何映射到选定平台上实现。</li>
 </ol>
@@ -2267,18 +2563,18 @@
 <h2 id="业务建模-之-业务用例图"><a href="#业务建模-之-业务用例图" class="headerlink" title="业务建模 之 业务用例图"></a>业务建模 之 业务用例图</h2><ul>
 <li><p>有了愿景，我们知道老大对他所代表的组织的现状的某些指标不满意。接下来就可以研究组织，<strong>弄清楚到底是组织的哪些环节造成了这些指标比较差，这就是业务建模(Business Modeling)的主 要内容。</strong> <strong>“业务建模”这个名字其实起得不好，应该更名为“组织建模”。</strong> 出于对过去叫法的尊重，本书依 然称为“业务建模”。</p>
 </li>
-<li><p>开发团队经常发现需求“容易变化”。根源之一是需求的来路不正，没有把系统当作一个零件放在组织中来看，靠拍脑袋得出需求，导致得到的系统需求是错的。系统投入使用后，发现和组织的其他零件格格不入，自然要改。“需求变化剧烈”是一个假象，真正的需求没有变，只不过一开始得到的需 求是假的。如果能正确运用业务建模技能，“需求变化”就会消于无形。（这不也是正确的废话，谁能保证建模正确。）</p>
+<li><p>开发团队经常发现需求“容易变化”。根源之一是需求的来路不正，没有把系统当作一个零件放在组织中来看，靠拍脑袋得出需求，导致得到的系统需求是错的。系统投入使用后，发现和组织的其他零件格格不入，自然要改。“需求变化剧烈”是一个假象，真正的需求没有变，只不过一开始得到的需求是假的。如果能正确运用业务建模技能，“需求变化”就会消于无形。（这不也是正确的废话，谁能保证建模正确。）</p>
 </li>
-<li><p>在业务建模工作流，我们从内外两个视角来研究组织。从外部看，组织是一些价值的集合，我们 可以用业务用例图表示;从内部看，组织是一些系统的集合，我们可以用业务序列图来表示。</p>
+<li><p>在业务建模工作流，我们从内外两个视角来研究组织。从外部看，组织是一些价值的集合，我们可以用业务用例图表示；从内部看，组织是一些系统的集合，我们可以用业务序列图来表示。</p>
 </li>
 </ul>
 <h3 id="【步骤】识别业务执行者"><a href="#【步骤】识别业务执行者" class="headerlink" title="【步骤】识别业务执行者"></a>【步骤】识别业务执行者</h3><h4 id="业务执行者"><a href="#业务执行者" class="headerlink" title="业务执行者"></a>业务执行者</h4><ul>
 <li>以某组织为研究对象，在组织之外和组织交互的其他组织(人群或机构)就是该组织的执行者。 因为研究对象是一个组织，所以叫业务执行者。</li>
 </ul>
 <h4 id="业务工人和业务实体"><a href="#业务工人和业务实体" class="headerlink" title="业务工人和业务实体"></a>业务工人和业务实体</h4><ul>
-<li>组织内的人称为业务工人(Business Worker)，例如某商业银行里面的营业员。业务执行者和业 务工人的区别是:一个在组织外面，一个在组织里面;一个是组织不可替换的服务对象，一个是组织 可以替换的零件。</li>
+<li>组织内的人称为业务工人(Business Worker)，例如某商业银行里面的营业员。业务执行者和业务工人的区别是:一个在组织外面，一个在组织里面；一个是组织不可替换的服务对象，一个是组织可以替换的零件。</li>
 <li>业务工人是可以被替换的人脑零件，它可能会被其他业务工人替换，但更有可能被业务实体替换。业务实体是组织中的非人智能系统，例如银行的 ATM、点钞机、营业系统。</li>
-<li>责任转移的思想对识别待引入系统的需求很有帮助。开发人员说，“我在开发一个新系统”，其实说的就是“我在开发一个新的业务实体，取代现有业务工人或业务实体的一些责任”。这样，探索需求的思路就出来了——我们画好现状的业务序列图，然后寻找改进点改进业务序列图。（平时是这样做的，但没抽象出方法论）</li>
+<li>责任转移的思想对识别待引入系统的需求很有帮助。开发人员说，“我在开发一个新系统”，其实说的就是“我在开发一个新的业务实体，取代现有业务工人或业务实体的一些责任”。这样，探索需求的思路就出来了——我们画好现状的业务序列图，然后寻找改进点改进业务序列图。</li>
 <li>业务工人和业务实体不在业务用例图中出现，因为它们不是组织的价值，而是成本。在识别业务执行者时，不需要画业务工人和业务实体。</li>
 <li>在接下来画业务用例的实现——业务序列图的时候，将业务工人和业务实体作为类(Class)的一 个构造型，放在名为“业务对象”的包里。组织的业务工人和业务实体协作完成业务用例，系统的类协作完成系统用例。</li>
 </ul>
@@ -2311,7 +2607,7 @@
 <p>识别业务用例本来应该是很简单的事情，但是，许多程序员出身的需求人员受到了以往工作经历的影响，往往把简单的事情变得复杂，常见错误：</p>
 <ul>
 <li><strong>把业务工人的行为当作业务用例。</strong>这里反映了建模人员常见的一个问题:<strong>分不清问题和问题的解决方案。</strong></li>
-<li><strong>业务用例随待引入系统伸缩。</strong>一个组织，甚至组织的一条流程都涉及许许多多的系统。在开发不同的系统时，研究业务用例和 业务流程，发现得到的结果和开发另一个系统时的研究结果差不多，这是很正常的。建模人员不必因 此感到惊慌，更不要因为“业务用例太少”、“业务用例太简单了”不自觉地改变研究对象，把待引入 系统的用例搬上来。</li>
+<li><strong>业务用例随待引入系统伸缩。</strong>一个组织，甚至组织的一条流程都涉及许许多多的系统。在开发不同的系统时，研究业务用例和业务流程，发现得到的结果和开发另一个系统时的研究结果差不多，这是很正常的。建模人员不必因 此感到惊慌，更不要因为“业务用例太少”、“业务用例太简单了”不自觉地改变研究对象，把待引入系统的用例搬上来。</li>
 <li><strong>把害怕漏掉的扩展路径片段提升为业务用例。</strong> 可以使用扩展路径来解决。</li>
 <li><strong>管理型业务用例。</strong> 从“药师盘点药品”推导出背后的好处，然后画成“管理型业务用例”。它没有特定组织的味道，哪家营利机构不是为了赚钱?另外，也很 容易和愿景、涉众利益混在一起，发展下去，就会有“顾客→希望东西更便宜”之类的“用例”。</li>
 </ul>
@@ -2319,7 +2615,7 @@
 <h2 id="业务建模-之-业务序列图"><a href="#业务建模-之-业务序列图" class="headerlink" title="业务建模 之 业务序列图"></a>业务建模 之 业务序列图</h2><p>描述业务用例的实现，即业务流程，然后改进它，<strong>推导出待引入系统的用例。</strong></p>
 <h3 id="序列图和活动图比较"><a href="#序列图和活动图比较" class="headerlink" title="序列图和活动图比较"></a>序列图和活动图比较</h3><ol>
 <li>活动图只关注人，序列图把人当作系统：活动图描述业务流程时，建模人员往往只注意人或部门的活动，忽略了非人智能系统的责任。<strong>本书选择序列图的原因是把人脑系统和电脑系统平等看待。</strong></li>
-<li>活动图表示动作，序列图强迫思考动作背后的目的:使用序列图来做业务建模，“对象协作以完成用例”的思想就可以统一地贯彻业务建模和系统建模的始终。</li>
+<li>活动图表示动作，序列图强迫思考动作背后的目的：使用序列图来做业务建模，“对象协作以完成用例”的思想就可以统一地贯彻业务建模和系统建模的始终。</li>
 <li>活动图“灵活”，序列图不“灵活”:灵活是双刃剑。</li>
 </ol>
 <h3 id="业务序列图要点"><a href="#业务序列图要点" class="headerlink" title="业务序列图要点"></a>业务序列图要点</h3><h4 id="消息代表责任分配而不是数据流动"><a href="#消息代表责任分配而不是数据流动" class="headerlink" title="消息代表责任分配而不是数据流动"></a>消息代表责任分配而不是数据流动</h4><p>序列图最重要的要点是消息的含义。A 指向 B 的消息，代表“A 请求 B 做某事”，或者“A 调用 B 做某事的服务”，做某事是 B 的一个责任。</p>
@@ -2328,23 +2624,22 @@
 <p><img src="/img/15820975515426.jpg" alt="-w418"></p>
 <h4 id="抽象级别是系统之间的协作"><a href="#抽象级别是系统之间的协作" class="headerlink" title="抽象级别是系统之间的协作"></a>抽象级别是系统之间的协作</h4><p>业务建模的研究对象是组织，出现在业务序列图生命线上的对象，其最小颗粒是系统，包括人和 非人系统。<br>几种错误：</p>
 <ol>
-<li>表达过细，系统内部的细节也表现出来，这些是在分析、设计阶段表现。</li>
-</ol>
-<p><img src="/img/15820980716809.jpg" alt="-w766"></p>
-<ol>
+<li><p>表达过细，系统内部的细节也表现出来，这些是在分析、设计阶段表现。</p>
+<p> <img src="/img/15820980716809.jpg" alt="-w766"></p>
+</li>
 <li><p>业务序列图内容和业务用例图差不多：建模人员根本不了解 组织内部有哪些岗位，各自承担什么责任。</p>
 <p> <img src="/img/15820981435456.jpg" alt="-w617"></p>
 </li>
-<li><p>把不具备任何智能的物体放到了业务序列图的生命线上。<br><img src="/img/15820981891022.jpg" alt="-w759"></p>
+<li><p>把不具备任何智能的物体放到了业务序列图的生命线上。<img src="/img/15820981891022.jpg" alt="-w759"></p>
 </li>
 </ol>
-<p>可能有的读者纳闷，我怎么记得看过的书里经常有序列图上出现订单、申请单对象?那是分析序 列图。我们用对象的思想去构思我们所开发的系统的内部结构和行为，就得到了订单、申请单等假想 的有生命的对象。</p>
+<p>可能有的读者纳闷，我怎么记得看过的书里经常有序列图上出现订单、申请单对象?那是分析序列图。我们用对象的思想去构思我们所开发的系统的内部结构和行为，就得到了订单、申请单等假想 的有生命的对象。</p>
 <p><img src="/img/15820982873968.jpg" alt="-w556"></p>
-<h4 id="只画核心域相关的系统"><a href="#只画核心域相关的系统" class="headerlink" title="只画核心域相关的系统"></a>只画核心域相关的系统</h4><p>大致的判断标准是:如果是核心域相关的系统，应该出现在业务序列图中，如果不是，可以不出现。<br>（类似《ddd》中，不同的领域内聚合根、实体、值对象是不一样的。在不同场景，核心域相关的系统也不同）</p>
+<h4 id="只画核心域相关的系统"><a href="#只画核心域相关的系统" class="headerlink" title="只画核心域相关的系统"></a>只画核心域相关的系统</h4><p>大致的判断标准是：如果是核心域相关的系统，应该出现在业务序列图中，如果不是，可以不出现。<br>（类似《ddd》中，不同的领域内聚合根、实体、值对象是不一样的。在不同场景，核心域相关的系统也不同）</p>
 <h4 id="把时间看作特殊的业务实体"><a href="#把时间看作特殊的业务实体" class="headerlink" title="把时间看作特殊的业务实体"></a>把时间看作特殊的业务实体</h4><p>时间和定时器不是一个概念。时间是外系统，定时器是其他系统用来和时间打交道的边界 类，如图 4-19 所示。世界上只有一个时间系统，但有无数的定时器。有的建模人员在识别系统用例时 说“执行者是定时器”，这样说是错的，执行者是时间。</p>
 <p><img src="/img/15820986230122.jpg" alt="-w928"></p>
 <h5 id="为业务对象分配合适的责任"><a href="#为业务对象分配合适的责任" class="headerlink" title="为业务对象分配合适的责任"></a>为业务对象分配合适的责任</h5><p><img src="/img/15820987785916.jpg" alt="-w1000"></p>
-<p>###【步骤】现状业务序列图<br>尽力描绘出<strong>真实</strong>的现状，说起来非常简单，做到却极其困难。为了克服困难，建模人员甚至应当 在心里暗暗发誓:如果不尽力去靠近真相，天打雷劈!（😆😆）</p>
+<h3 id="【步骤】现状业务序列图"><a href="#【步骤】现状业务序列图" class="headerlink" title="【步骤】现状业务序列图"></a>【步骤】现状业务序列图</h3><p>尽力描绘出<strong>真实</strong>的现状，说起来非常简单，做到却极其困难。为了克服困难，建模人员甚至应当在心里暗暗发誓：如果不尽力去靠近真相，天打雷劈!（😆😆）</p>
 <h4 id="错误1-把想象中的改进当成现状"><a href="#错误1-把想象中的改进当成现状" class="headerlink" title="错误1:把想象中的改进当成现状"></a>错误1:把想象中的改进当成现状</h4><p>背后的原因很可能是根本没有深入到组织流程中去做观察和访谈，对现状没有认识，只好想像一 个改进后的场景来应付。</p>
 <h4 id="错误2-把“现状”误解为“纯手工”"><a href="#错误2-把“现状”误解为“纯手工”" class="headerlink" title="错误2:把“现状”误解为“纯手工”"></a>错误2:把“现状”误解为“纯手工”</h4><p>简单讲就是只考虑“人”，忽略了“非人系统”。</p>
 <h4 id="错误3-把“现状”误解为“本开发团队未参与之前”"><a href="#错误3-把“现状”误解为“本开发团队未参与之前”" class="headerlink" title="错误3:把“现状”误解为“本开发团队未参与之前”"></a>错误3:把“现状”误解为“本开发团队未参与之前”</h4><h4 id="错误4-把“现状”误解为“规范”"><a href="#错误4-把“现状”误解为“规范”" class="headerlink" title="错误4:把“现状”误解为“规范”"></a>错误4:把“现状”误解为“规范”</h4><p>建模人员在建模业务流程时，照搬组织制定的规范，没有去观察实际工作中人们是如何做的，或者即使观察到了人们实际没有按照规范做，却依然按照规范建模。<strong>如果视而不见，也就丧失了许多有价值的改进 机会。</strong></p>
@@ -2354,12 +2649,11 @@
 <li>注意观察各种物的流动，并<strong>提炼物背后承载的信息。</strong> 注意，不要忘了还有人的流动，人可是一个几十公斤的物。</li>
 <li>目前各领域在“物流变成信息流”方面留下的改进空间已经不 多。随之而来要面对的是信息流转不通畅的问题。</li>
 </ul>
-<h4 id="改进模式2-改善信息流转"><a href="#改进模式2-改善信息流转" class="headerlink" title="改进模式2:改善信息流转"></a>改进模式2:改善信息流转</h4><ul>
+<h4 id="改进模式2：改善信息流转"><a href="#改进模式2：改善信息流转" class="headerlink" title="改进模式2：改善信息流转"></a>改进模式2：改善信息流转</h4><ul>
 <li>把各软件系统之间的协调工作改为由一个软件系统来完成，人只需要和单个软件系统打交道，信息的流转就改进了。</li>
 <li>人和人的协作中，可能隐藏了信息流转不畅的情况。（<strong>能够自动化的不要手动化，能通过程序的不要通过人。</strong>）</li>
 </ul>
-<h4 id="改进模式3-封装领域逻辑"><a href="#改进模式3-封装领域逻辑" class="headerlink" title="改进模式3:封装领域逻辑"></a>改进模式3:封装领域逻辑</h4><p>(感觉和2差不多。)</p>
-<ul>
+<h4 id="改进模式3-封装领域逻辑"><a href="#改进模式3-封装领域逻辑" class="headerlink" title="改进模式3:封装领域逻辑"></a>改进模式3:封装领域逻辑</h4><ul>
 <li>提炼人脑中封装的领域逻辑，改为封装 到软件系统中，用软件系统代替人脑，业务流程就得到了改进。<br><img src="/img/15821025768466.jpg" alt="-w939"></li>
 </ul>
 <h4 id="阿布思考法"><a href="#阿布思考法" class="headerlink" title="阿布思考法"></a>阿布思考法</h4><ul>
@@ -2378,8 +2672,8 @@
 <li>封装了自身的数据和行为，能独立对外提供服务的东西才能称为系统。不了解这一点，建模人员 很容易把“添加一些功能”当作“研发新系统”。</li>
 </ul>
 <h4 id="系统边界是责任的边界"><a href="#系统边界是责任的边界" class="headerlink" title="系统边界是责任的边界"></a>系统边界是责任的边界</h4><ul>
-<li>系统执行者不是所研究系统的一部分，是该系统边界外的另一个系统。<strong>这里的系统边界不是物理 的边界，而是责任的边界。</strong></li>
-<li>涉众根本不在意系统划分成几个组件以及组件之间如何分布和交互。建模人员如果没有学会从 涉众视角看问题，只是从自己角度看问题，就会犯这样的错误。（<strong>这块没懂，一个大的系统里面可能有很多子系统，子系统下面还有更小的系统，怎么确定系统的范围？</strong>）</li>
+<li>系统执行者不是所研究系统的一部分，是该系统边界外的另一个系统。<strong>这里的系统边界不是物理的边界，而是责任的边界。</strong></li>
+<li>涉众根本不在意系统划分成几个组件以及组件之间如何分布和交互。建模人员如果没有学会从涉众视角看问题，只是从自己角度看问题，就会犯这样的错误。</li>
 <li>边界越模糊，越需要执行者来帮助理清。</li>
 </ul>
 <h4 id="系统执行者和系统有交互"><a href="#系统执行者和系统有交互" class="headerlink" title="系统执行者和系统有交互"></a>系统执行者和系统有交互</h4><p><strong>换言之，没有交互就不是系统执行者</strong></p>
@@ -2392,38 +2686,42 @@
 </ul>
 <h4 id="系统执行者可以是人或非人系统"><a href="#系统执行者可以是人或非人系统" class="headerlink" title="系统执行者可以是人或非人系统"></a>系统执行者可以是人或非人系统</h4><ul>
 <li>用例技术中“执行者”和“涉众”的概念，把演员和观众分开了。 演员(执行者)在台上表演，观众(涉众)在台下看，演员表演什么是由观众的口味决定的，演员可 以不是人，但观众肯定是人。</li>
-<li>用例使用“执行者”和“涉众”代替了原来的“用户”，这是一个非常大的突破。“用户”这个词 混淆了演员和观众的区别。过去经常说“找用户调研需求”，这是错误的。所谓“用户”，就是上台表演的人类演员。找用户调研需求，相当于找演员问剧本应该是什么内容，岂不是很荒谬?剧本应该由编剧向观众调研编写出来，然后由各路演员在台上演绎。</li>
-<li>建立“执行者和系统在台上表演，涉众在台下看表 演”的概念，在执行者为非人系统时对捕获需求很有帮助。</li>
+<li>用例使用“执行者”和“涉众”代替了原来的“用户”，这是一个非常大的突破。“用户”这个词 混淆了演员和观众的区别。过去经常说“找用户调研需求”，这是错误的。所谓“用户”，就是上台表演的人类演员。找用户调研需求，相当于找演员问剧本应该是什么内容，岂不是很荒谬？剧本应该由编剧向观众调研编写出来，然后由各路演员在台上演绎。</li>
+<li>建立“执行者和系统在台上表演，涉众在台下看表演”的概念，在执行者为非人系统时对捕获需求很有帮助。</li>
 </ul>
 <h3 id="【步骤】识别系统执行者"><a href="#【步骤】识别系统执行者" class="headerlink" title="【步骤】识别系统执行者"></a>【步骤】识别系统执行者</h3><h4 id="从业务序列图映射系统执行者"><a href="#从业务序列图映射系统执行者" class="headerlink" title="从业务序列图映射系统执行者"></a>从业务序列图映射系统执行者</h4><ul>
 <li>业务序列图上，和所研究系统有实线相连的对象映射为所研究系统的执行者。<br><img src="/img/15821118893421.jpg" alt="-w880"><br><img src="/img/15821119047011.jpg" alt="-w653"></li>
 </ul>
 <p>图 5-12 中执行者不再带有斜杠，因为这时候研究对象是系统。有的执行者画在边界框左边，有的 则画在右边，是为了方便表达主执行者和辅执行者。</p>
 <h3 id="系统用例要点"><a href="#系统用例要点" class="headerlink" title="系统用例要点"></a>系统用例要点</h3><h4 id="价值是买卖的平衡点"><a href="#价值是买卖的平衡点" class="headerlink" title="价值是买卖的平衡点"></a>价值是买卖的平衡点</h4><ul>
-<li>用例之前的许多需求方法学，把需求定义为思考系统“做什么”，用例把需求提升到思考系统“卖 什么”的高度。</li>
+<li>用例之前的许多需求方法学，把需求定义为思考系统“做什么”，用例把需求提升到思考系统“卖什么”的高度。</li>
 <li>这种思考是非常艰难的，因为它没有标准答案，只有最佳答案。</li>
 <li><strong>要得到这个最佳答案，不能靠拍脑袋，必须揣摩涉众。要得到合适的用例，需要有一颗善于体察他人的心。</strong></li>
 </ul>
 <h4 id="价值不等于“可以这样做”"><a href="#价值不等于“可以这样做”" class="headerlink" title="价值不等于“可以这样做”"></a>价值不等于“可以这样做”</h4><ul>
-<li>建模人员只能根据目标涉众心中对系统的期望来确定系统 应该提供什么样的服务。</li>
-<li><strong>举得权限例子没看懂，按照书中所讲的用例，用例岂不是膨胀很多</strong></li>
-<li>最常犯的错误是把步骤当作用例。Include 的目的是为了复用在 多个用例中重复出现的步骤集合，形状往往是多个用例 Include 一个用例。看到这种一个用例 Include 许多个用例的形状，基本上可以判断它犯了把步骤当作用例的错误。<br><img src="/img/15821130593917.jpg" alt="-w628"><br>正确的做法是:把右侧的“验密 码”和“扣除金额”作为步骤写在用例规约中。</li>
+<li><p>建模人员只能根据目标涉众心中对系统的期望来确定系统 应该提供什么样的服务。</p>
+</li>
+<li><p><strong>举得权限例子没看懂，按照书中所讲的用例，用例岂不是膨胀很多</strong></p>
+</li>
+<li><p>最常犯的错误是把步骤当作用例。Include 的目的是为了复用在 多个用例中重复出现的步骤集合，形状往往是多个用例 Include 一个用例。看到这种一个用例 Include许多个用例的形状，基本上可以判断它犯了把步骤当作用例的错误。<br><img src="/img/15821130593917.jpg" alt="-w628"></p>
+<p>正确的做法是：把右侧的“验密 码”和“扣除金额”作为步骤写在用例规约中。</p>
+</li>
 </ul>
 <h4 id="增删改查用例的根源是从设计映射需求"><a href="#增删改查用例的根源是从设计映射需求" class="headerlink" title="增删改查用例的根源是从设计映射需求"></a>增删改查用例的根源是从设计映射需求</h4><ul>
 <li>需求工作中，我们所写的每一个字，所画的每一张图都必须对好卖有推动作用，否则还不如不做。</li>
 <li><strong>即使再难，也只能从 涉众的视角来定义需求</strong>，不能贪图方便选择一个自己熟悉的视角应付了事。</li>
-<li>老老实实去研究业务流程，做好业务建模，尽量从业务序列图中映射出 系统用例</li>
+<li>老老实实去研究业务流程，做好业务建模，尽量从业务序列图中映射出系统用例</li>
 </ul>
 <h4 id="从设计映射需求错误二-“复用”用例"><a href="#从设计映射需求错误二-“复用”用例" class="headerlink" title="从设计映射需求错误二:“复用”用例"></a>从设计映射需求错误二:“复用”用例</h4><ul>
 <li>用例是涉众愿意“购买”的、对系统的一种“用法”，只要涉众愿意“购买”，当然是越多越好。 </li>
 <li>同样的制作材料，变出更多可卖的价值，说明您的设计能力强，制作成本低，何乐而不为?</li>
 <li>可惜建模人员经常会犯傻，不自觉地合并用例，相当于告诉涉众说，你真笨，你买我这些功能，其实都是我用同样几个类作为零件灵活组装出来的。干脆，你成本价把我的零件买走，自己去组装吧!</li>
-<li>需求的基本要点:<strong>需求不考虑“复用”，如果在考虑“复用”，要警惕自己是不是已经转换到了设计视角来思考问题。</strong></li>
+<li>需求的基本要点：<strong>需求不考虑“复用”，如果在考虑“复用”，要警惕自己是不是已经转换到了设计视角来思考问题。</strong></li>
 </ul>
 <p><img src="/img/15821136913874.jpg" alt="-w339"></p>
 <ul>
-<li>图 5-17、图 5-22 和图 5-24 的错误用例图有一个共同点:多个执行者指向同一个用例。<strong>已完工的用例图不应该出现这样的形状，如果出现，可以有两种修改方法。</strong><ol>
-<li>要是我们揣摩系统的这个用例针对 这几个执行者来说并无区别，就泛化出抽象的执行者，或者不需要泛化关系，直接用单个更合适的执 行者代替;</li>
+<li>图 5-17、图 5-22 和图 5-24 的错误用例图有一个共同点：多个执行者指向同一个用例。<strong>已完工的用例图不应该出现这样的形状，如果出现，可以有两种修改方法。</strong><ol>
+<li>要是我们揣摩系统的这个用例针对 这几个执行者来说并无区别，就泛化出抽象的执行者，或者不需要泛化关系，直接用单个更合适的执行者代替;</li>
 <li>反之，如果对不同执行者来说有区别，就把该用例分成几个不同的用例。这种往往更常见。<br><img src="/img/15821138626719.jpg" alt="-w837"></li>
 </ol>
 </li>
@@ -2435,35 +2733,37 @@
 </li>
 </ul>
 <h4 id="用例的命名是动宾结构"><a href="#用例的命名是动宾结构" class="headerlink" title="用例的命名是动宾结构"></a>用例的命名是动宾结构</h4><ul>
-<li>动词前面可以加状语，宾语前面可以加定语，把一句话 的主语砍掉，剩下的可以作为用例的名字。</li>
+<li>动词前面可以加状语，宾语前面可以加定语，把一句话的主语砍掉，剩下的可以作为用例的名字。</li>
 <li>给用例起名时不要使用弱动词。</li>
 <li>如果“名词+动词”已经成为行业中的一个术语，也未必要严格的动宾结构。</li>
 </ul>
 <h3 id="【步骤】识别系统用例"><a href="#【步骤】识别系统用例" class="headerlink" title="【步骤】识别系统用例"></a>【步骤】识别系统用例</h3><p>认真做好业务建模，从业务序列图上映射系统用例，得到的结果自然就会符合上面说的这些要点。</p>
 <ul>
-<li><p>业务序列图中，从外部指向所研究系统的消息，可以映射为该系统的用例。<br><img src="/img/15821167977987.jpg" alt="-w832"><br><img src="/img/15821168101447.jpg" alt="-w625"><br>有的箭头是从执行者指向用例，这样的执行者称为用例的主执行者，有的箭 头是从用例指向执行者，这样的执行者称为用例的辅执行者。<strong>主执行者主动发起用例的交互，辅执行 者在交互的过程中被动参与进来。</strong></p>
+<li><p>业务序列图中，从外部指向所研究系统的消息，可以映射为该系统的用例。<br><img src="/img/15821167977987.jpg" alt="-w832"><br><img src="/img/15821168101447.jpg" alt="-w625"></p>
+<p>有的箭头是从执行者指向用例，这样的执行者称为用例的主执行者，有的箭头是从用例指向执行者，这样的执行者称为用例的辅执行者。<strong>主执行者主动发起用例的交互，辅执行 者在交互的过程中被动参与进来。</strong></p>
 </li>
 <li><p>辅执行者这个概念是被误用比较多的。<strong>最常见的错误是把信息的接收者或者将来可能使用信息的人当成辅执行者。箭头代表的是责任分配。</strong>  图 5-35 的意思是:线索部经理使用线索管理系统分配名单的过程中需要外呼人员的帮忙，如果外呼人员睡着了没有响应，用例的目标就受到影响。显然，这不符合事实。<br><img src="/img/15821169595191.jpg" alt="-w658"></p>
 </li>
-<li><p>另一种辅执行者的误用刚好反过来，把信息的来源当作辅执行者。如图 5-36，建模人员认为外呼 人员要想使用线索管理系统来查看本人当天名单，“依赖于”线索部经理事先分配好名单。这同样是错 误的，在用例进行过程中不需要线索部经理的参与。<br><img src="/img/15821170688791.jpg" alt="-w725"></p>
+<li><p>另一种辅执行者的误用刚好反过来，把信息的来源当作辅执行者。如图 5-36，建模人员认为外呼人员要想使用线索管理系统来查看本人当天名单，“依赖于”线索部经理事先分配好名单。这同样是错误的，在用例进行过程中不需要线索部经理的参与。<br><img src="/img/15821170688791.jpg" alt="-w725"></p>
 </li>
 <li><p>一般来说，<strong>辅执行者是非人智能系统的情况较多，人脑系统作为辅执行者的情况比较少，所以碰到辅执行者是人的时候，要多留心。</strong></p>
 </li>
-<li>主、辅执行者是针对某个用例来说的，一个外系统可以是这个用例的辅执行者， 同时也可以是另外一个用例的主执行者。“××是系统的主(辅)执行者”的说法是错误的。</li>
+<li><p>主、辅执行者是针对某个用例来说的，一个外系统可以是这个用例的辅执行者， 同时也可以是另外一个用例的主执行者。“××是系统的主(辅)执行者”的说法是错误的。</p>
+</li>
 </ul>
 <h2 id="需求-之-系统用例规约"><a href="#需求-之-系统用例规约" class="headerlink" title="需求 之 系统用例规约"></a>需求 之 系统用例规约</h2><p>用例规约就是以用例为核心来组织需求内容的需求规约。有了用例规约，可以不需要另外写其他格式的需求规约。<br><img src="/img/15821698345468.jpg" alt="-w794"></p>
 <p><img src="/img/15821887399316.jpg" alt="-w572"></p>
-<h3 id="前置条件和后置条件"><a href="#前置条件和后置条件" class="headerlink" title="前置条件和后置条件"></a>前置条件和后置条件</h3><p>用例通过前置条件(precondition)、后置条件(postcondition)以契约的形式表达需求。用例相当于系统的一个承诺:<strong>在满足前置条件时开始，按照里面的路径步骤走，系统就能到达后置条件。</strong></p>
+<h3 id="前置条件和后置条件"><a href="#前置条件和后置条件" class="headerlink" title="前置条件和后置条件"></a>前置条件和后置条件</h3><p>用例通过前置条件(precondition)、后置条件(postcondition)以契约的形式表达需求。用例相当于系统的一个承诺：<strong>在满足前置条件时开始，按照里面的路径步骤走，系统就能到达后置条件。</strong></p>
 <ul>
-<li>前置条件:用例开始前，系统需要满足的约束。</li>
-<li>后置条件:用例成功结束后，系统需要满足的约束。</li>
+<li>前置条件：用例开始前，系统需要满足的约束。</li>
+<li>后置条件：用例成功结束后，系统需要满足的约束。</li>
 </ul>
 <h4 id="前置条件、后置条件必须是系统能检测的。"><a href="#前置条件、后置条件必须是系统能检测的。" class="headerlink" title="前置条件、后置条件必须是系统能检测的。"></a>前置条件、后置条件必须是系统能检测的。</h4><p><img src="/img/15821700533595.jpg" alt="-w671"></p>
 <h4 id="前置条件必须是用例开始前系统能检测到的。"><a href="#前置条件必须是用例开始前系统能检测到的。" class="headerlink" title="前置条件必须是用例开始前系统能检测到的。"></a>前置条件必须是用例开始前系统能检测到的。</h4><p><img src="/img/15821701313448.jpg" alt="-w935"></p>
 <h4 id="前置后置条件是状态，不是动作。"><a href="#前置后置条件是状态，不是动作。" class="headerlink" title="前置后置条件是状态，不是动作。"></a>前置后置条件是状态，不是动作。</h4><p>例如，“经理→批假”的前置条件不能写“员工提交请假单”，因为是一个动作不是状态，应改为 “存在待审批的请假单”。特别要注意的是，写成“员工已经提交请假单”很可能也是不对的，因为状 态和导致达到某个状态的行为不是一一对应的，请假单未必是员工自己提交，也可以组长负责帮本组 人员请假，也可能是从另外的系统批量导入。</p>
 <h4 id="前置后置条件要用核心域词汇描述。"><a href="#前置后置条件要用核心域词汇描述。" class="headerlink" title="前置后置条件要用核心域词汇描述。"></a>前置后置条件要用核心域词汇描述。</h4><p>不要写“XX成功”、“XX正常运行”，要体现领域知识，如“订单信息已保存”。</p>
 <h4 id="“已登录”不应作为前置条件。"><a href="#“已登录”不应作为前置条件。" class="headerlink" title="“已登录”不应作为前置条件。"></a>“已登录”不应作为前置条件。</h4><p>例子讲得好</p>
-<h3 id="涉众利益"><a href="#涉众利益" class="headerlink" title="涉众利益"></a>涉众利益</h3><p><strong>涉众利益即针对某件事情，某类人担心什么和希望什么。</strong><br>(“涉众”先理解为我以前的模型”干系人”)</p>
+<h3 id="涉众利益"><a href="#涉众利益" class="headerlink" title="涉众利益"></a>涉众利益</h3><p><strong>涉众利益即针对某件事情，某类人担心什么和希望什么。</strong></p>
 <ul>
 <li>前置条件是起点，后置条件是终点，中间的路该怎么走?这就要由涉众利益决定了。如果只考虑目标而没有考虑到涉众利益，正确的需求是出不来的。</li>
 <li>认识到需求由涉众利益的冲突和平衡来决定，我们的需求过程就会充满“人”的味道，</li>
@@ -2493,7 +2793,7 @@
 <h4 id="按照交互四步曲书写"><a href="#按照交互四步曲书写" class="headerlink" title="按照交互四步曲书写"></a>按照交互四步曲书写</h4><p><img src="/img/15821864396413.jpg" alt="-w544"></p>
 <ul>
 <li>在一个回合中，请求是必须的，同时还需要其他三类步骤中的至少一类.</li>
-<li>对于时间为主执行者的用例，回合中的请求步骤不写“时间告知时间周期到了”，而是写“当 到达时间周期时”。</li>
+<li>对于时间为主执行者的用例，回合中的请求步骤不写“时间告知时间周期到了”，而是写“当到达时间周期时”。</li>
 <li>验证步骤不写“是否”。例如图 6-18 中，第 4 步写“系统验证注册信息充分”，不写“系 统验证注册信息是否充分”，目的是要表达“充分”是基本路径期望的验证结果</li>
 <li>系统和辅执行者之间的交互可以看作是一种回应步骤，写成“系统请求辅执行者做某事”， 例如“系统请求邮件列表系统群发邮件”。</li>
 </ul>
@@ -2567,8 +2867,8 @@
 </ul>
 <h2 id="需求启发"><a href="#需求启发" class="headerlink" title="需求启发"></a>需求启发</h2><p>需求模型的质量依赖于需求的素材。从涉众处获取需求素材的工作叫做需求启发。</p>
 <h3 id="需求启发要点"><a href="#需求启发要点" class="headerlink" title="需求启发要点"></a>需求启发要点</h3><ul>
-<li>需求的一个启发障碍是知识的诅咒(Curse of Knowledge)，意思是:一旦知道某个东西，就很 难想像不知道它会是什么样子。（人类误判心理学中有提到：错误衡量易得性倾向)</li>
-<li>需求启发的另一个障碍是做和定义的不同。涉众会做一件事情，不代表他能够把这件事定义出来 教给其他人。</li>
+<li>需求的一个启发障碍是知识的诅咒(Curse of Knowledge)，意思是：一旦知道某个东西，就很难想像不知道它会是什么样子。</li>
+<li>需求启发的另一个障碍是做和定义的不同。涉众会做一件事情，不代表他能够把这件事定义出来教给其他人。</li>
 </ul>
 <h4 id="和涉众交流的形式应该采用视图，而不是模型。"><a href="#和涉众交流的形式应该采用视图，而不是模型。" class="headerlink" title="和涉众交流的形式应该采用视图，而不是模型。"></a>和涉众交流的形式应该采用视图，而不是模型。</h4><h4 id="和涉众交流的内容应该聚焦涉众利益，而不是需求。"><a href="#和涉众交流的内容应该聚焦涉众利益，而不是需求。" class="headerlink" title="和涉众交流的内容应该聚焦涉众利益，而不是需求。"></a>和涉众交流的内容应该聚焦涉众利益，而不是需求。</h4><ul>
 <li>涉众没有资格提供需求。</li>
@@ -2576,10 +2876,10 @@
 <li>涉众没有责任提供需求。</li>
 </ul>
 <h3 id="需求启发手段"><a href="#需求启发手段" class="headerlink" title="需求启发手段"></a>需求启发手段</h3><h4 id="研究资料"><a href="#研究资料" class="headerlink" title="研究资料"></a>研究资料</h4><ul>
-<li>研究资料往往是需求启发的第一步，目的是为了获取核心域的初步知识，为下一步的启发工作作 知识准备。</li>
+<li>研究资料往往是需求启发的第一步，目的是为了获取核心域的初步知识，为下一步的启发工作做知识准备。</li>
 </ul>
 <h4 id="问卷调查"><a href="#问卷调查" class="headerlink" title="问卷调查"></a>问卷调查</h4><h4 id="访谈"><a href="#访谈" class="headerlink" title="访谈"></a>访谈</h4><h5 id="涉众"><a href="#涉众" class="headerlink" title="涉众"></a>涉众</h5><ul>
-<li>选择的涉众代表必须名副其实，不要把“代表”等同于“主管”。例如，要访谈车间的操 作工，那就要选真正的操作工，不能用车间主任来做代表。</li>
+<li>选择的涉众代表必须名副其实，不要把“代表”等同于“主管”。例如，要访谈车间的操作工，那就要选真正的操作工，不能用车间主任来做代表。</li>
 </ul>
 <h5 id="需求人员"><a href="#需求人员" class="headerlink" title="需求人员"></a>需求人员</h5><ul>
 <li>需求人员的态度要让涉众觉得自己被尊重。</li>
@@ -3253,7 +3553,9 @@
 <li>物理学：临界质量概念</li>
 <li>生物学/生理学</li>
 <li>心理学</li>
-<li>微观经济学：让人辨别什么时候技术将帮助你，什么时候它将摧毁你。大多数人并没想通这个问题，但巴菲特想通了。</li>
+<li>微观经济学</li>
+<li>找出你最擅长的事情，然后持之以恒、乐此不疲地去把它做好</li>
+<li><strong>弄清楚自己的能力圈，做自己有优势的事，不要在自己不擅长的领域竞争</strong></li>
 </ul>
 <h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><ul>
 <li>你必须知道重要学科的重要理论，并经常使用它们，要全部都用上，而不是只有几种</li>
@@ -3261,42 +3563,66 @@
 <li>没有规则要求你不能增加一两个新的模型，即使你已经步入晚年(保持开放心态，不给自己设限)</li>
 <li>通过广泛的阅读把自己培养成一个终生自学者：培养好奇心，每天努力使自己聪明一点点。</li>
 <li>如果我们再某个阶段停滞不前，满足于拥有的知识，我们的业绩要比现在差得多。所以诀窍就在于不断学习。</li>
+<li><strong>简单是长期努力工作的结果，而不是起点。</strong></li>
 </ul>
 <h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><ul>
-<li>直面你的大问题，别把它隐藏起来</li>
-<li>不断地挑战和主动地修正你“最爱的观念”</li>
-<li>能力会让你到达巅峰，但只有品德才能让你留在那里</li>
-<li>芒格在意的并不是他本人是否能赢牌，而是是否能把手上的牌打好</li>
-<li>说真话，你将无需记住你的谎言</li>
-<li>如果你把葡萄干和大便搅在一起，你得到的仍然是大便</li>
-<li>人生不同阶段遇到非常棘手的问题，有三点有助于应付这些困难：别期望太高；拥有幽默感；让自己置身于朋友和家人的爱之中。</li>
-<li>为了养家糊口，你不妨偶尔替那些丧失理智的自大狂服务。但你应该像格兰特-麦克费登那样为人处世。</li>
-<li>容忍对某一些人有一点不公平，以便对所有人更为公平。</li>
+<li><p>直面你的大问题，别把它隐藏起来</p>
+</li>
+<li><p>不断地挑战和主动地修正你“最爱的观念”</p>
+</li>
+<li><p>能力会让你到达巅峰，但只有品德才能让你留在那里</p>
+</li>
+<li><p>一个人很少完全清楚他自己的动机。</p>
+</li>
+<li><p>芒格在意的并不是他本人是否能赢牌，而是是否能把手上的牌打好</p>
+</li>
+<li><p>说真话，你将无需记住你的谎言</p>
+</li>
+<li><p>如果你把葡萄干和大便搅在一起，你得到的仍然是大便</p>
+</li>
+<li><p>人生不同阶段遇到非常棘手的问题，有三点有助于应付这些困难：别期望太高；拥有幽默感；让自己置身于朋友和家人的爱之中。</p>
+</li>
+<li><p>为了养家糊口，你不妨偶尔替那些丧失理智的自大狂服务。但你应该像格兰特-麦克费登那样为人处世。</p>
+</li>
+<li><p>容忍对某一些人有一点不公平，以便对所有人更为公平。</p>
+</li>
+<li><p>简化任务的最佳方法一般是先解决那些答案显而易见的大问题。</p>
+</li>
+<li><p>如果你想要说服别人，要诉诸利益，而非诉诸理性。</p>
+</li>
 </ul>
 <h2 id="决策"><a href="#决策" class="headerlink" title="决策"></a>决策</h2><ul>
 <li>最重要的是别愚弄你自己，而且要记住，你是最容易被自己愚弄的人</li>
 <li>抵制追求虚假的精确和错误的确定性的欲望</li>
 <li>当别人贪婪时要害怕；当别人害怕时要贪婪</li>
-<li>比求胜的意愿更重要的是做好准备的意愿</li>
+<li>比求胜的意愿更重要的是做好准备的意愿。真正好的投资机会不会经常有，也不会持续很长的时间，所以你必须做好行动的准备。要有随时行动的思想准备。</li>
+<li><strong>花在学习和思考上的时间，比花在行动上的时间要多</strong></li>
 <li>凡事往简单处想，往认真处行</li>
-<li>让那些最有能力和最愿意成为学习机器的人发挥最大的作用(机会留给核心人员)</li>
-<li>你们想要让最好的球员打很长时间的比赛</li>
+<li>让最有能力和最愿意成为学习机器的人发挥最大的作用(机会留给核心人员)</li>
+<li>让最好的球员打很长时间的比赛</li>
 <li>逆向思考</li>
+<li><strong>你是正确的或错误的，并不取决于大家是否同意你。你是正确的，是因为你的资料和推理是正确的</strong></li>
+<li><strong>准备不足和仓促决策是不可原谅的</strong></li>
+<li><strong>随大流只会让你往平均值靠近</strong> </li>
+<li><strong>不追逐平庸的机会</strong>(机会成本)</li>
+<li><strong>就算你90%的时间都在说“不”，你也不会错失太多的东西。</strong></li>
 </ul>
 <h2 id="投资"><a href="#投资" class="headerlink" title="投资"></a>投资</h2><ul>
 <li>股价公道的伟大企业比股价超低的普通企业好</li>
 <li>等待好球的出现</li>
 <li>我们偏向于把大量的钱投在我们不用再另做决策的地方</li>
 <li>在漫长的人生中，你只要培养自己的智慧，抓住一两次这样的好机会，就能够赚许许多多的钱</li>
-<li>聪明人发现好机会就狠狠下注，其他时间则按兵不动</li>
-<li>伯克希尔的方法是依据现实的投资问题不断调整变化</li>
+<li><strong>聪明人发现好机会就狠狠下注，其他时间则按兵不动</strong></li>
+<li><strong>你需要的不是大量的行动，而是大量的耐心。你必须坚持原则，等到机会来临，你就用力去抓住它们。</strong></li>
+<li>我们赚钱，靠的是记住浅显的，而不是掌握深奥的。我们从来不去试图成为非常聪明的人，而是持续地试图别变成蠢货，久而久之，我们这种人便能获得非常大的优势。</li>
+<li>用低廉的价格，甚至是合理的价格，来购买那些拥有可持续竞争优势的企业。</li>
 </ul>
 <h2 id="误判心理学"><a href="#误判心理学" class="headerlink" title="误判心理学"></a>误判心理学</h2><ul>
-<li>奖励和惩罚 超级反应倾向</li>
-<li>喜欢/热爱倾向</li>
+<li>奖励和惩罚 超级反应倾向：激励机制能够导致人们在做坏事的时候觉得自己是正当的</li>
+<li>喜欢/热爱倾向：人类喜欢和热爱被喜欢和被热爱(人天生喜欢被舔)。<strong>人类终身都会渴望得到许多和他毫无关系的他人的怜惜和欣赏。</strong></li>
 <li>讨厌/憎恨倾向</li>
-<li>避免怀疑倾向：人类的大脑天生就有一种尽快作出决定，以此消除怀疑倾向。</li>
-<li>避免不一致倾向：为了节省运算空间，人类的大脑会不愿意做出改变。这是一种避免不一致性的形式。</li>
+<li><strong>避免怀疑倾向：人类的大脑天生就有一种尽快作出决定，以此消除怀疑倾向。</strong></li>
+<li><strong>避免不一致倾向：为了节省运算空间，人类的大脑会不愿意做出改变。这是一种避免不一致性的形式。</strong></li>
 <li>好奇心倾向</li>
 <li>康德式公平倾向：每个人在自身维护公平的同事希望得到公平，如果得不到就会很不满</li>
 <li>艳羡/妒忌倾向</li>
@@ -3305,8 +3631,8 @@
 <li>简单的、避免痛苦的心里否认</li>
 <li>自视过高的倾向</li>
 <li>过度乐观倾向</li>
-<li>被剥夺超级反应倾向：失去造成的伤害比得到带来的快乐多得多。如果某个人即将得到某样他非常渴望的东西，而这样东西却在最后一刻飞走了，那么他的反应就会像这件东西应拥有了很久却突然被夺走一样。</li>
-<li>社会认同倾向：自动根据他看到的周边人们的思考和行动方式去思考和行动的倾向。如果一个人自动依照他所观察到的周围人们的思考和行动方式去思考和行动，那么他就能够把一些原本很复杂的行为进行简化。而且这种从中的做法往往是有效的。人们在感到困惑或者有压力的时候，尤其是在既困惑又有压力的时候，最容易受到社会认同倾向影响。</li>
+<li><strong>被剥夺超级反应倾向：</strong>失去造成的伤害比得到带来的快乐多得多。如果某个人即将得到某样他非常渴望的东西，而这样东西却在最后一刻飞走了，那么他的反应就会像这件东西应拥有了很久却突然被夺走一样。</li>
+<li><strong>社会认同倾向：</strong> 自动根据他看到的周边人们的思考和行动方式去思考和行动的倾向。如果一个人自动依照他所观察到的周围人们的思考和行动方式去思考和行动，那么他就能够把一些原本很复杂的行为进行简化。而且这种从中的做法往往是有效的。人们在感到困惑或者有压力的时候，尤其是在既困惑又有压力的时候，最容易受到社会认同倾向影响。</li>
 <li>对比错误反应倾向</li>
 <li>压力影响倾向</li>
 <li>错误衡量易得性倾向：人类大脑会高估容易得到的东西的重要性倾向。</li>

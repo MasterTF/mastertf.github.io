@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://yoursite.com/img/16213456311880.jpg">
 <meta property="og:image" content="http://yoursite.com/img/16213456573309.jpg">
 <meta property="og:image" content="http://yoursite.com/img/16213457042232.jpg">
-<meta property="og:updated_time" content="2021-11-18T14:59:36.277Z">
+<meta property="og:updated_time" content="2023-02-04T14:16:54.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="整洁架构">
 <meta name="twitter:description" content="本书的整体思路 首先说明架构十分重要。 为了得到良好的架构，思考软件系统最本质的组成：代码。从代码出发，一步步将代码组织成系统：代码-&amp;gt;类-&amp;gt;组件-&amp;gt;系统 从代码开始，介绍编写代码的三种编程范式：结构化编程、面向对象编程、函数式编程。 接下来介绍将代码(数据+行为)组织成类的设计原则：SOLID原则。 类确定后，介绍将类聚合成组件的原则(REP、CCP、CRP)以及组件之间的耦合">
@@ -553,6 +553,7 @@
 <p>在项目早期，CCP原则会比REP原则更重要，因为这一阶段研发速度比复用性更重要。</p>
 <p>一般来说，一个软件项目的重心会从该三角区域的右侧开始，先期主要牺牲的是复用性。然后，随着项目逐渐成熟，其他项目会逐渐开始对其产生依赖，项目重心就会逐渐向该三角区域的左侧滑动。</p>
 <p>很好理解，因为项目一开始也不知道哪些能复用，所以不会拆分组件，通常逻辑都放在了一个组件中。随着迭代，功能越来越多，对业务理解更深刻，就会剥离出可复用的组件。</p>
+<p><strong>不知道是不是Bob大叔创造的名词。ccp和crp可以简单映射为单体架构和微服务架构。造出来这些名词，让人难以理解。</strong></p>
 <h3 id="组件如何耦合"><a href="#组件如何耦合" class="headerlink" title="组件如何耦合"></a>组件如何耦合</h3><p>组件依赖结构图并不是用来描述应用程序功能的，它更像是应用程序在构建性与维护性方面的一张地图。这就是组件的依赖结构图不能在项目的开始阶段被设计出来的原因——当时该项目还没有任何被构建和维护的需要，自然也就不需要一张地图来指引。</p>
 <p>组件结构图的重要目标是如何隔离频繁的变更。软件架构师需要设计一套组件关系依赖图，以便将稳定的高价值组件与常变的组件隔离开。</p>
 <h4 id="ADP-THE-ACYCLIC-DEPENDENCIES-PRINCIPLE（无依赖环原则）"><a href="#ADP-THE-ACYCLIC-DEPENDENCIES-PRINCIPLE（无依赖环原则）" class="headerlink" title="ADP: THE ACYCLIC DEPENDENCIES PRINCIPLE（无依赖环原则）"></a>ADP: THE ACYCLIC DEPENDENCIES PRINCIPLE（无依赖环原则）</h4><p>这个原则很好理解。<br>如何打破循环依赖？</p>
@@ -794,7 +795,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -805,7 +806,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -816,7 +817,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -903,7 +904,7 @@
         <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

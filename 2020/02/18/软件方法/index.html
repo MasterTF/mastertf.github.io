@@ -140,7 +140,7 @@
 <meta property="og:image" content="http://yoursite.com/img/15821880419484.jpg">
 <meta property="og:image" content="http://yoursite.com/img/15821893030969.jpg">
 <meta property="og:image" content="http://yoursite.com/img/15821955145522.jpg">
-<meta property="og:updated_time" content="2021-11-18T14:57:54.397Z">
+<meta property="og:updated_time" content="2023-02-04T14:16:54.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件方法">
 <meta name="twitter:description" content="将“业务到实现” 涉及的所有流程 进行拆解、细化，提供落地标准。并有例子说明，通俗易懂。 自己看了收获很大，改正以前很多不规范的地方，对软件方法有了新的认识。还需要消化吸收，和以前的知识融合一下。  👇一句话来自书中，算是《穷查理宝典》中“保持终生学习”的具体例子，与大家分享：  有的开发人员的“十年工作经验”实际上是“一年工作经验用了十年”，一直在热热闹闹的民工层次徘徊，没有积累和成长。">
@@ -476,11 +476,11 @@
 </li>
 </ol>
 <h3 id="建模工作流"><a href="#建模工作流" class="headerlink" title="建模工作流"></a>建模工作流</h3><ol>
-<li><p>业务建模：描述组织内部各系统(人脑系统、电脑系统……)如何协作，使得组织可以为其 他组织提供有价值的服务。（<strong>还没弄清楚全景图，系统、组织、业务的关系，系统、组织、业务定义是什么，”组织”之上是否还有一层。我目前先把组织和系统理解为不同高度的抽象，用不同的词语更方便表述。如大系统里包含多个子系统，大系统就是组织，小系统就是系统。小系统里有更小的系统，那么小系统又变成了组织。</strong>） <strong>如果通过业务建模推导新系统的需求，而不是拍脑袋得出，假的“需求变更”会大大减少。</strong><br>书上有个图说明边界，但我仍没完全弄懂：</p>
-<p><img src="/img/15819977056852.jpg" alt></p>
-</li>
-<li><p>需求：描述为了解决组织的问题，系统必须具有的表现——功能和性能。严防“做”污染“卖”。需求工作流的结果——需求规约是“卖”和“做”的衔接点。</p>
-</li>
+<li>业务建模：描述组织内部各系统(人脑系统、电脑系统……)如何协作，使得组织可以为其 他组织提供有价值的服务。 <strong>如果通过业务建模推导新系统的需求，而不是拍脑袋得出，假的“需求变更”会大大减少。</strong></li>
+</ol>
+<p>   <img src="/img/15819977056852.jpg" alt></p>
+<ol start="2">
+<li>需求：描述为了解决组织的问题，系统必须具有的表现——功能和性能。严防“做”污染“卖”。需求工作流的结果——需求规约是“卖”和“做”的衔接点。</li>
 <li>分析：提炼、封装核心域。</li>
 <li>设计：核心域如何映射到选定平台上实现。</li>
 </ol>
@@ -533,18 +533,18 @@
 <h2 id="业务建模-之-业务用例图"><a href="#业务建模-之-业务用例图" class="headerlink" title="业务建模 之 业务用例图"></a>业务建模 之 业务用例图</h2><ul>
 <li><p>有了愿景，我们知道老大对他所代表的组织的现状的某些指标不满意。接下来就可以研究组织，<strong>弄清楚到底是组织的哪些环节造成了这些指标比较差，这就是业务建模(Business Modeling)的主 要内容。</strong> <strong>“业务建模”这个名字其实起得不好，应该更名为“组织建模”。</strong> 出于对过去叫法的尊重，本书依 然称为“业务建模”。</p>
 </li>
-<li><p>开发团队经常发现需求“容易变化”。根源之一是需求的来路不正，没有把系统当作一个零件放在组织中来看，靠拍脑袋得出需求，导致得到的系统需求是错的。系统投入使用后，发现和组织的其他零件格格不入，自然要改。“需求变化剧烈”是一个假象，真正的需求没有变，只不过一开始得到的需 求是假的。如果能正确运用业务建模技能，“需求变化”就会消于无形。（这不也是正确的废话，谁能保证建模正确。）</p>
+<li><p>开发团队经常发现需求“容易变化”。根源之一是需求的来路不正，没有把系统当作一个零件放在组织中来看，靠拍脑袋得出需求，导致得到的系统需求是错的。系统投入使用后，发现和组织的其他零件格格不入，自然要改。“需求变化剧烈”是一个假象，真正的需求没有变，只不过一开始得到的需求是假的。如果能正确运用业务建模技能，“需求变化”就会消于无形。（这不也是正确的废话，谁能保证建模正确。）</p>
 </li>
-<li><p>在业务建模工作流，我们从内外两个视角来研究组织。从外部看，组织是一些价值的集合，我们 可以用业务用例图表示;从内部看，组织是一些系统的集合，我们可以用业务序列图来表示。</p>
+<li><p>在业务建模工作流，我们从内外两个视角来研究组织。从外部看，组织是一些价值的集合，我们可以用业务用例图表示；从内部看，组织是一些系统的集合，我们可以用业务序列图来表示。</p>
 </li>
 </ul>
 <h3 id="【步骤】识别业务执行者"><a href="#【步骤】识别业务执行者" class="headerlink" title="【步骤】识别业务执行者"></a>【步骤】识别业务执行者</h3><h4 id="业务执行者"><a href="#业务执行者" class="headerlink" title="业务执行者"></a>业务执行者</h4><ul>
 <li>以某组织为研究对象，在组织之外和组织交互的其他组织(人群或机构)就是该组织的执行者。 因为研究对象是一个组织，所以叫业务执行者。</li>
 </ul>
 <h4 id="业务工人和业务实体"><a href="#业务工人和业务实体" class="headerlink" title="业务工人和业务实体"></a>业务工人和业务实体</h4><ul>
-<li>组织内的人称为业务工人(Business Worker)，例如某商业银行里面的营业员。业务执行者和业 务工人的区别是:一个在组织外面，一个在组织里面;一个是组织不可替换的服务对象，一个是组织 可以替换的零件。</li>
+<li>组织内的人称为业务工人(Business Worker)，例如某商业银行里面的营业员。业务执行者和业务工人的区别是:一个在组织外面，一个在组织里面；一个是组织不可替换的服务对象，一个是组织可以替换的零件。</li>
 <li>业务工人是可以被替换的人脑零件，它可能会被其他业务工人替换，但更有可能被业务实体替换。业务实体是组织中的非人智能系统，例如银行的 ATM、点钞机、营业系统。</li>
-<li>责任转移的思想对识别待引入系统的需求很有帮助。开发人员说，“我在开发一个新系统”，其实说的就是“我在开发一个新的业务实体，取代现有业务工人或业务实体的一些责任”。这样，探索需求的思路就出来了——我们画好现状的业务序列图，然后寻找改进点改进业务序列图。（平时是这样做的，但没抽象出方法论）</li>
+<li>责任转移的思想对识别待引入系统的需求很有帮助。开发人员说，“我在开发一个新系统”，其实说的就是“我在开发一个新的业务实体，取代现有业务工人或业务实体的一些责任”。这样，探索需求的思路就出来了——我们画好现状的业务序列图，然后寻找改进点改进业务序列图。</li>
 <li>业务工人和业务实体不在业务用例图中出现，因为它们不是组织的价值，而是成本。在识别业务执行者时，不需要画业务工人和业务实体。</li>
 <li>在接下来画业务用例的实现——业务序列图的时候，将业务工人和业务实体作为类(Class)的一 个构造型，放在名为“业务对象”的包里。组织的业务工人和业务实体协作完成业务用例，系统的类协作完成系统用例。</li>
 </ul>
@@ -577,7 +577,7 @@
 <p>识别业务用例本来应该是很简单的事情，但是，许多程序员出身的需求人员受到了以往工作经历的影响，往往把简单的事情变得复杂，常见错误：</p>
 <ul>
 <li><strong>把业务工人的行为当作业务用例。</strong>这里反映了建模人员常见的一个问题:<strong>分不清问题和问题的解决方案。</strong></li>
-<li><strong>业务用例随待引入系统伸缩。</strong>一个组织，甚至组织的一条流程都涉及许许多多的系统。在开发不同的系统时，研究业务用例和 业务流程，发现得到的结果和开发另一个系统时的研究结果差不多，这是很正常的。建模人员不必因 此感到惊慌，更不要因为“业务用例太少”、“业务用例太简单了”不自觉地改变研究对象，把待引入 系统的用例搬上来。</li>
+<li><strong>业务用例随待引入系统伸缩。</strong>一个组织，甚至组织的一条流程都涉及许许多多的系统。在开发不同的系统时，研究业务用例和业务流程，发现得到的结果和开发另一个系统时的研究结果差不多，这是很正常的。建模人员不必因 此感到惊慌，更不要因为“业务用例太少”、“业务用例太简单了”不自觉地改变研究对象，把待引入系统的用例搬上来。</li>
 <li><strong>把害怕漏掉的扩展路径片段提升为业务用例。</strong> 可以使用扩展路径来解决。</li>
 <li><strong>管理型业务用例。</strong> 从“药师盘点药品”推导出背后的好处，然后画成“管理型业务用例”。它没有特定组织的味道，哪家营利机构不是为了赚钱?另外，也很 容易和愿景、涉众利益混在一起，发展下去，就会有“顾客→希望东西更便宜”之类的“用例”。</li>
 </ul>
@@ -585,7 +585,7 @@
 <h2 id="业务建模-之-业务序列图"><a href="#业务建模-之-业务序列图" class="headerlink" title="业务建模 之 业务序列图"></a>业务建模 之 业务序列图</h2><p>描述业务用例的实现，即业务流程，然后改进它，<strong>推导出待引入系统的用例。</strong></p>
 <h3 id="序列图和活动图比较"><a href="#序列图和活动图比较" class="headerlink" title="序列图和活动图比较"></a>序列图和活动图比较</h3><ol>
 <li>活动图只关注人，序列图把人当作系统：活动图描述业务流程时，建模人员往往只注意人或部门的活动，忽略了非人智能系统的责任。<strong>本书选择序列图的原因是把人脑系统和电脑系统平等看待。</strong></li>
-<li>活动图表示动作，序列图强迫思考动作背后的目的:使用序列图来做业务建模，“对象协作以完成用例”的思想就可以统一地贯彻业务建模和系统建模的始终。</li>
+<li>活动图表示动作，序列图强迫思考动作背后的目的：使用序列图来做业务建模，“对象协作以完成用例”的思想就可以统一地贯彻业务建模和系统建模的始终。</li>
 <li>活动图“灵活”，序列图不“灵活”:灵活是双刃剑。</li>
 </ol>
 <h3 id="业务序列图要点"><a href="#业务序列图要点" class="headerlink" title="业务序列图要点"></a>业务序列图要点</h3><h4 id="消息代表责任分配而不是数据流动"><a href="#消息代表责任分配而不是数据流动" class="headerlink" title="消息代表责任分配而不是数据流动"></a>消息代表责任分配而不是数据流动</h4><p>序列图最重要的要点是消息的含义。A 指向 B 的消息，代表“A 请求 B 做某事”，或者“A 调用 B 做某事的服务”，做某事是 B 的一个责任。</p>
@@ -594,23 +594,22 @@
 <p><img src="/img/15820975515426.jpg" alt="-w418"></p>
 <h4 id="抽象级别是系统之间的协作"><a href="#抽象级别是系统之间的协作" class="headerlink" title="抽象级别是系统之间的协作"></a>抽象级别是系统之间的协作</h4><p>业务建模的研究对象是组织，出现在业务序列图生命线上的对象，其最小颗粒是系统，包括人和 非人系统。<br>几种错误：</p>
 <ol>
-<li>表达过细，系统内部的细节也表现出来，这些是在分析、设计阶段表现。</li>
-</ol>
-<p><img src="/img/15820980716809.jpg" alt="-w766"></p>
-<ol>
+<li><p>表达过细，系统内部的细节也表现出来，这些是在分析、设计阶段表现。</p>
+<p> <img src="/img/15820980716809.jpg" alt="-w766"></p>
+</li>
 <li><p>业务序列图内容和业务用例图差不多：建模人员根本不了解 组织内部有哪些岗位，各自承担什么责任。</p>
 <p> <img src="/img/15820981435456.jpg" alt="-w617"></p>
 </li>
-<li><p>把不具备任何智能的物体放到了业务序列图的生命线上。<br><img src="/img/15820981891022.jpg" alt="-w759"></p>
+<li><p>把不具备任何智能的物体放到了业务序列图的生命线上。<img src="/img/15820981891022.jpg" alt="-w759"></p>
 </li>
 </ol>
-<p>可能有的读者纳闷，我怎么记得看过的书里经常有序列图上出现订单、申请单对象?那是分析序 列图。我们用对象的思想去构思我们所开发的系统的内部结构和行为，就得到了订单、申请单等假想 的有生命的对象。</p>
+<p>可能有的读者纳闷，我怎么记得看过的书里经常有序列图上出现订单、申请单对象?那是分析序列图。我们用对象的思想去构思我们所开发的系统的内部结构和行为，就得到了订单、申请单等假想 的有生命的对象。</p>
 <p><img src="/img/15820982873968.jpg" alt="-w556"></p>
-<h4 id="只画核心域相关的系统"><a href="#只画核心域相关的系统" class="headerlink" title="只画核心域相关的系统"></a>只画核心域相关的系统</h4><p>大致的判断标准是:如果是核心域相关的系统，应该出现在业务序列图中，如果不是，可以不出现。<br>（类似《ddd》中，不同的领域内聚合根、实体、值对象是不一样的。在不同场景，核心域相关的系统也不同）</p>
+<h4 id="只画核心域相关的系统"><a href="#只画核心域相关的系统" class="headerlink" title="只画核心域相关的系统"></a>只画核心域相关的系统</h4><p>大致的判断标准是：如果是核心域相关的系统，应该出现在业务序列图中，如果不是，可以不出现。<br>（类似《ddd》中，不同的领域内聚合根、实体、值对象是不一样的。在不同场景，核心域相关的系统也不同）</p>
 <h4 id="把时间看作特殊的业务实体"><a href="#把时间看作特殊的业务实体" class="headerlink" title="把时间看作特殊的业务实体"></a>把时间看作特殊的业务实体</h4><p>时间和定时器不是一个概念。时间是外系统，定时器是其他系统用来和时间打交道的边界 类，如图 4-19 所示。世界上只有一个时间系统，但有无数的定时器。有的建模人员在识别系统用例时 说“执行者是定时器”，这样说是错的，执行者是时间。</p>
 <p><img src="/img/15820986230122.jpg" alt="-w928"></p>
 <h5 id="为业务对象分配合适的责任"><a href="#为业务对象分配合适的责任" class="headerlink" title="为业务对象分配合适的责任"></a>为业务对象分配合适的责任</h5><p><img src="/img/15820987785916.jpg" alt="-w1000"></p>
-<p>###【步骤】现状业务序列图<br>尽力描绘出<strong>真实</strong>的现状，说起来非常简单，做到却极其困难。为了克服困难，建模人员甚至应当 在心里暗暗发誓:如果不尽力去靠近真相，天打雷劈!（😆😆）</p>
+<h3 id="【步骤】现状业务序列图"><a href="#【步骤】现状业务序列图" class="headerlink" title="【步骤】现状业务序列图"></a>【步骤】现状业务序列图</h3><p>尽力描绘出<strong>真实</strong>的现状，说起来非常简单，做到却极其困难。为了克服困难，建模人员甚至应当在心里暗暗发誓：如果不尽力去靠近真相，天打雷劈!（😆😆）</p>
 <h4 id="错误1-把想象中的改进当成现状"><a href="#错误1-把想象中的改进当成现状" class="headerlink" title="错误1:把想象中的改进当成现状"></a>错误1:把想象中的改进当成现状</h4><p>背后的原因很可能是根本没有深入到组织流程中去做观察和访谈，对现状没有认识，只好想像一 个改进后的场景来应付。</p>
 <h4 id="错误2-把“现状”误解为“纯手工”"><a href="#错误2-把“现状”误解为“纯手工”" class="headerlink" title="错误2:把“现状”误解为“纯手工”"></a>错误2:把“现状”误解为“纯手工”</h4><p>简单讲就是只考虑“人”，忽略了“非人系统”。</p>
 <h4 id="错误3-把“现状”误解为“本开发团队未参与之前”"><a href="#错误3-把“现状”误解为“本开发团队未参与之前”" class="headerlink" title="错误3:把“现状”误解为“本开发团队未参与之前”"></a>错误3:把“现状”误解为“本开发团队未参与之前”</h4><h4 id="错误4-把“现状”误解为“规范”"><a href="#错误4-把“现状”误解为“规范”" class="headerlink" title="错误4:把“现状”误解为“规范”"></a>错误4:把“现状”误解为“规范”</h4><p>建模人员在建模业务流程时，照搬组织制定的规范，没有去观察实际工作中人们是如何做的，或者即使观察到了人们实际没有按照规范做，却依然按照规范建模。<strong>如果视而不见，也就丧失了许多有价值的改进 机会。</strong></p>
@@ -620,12 +619,11 @@
 <li>注意观察各种物的流动，并<strong>提炼物背后承载的信息。</strong> 注意，不要忘了还有人的流动，人可是一个几十公斤的物。</li>
 <li>目前各领域在“物流变成信息流”方面留下的改进空间已经不 多。随之而来要面对的是信息流转不通畅的问题。</li>
 </ul>
-<h4 id="改进模式2-改善信息流转"><a href="#改进模式2-改善信息流转" class="headerlink" title="改进模式2:改善信息流转"></a>改进模式2:改善信息流转</h4><ul>
+<h4 id="改进模式2：改善信息流转"><a href="#改进模式2：改善信息流转" class="headerlink" title="改进模式2：改善信息流转"></a>改进模式2：改善信息流转</h4><ul>
 <li>把各软件系统之间的协调工作改为由一个软件系统来完成，人只需要和单个软件系统打交道，信息的流转就改进了。</li>
 <li>人和人的协作中，可能隐藏了信息流转不畅的情况。（<strong>能够自动化的不要手动化，能通过程序的不要通过人。</strong>）</li>
 </ul>
-<h4 id="改进模式3-封装领域逻辑"><a href="#改进模式3-封装领域逻辑" class="headerlink" title="改进模式3:封装领域逻辑"></a>改进模式3:封装领域逻辑</h4><p>(感觉和2差不多。)</p>
-<ul>
+<h4 id="改进模式3-封装领域逻辑"><a href="#改进模式3-封装领域逻辑" class="headerlink" title="改进模式3:封装领域逻辑"></a>改进模式3:封装领域逻辑</h4><ul>
 <li>提炼人脑中封装的领域逻辑，改为封装 到软件系统中，用软件系统代替人脑，业务流程就得到了改进。<br><img src="/img/15821025768466.jpg" alt="-w939"></li>
 </ul>
 <h4 id="阿布思考法"><a href="#阿布思考法" class="headerlink" title="阿布思考法"></a>阿布思考法</h4><ul>
@@ -644,8 +642,8 @@
 <li>封装了自身的数据和行为，能独立对外提供服务的东西才能称为系统。不了解这一点，建模人员 很容易把“添加一些功能”当作“研发新系统”。</li>
 </ul>
 <h4 id="系统边界是责任的边界"><a href="#系统边界是责任的边界" class="headerlink" title="系统边界是责任的边界"></a>系统边界是责任的边界</h4><ul>
-<li>系统执行者不是所研究系统的一部分，是该系统边界外的另一个系统。<strong>这里的系统边界不是物理 的边界，而是责任的边界。</strong></li>
-<li>涉众根本不在意系统划分成几个组件以及组件之间如何分布和交互。建模人员如果没有学会从 涉众视角看问题，只是从自己角度看问题，就会犯这样的错误。（<strong>这块没懂，一个大的系统里面可能有很多子系统，子系统下面还有更小的系统，怎么确定系统的范围？</strong>）</li>
+<li>系统执行者不是所研究系统的一部分，是该系统边界外的另一个系统。<strong>这里的系统边界不是物理的边界，而是责任的边界。</strong></li>
+<li>涉众根本不在意系统划分成几个组件以及组件之间如何分布和交互。建模人员如果没有学会从涉众视角看问题，只是从自己角度看问题，就会犯这样的错误。</li>
 <li>边界越模糊，越需要执行者来帮助理清。</li>
 </ul>
 <h4 id="系统执行者和系统有交互"><a href="#系统执行者和系统有交互" class="headerlink" title="系统执行者和系统有交互"></a>系统执行者和系统有交互</h4><p><strong>换言之，没有交互就不是系统执行者</strong></p>
@@ -658,38 +656,42 @@
 </ul>
 <h4 id="系统执行者可以是人或非人系统"><a href="#系统执行者可以是人或非人系统" class="headerlink" title="系统执行者可以是人或非人系统"></a>系统执行者可以是人或非人系统</h4><ul>
 <li>用例技术中“执行者”和“涉众”的概念，把演员和观众分开了。 演员(执行者)在台上表演，观众(涉众)在台下看，演员表演什么是由观众的口味决定的，演员可 以不是人，但观众肯定是人。</li>
-<li>用例使用“执行者”和“涉众”代替了原来的“用户”，这是一个非常大的突破。“用户”这个词 混淆了演员和观众的区别。过去经常说“找用户调研需求”，这是错误的。所谓“用户”，就是上台表演的人类演员。找用户调研需求，相当于找演员问剧本应该是什么内容，岂不是很荒谬?剧本应该由编剧向观众调研编写出来，然后由各路演员在台上演绎。</li>
-<li>建立“执行者和系统在台上表演，涉众在台下看表 演”的概念，在执行者为非人系统时对捕获需求很有帮助。</li>
+<li>用例使用“执行者”和“涉众”代替了原来的“用户”，这是一个非常大的突破。“用户”这个词 混淆了演员和观众的区别。过去经常说“找用户调研需求”，这是错误的。所谓“用户”，就是上台表演的人类演员。找用户调研需求，相当于找演员问剧本应该是什么内容，岂不是很荒谬？剧本应该由编剧向观众调研编写出来，然后由各路演员在台上演绎。</li>
+<li>建立“执行者和系统在台上表演，涉众在台下看表演”的概念，在执行者为非人系统时对捕获需求很有帮助。</li>
 </ul>
 <h3 id="【步骤】识别系统执行者"><a href="#【步骤】识别系统执行者" class="headerlink" title="【步骤】识别系统执行者"></a>【步骤】识别系统执行者</h3><h4 id="从业务序列图映射系统执行者"><a href="#从业务序列图映射系统执行者" class="headerlink" title="从业务序列图映射系统执行者"></a>从业务序列图映射系统执行者</h4><ul>
 <li>业务序列图上，和所研究系统有实线相连的对象映射为所研究系统的执行者。<br><img src="/img/15821118893421.jpg" alt="-w880"><br><img src="/img/15821119047011.jpg" alt="-w653"></li>
 </ul>
 <p>图 5-12 中执行者不再带有斜杠，因为这时候研究对象是系统。有的执行者画在边界框左边，有的 则画在右边，是为了方便表达主执行者和辅执行者。</p>
 <h3 id="系统用例要点"><a href="#系统用例要点" class="headerlink" title="系统用例要点"></a>系统用例要点</h3><h4 id="价值是买卖的平衡点"><a href="#价值是买卖的平衡点" class="headerlink" title="价值是买卖的平衡点"></a>价值是买卖的平衡点</h4><ul>
-<li>用例之前的许多需求方法学，把需求定义为思考系统“做什么”，用例把需求提升到思考系统“卖 什么”的高度。</li>
+<li>用例之前的许多需求方法学，把需求定义为思考系统“做什么”，用例把需求提升到思考系统“卖什么”的高度。</li>
 <li>这种思考是非常艰难的，因为它没有标准答案，只有最佳答案。</li>
 <li><strong>要得到这个最佳答案，不能靠拍脑袋，必须揣摩涉众。要得到合适的用例，需要有一颗善于体察他人的心。</strong></li>
 </ul>
 <h4 id="价值不等于“可以这样做”"><a href="#价值不等于“可以这样做”" class="headerlink" title="价值不等于“可以这样做”"></a>价值不等于“可以这样做”</h4><ul>
-<li>建模人员只能根据目标涉众心中对系统的期望来确定系统 应该提供什么样的服务。</li>
-<li><strong>举得权限例子没看懂，按照书中所讲的用例，用例岂不是膨胀很多</strong></li>
-<li>最常犯的错误是把步骤当作用例。Include 的目的是为了复用在 多个用例中重复出现的步骤集合，形状往往是多个用例 Include 一个用例。看到这种一个用例 Include 许多个用例的形状，基本上可以判断它犯了把步骤当作用例的错误。<br><img src="/img/15821130593917.jpg" alt="-w628"><br>正确的做法是:把右侧的“验密 码”和“扣除金额”作为步骤写在用例规约中。</li>
+<li><p>建模人员只能根据目标涉众心中对系统的期望来确定系统 应该提供什么样的服务。</p>
+</li>
+<li><p><strong>举得权限例子没看懂，按照书中所讲的用例，用例岂不是膨胀很多</strong></p>
+</li>
+<li><p>最常犯的错误是把步骤当作用例。Include 的目的是为了复用在 多个用例中重复出现的步骤集合，形状往往是多个用例 Include 一个用例。看到这种一个用例 Include许多个用例的形状，基本上可以判断它犯了把步骤当作用例的错误。<br><img src="/img/15821130593917.jpg" alt="-w628"></p>
+<p>正确的做法是：把右侧的“验密 码”和“扣除金额”作为步骤写在用例规约中。</p>
+</li>
 </ul>
 <h4 id="增删改查用例的根源是从设计映射需求"><a href="#增删改查用例的根源是从设计映射需求" class="headerlink" title="增删改查用例的根源是从设计映射需求"></a>增删改查用例的根源是从设计映射需求</h4><ul>
 <li>需求工作中，我们所写的每一个字，所画的每一张图都必须对好卖有推动作用，否则还不如不做。</li>
 <li><strong>即使再难，也只能从 涉众的视角来定义需求</strong>，不能贪图方便选择一个自己熟悉的视角应付了事。</li>
-<li>老老实实去研究业务流程，做好业务建模，尽量从业务序列图中映射出 系统用例</li>
+<li>老老实实去研究业务流程，做好业务建模，尽量从业务序列图中映射出系统用例</li>
 </ul>
 <h4 id="从设计映射需求错误二-“复用”用例"><a href="#从设计映射需求错误二-“复用”用例" class="headerlink" title="从设计映射需求错误二:“复用”用例"></a>从设计映射需求错误二:“复用”用例</h4><ul>
 <li>用例是涉众愿意“购买”的、对系统的一种“用法”，只要涉众愿意“购买”，当然是越多越好。 </li>
 <li>同样的制作材料，变出更多可卖的价值，说明您的设计能力强，制作成本低，何乐而不为?</li>
 <li>可惜建模人员经常会犯傻，不自觉地合并用例，相当于告诉涉众说，你真笨，你买我这些功能，其实都是我用同样几个类作为零件灵活组装出来的。干脆，你成本价把我的零件买走，自己去组装吧!</li>
-<li>需求的基本要点:<strong>需求不考虑“复用”，如果在考虑“复用”，要警惕自己是不是已经转换到了设计视角来思考问题。</strong></li>
+<li>需求的基本要点：<strong>需求不考虑“复用”，如果在考虑“复用”，要警惕自己是不是已经转换到了设计视角来思考问题。</strong></li>
 </ul>
 <p><img src="/img/15821136913874.jpg" alt="-w339"></p>
 <ul>
-<li>图 5-17、图 5-22 和图 5-24 的错误用例图有一个共同点:多个执行者指向同一个用例。<strong>已完工的用例图不应该出现这样的形状，如果出现，可以有两种修改方法。</strong><ol>
-<li>要是我们揣摩系统的这个用例针对 这几个执行者来说并无区别，就泛化出抽象的执行者，或者不需要泛化关系，直接用单个更合适的执 行者代替;</li>
+<li>图 5-17、图 5-22 和图 5-24 的错误用例图有一个共同点：多个执行者指向同一个用例。<strong>已完工的用例图不应该出现这样的形状，如果出现，可以有两种修改方法。</strong><ol>
+<li>要是我们揣摩系统的这个用例针对 这几个执行者来说并无区别，就泛化出抽象的执行者，或者不需要泛化关系，直接用单个更合适的执行者代替;</li>
 <li>反之，如果对不同执行者来说有区别，就把该用例分成几个不同的用例。这种往往更常见。<br><img src="/img/15821138626719.jpg" alt="-w837"></li>
 </ol>
 </li>
@@ -701,35 +703,37 @@
 </li>
 </ul>
 <h4 id="用例的命名是动宾结构"><a href="#用例的命名是动宾结构" class="headerlink" title="用例的命名是动宾结构"></a>用例的命名是动宾结构</h4><ul>
-<li>动词前面可以加状语，宾语前面可以加定语，把一句话 的主语砍掉，剩下的可以作为用例的名字。</li>
+<li>动词前面可以加状语，宾语前面可以加定语，把一句话的主语砍掉，剩下的可以作为用例的名字。</li>
 <li>给用例起名时不要使用弱动词。</li>
 <li>如果“名词+动词”已经成为行业中的一个术语，也未必要严格的动宾结构。</li>
 </ul>
 <h3 id="【步骤】识别系统用例"><a href="#【步骤】识别系统用例" class="headerlink" title="【步骤】识别系统用例"></a>【步骤】识别系统用例</h3><p>认真做好业务建模，从业务序列图上映射系统用例，得到的结果自然就会符合上面说的这些要点。</p>
 <ul>
-<li><p>业务序列图中，从外部指向所研究系统的消息，可以映射为该系统的用例。<br><img src="/img/15821167977987.jpg" alt="-w832"><br><img src="/img/15821168101447.jpg" alt="-w625"><br>有的箭头是从执行者指向用例，这样的执行者称为用例的主执行者，有的箭 头是从用例指向执行者，这样的执行者称为用例的辅执行者。<strong>主执行者主动发起用例的交互，辅执行 者在交互的过程中被动参与进来。</strong></p>
+<li><p>业务序列图中，从外部指向所研究系统的消息，可以映射为该系统的用例。<br><img src="/img/15821167977987.jpg" alt="-w832"><br><img src="/img/15821168101447.jpg" alt="-w625"></p>
+<p>有的箭头是从执行者指向用例，这样的执行者称为用例的主执行者，有的箭头是从用例指向执行者，这样的执行者称为用例的辅执行者。<strong>主执行者主动发起用例的交互，辅执行 者在交互的过程中被动参与进来。</strong></p>
 </li>
 <li><p>辅执行者这个概念是被误用比较多的。<strong>最常见的错误是把信息的接收者或者将来可能使用信息的人当成辅执行者。箭头代表的是责任分配。</strong>  图 5-35 的意思是:线索部经理使用线索管理系统分配名单的过程中需要外呼人员的帮忙，如果外呼人员睡着了没有响应，用例的目标就受到影响。显然，这不符合事实。<br><img src="/img/15821169595191.jpg" alt="-w658"></p>
 </li>
-<li><p>另一种辅执行者的误用刚好反过来，把信息的来源当作辅执行者。如图 5-36，建模人员认为外呼 人员要想使用线索管理系统来查看本人当天名单，“依赖于”线索部经理事先分配好名单。这同样是错 误的，在用例进行过程中不需要线索部经理的参与。<br><img src="/img/15821170688791.jpg" alt="-w725"></p>
+<li><p>另一种辅执行者的误用刚好反过来，把信息的来源当作辅执行者。如图 5-36，建模人员认为外呼人员要想使用线索管理系统来查看本人当天名单，“依赖于”线索部经理事先分配好名单。这同样是错误的，在用例进行过程中不需要线索部经理的参与。<br><img src="/img/15821170688791.jpg" alt="-w725"></p>
 </li>
 <li><p>一般来说，<strong>辅执行者是非人智能系统的情况较多，人脑系统作为辅执行者的情况比较少，所以碰到辅执行者是人的时候，要多留心。</strong></p>
 </li>
-<li>主、辅执行者是针对某个用例来说的，一个外系统可以是这个用例的辅执行者， 同时也可以是另外一个用例的主执行者。“××是系统的主(辅)执行者”的说法是错误的。</li>
+<li><p>主、辅执行者是针对某个用例来说的，一个外系统可以是这个用例的辅执行者， 同时也可以是另外一个用例的主执行者。“××是系统的主(辅)执行者”的说法是错误的。</p>
+</li>
 </ul>
 <h2 id="需求-之-系统用例规约"><a href="#需求-之-系统用例规约" class="headerlink" title="需求 之 系统用例规约"></a>需求 之 系统用例规约</h2><p>用例规约就是以用例为核心来组织需求内容的需求规约。有了用例规约，可以不需要另外写其他格式的需求规约。<br><img src="/img/15821698345468.jpg" alt="-w794"></p>
 <p><img src="/img/15821887399316.jpg" alt="-w572"></p>
-<h3 id="前置条件和后置条件"><a href="#前置条件和后置条件" class="headerlink" title="前置条件和后置条件"></a>前置条件和后置条件</h3><p>用例通过前置条件(precondition)、后置条件(postcondition)以契约的形式表达需求。用例相当于系统的一个承诺:<strong>在满足前置条件时开始，按照里面的路径步骤走，系统就能到达后置条件。</strong></p>
+<h3 id="前置条件和后置条件"><a href="#前置条件和后置条件" class="headerlink" title="前置条件和后置条件"></a>前置条件和后置条件</h3><p>用例通过前置条件(precondition)、后置条件(postcondition)以契约的形式表达需求。用例相当于系统的一个承诺：<strong>在满足前置条件时开始，按照里面的路径步骤走，系统就能到达后置条件。</strong></p>
 <ul>
-<li>前置条件:用例开始前，系统需要满足的约束。</li>
-<li>后置条件:用例成功结束后，系统需要满足的约束。</li>
+<li>前置条件：用例开始前，系统需要满足的约束。</li>
+<li>后置条件：用例成功结束后，系统需要满足的约束。</li>
 </ul>
 <h4 id="前置条件、后置条件必须是系统能检测的。"><a href="#前置条件、后置条件必须是系统能检测的。" class="headerlink" title="前置条件、后置条件必须是系统能检测的。"></a>前置条件、后置条件必须是系统能检测的。</h4><p><img src="/img/15821700533595.jpg" alt="-w671"></p>
 <h4 id="前置条件必须是用例开始前系统能检测到的。"><a href="#前置条件必须是用例开始前系统能检测到的。" class="headerlink" title="前置条件必须是用例开始前系统能检测到的。"></a>前置条件必须是用例开始前系统能检测到的。</h4><p><img src="/img/15821701313448.jpg" alt="-w935"></p>
 <h4 id="前置后置条件是状态，不是动作。"><a href="#前置后置条件是状态，不是动作。" class="headerlink" title="前置后置条件是状态，不是动作。"></a>前置后置条件是状态，不是动作。</h4><p>例如，“经理→批假”的前置条件不能写“员工提交请假单”，因为是一个动作不是状态，应改为 “存在待审批的请假单”。特别要注意的是，写成“员工已经提交请假单”很可能也是不对的，因为状 态和导致达到某个状态的行为不是一一对应的，请假单未必是员工自己提交，也可以组长负责帮本组 人员请假，也可能是从另外的系统批量导入。</p>
 <h4 id="前置后置条件要用核心域词汇描述。"><a href="#前置后置条件要用核心域词汇描述。" class="headerlink" title="前置后置条件要用核心域词汇描述。"></a>前置后置条件要用核心域词汇描述。</h4><p>不要写“XX成功”、“XX正常运行”，要体现领域知识，如“订单信息已保存”。</p>
 <h4 id="“已登录”不应作为前置条件。"><a href="#“已登录”不应作为前置条件。" class="headerlink" title="“已登录”不应作为前置条件。"></a>“已登录”不应作为前置条件。</h4><p>例子讲得好</p>
-<h3 id="涉众利益"><a href="#涉众利益" class="headerlink" title="涉众利益"></a>涉众利益</h3><p><strong>涉众利益即针对某件事情，某类人担心什么和希望什么。</strong><br>(“涉众”先理解为我以前的模型”干系人”)</p>
+<h3 id="涉众利益"><a href="#涉众利益" class="headerlink" title="涉众利益"></a>涉众利益</h3><p><strong>涉众利益即针对某件事情，某类人担心什么和希望什么。</strong></p>
 <ul>
 <li>前置条件是起点，后置条件是终点，中间的路该怎么走?这就要由涉众利益决定了。如果只考虑目标而没有考虑到涉众利益，正确的需求是出不来的。</li>
 <li>认识到需求由涉众利益的冲突和平衡来决定，我们的需求过程就会充满“人”的味道，</li>
@@ -759,7 +763,7 @@
 <h4 id="按照交互四步曲书写"><a href="#按照交互四步曲书写" class="headerlink" title="按照交互四步曲书写"></a>按照交互四步曲书写</h4><p><img src="/img/15821864396413.jpg" alt="-w544"></p>
 <ul>
 <li>在一个回合中，请求是必须的，同时还需要其他三类步骤中的至少一类.</li>
-<li>对于时间为主执行者的用例，回合中的请求步骤不写“时间告知时间周期到了”，而是写“当 到达时间周期时”。</li>
+<li>对于时间为主执行者的用例，回合中的请求步骤不写“时间告知时间周期到了”，而是写“当到达时间周期时”。</li>
 <li>验证步骤不写“是否”。例如图 6-18 中，第 4 步写“系统验证注册信息充分”，不写“系 统验证注册信息是否充分”，目的是要表达“充分”是基本路径期望的验证结果</li>
 <li>系统和辅执行者之间的交互可以看作是一种回应步骤，写成“系统请求辅执行者做某事”， 例如“系统请求邮件列表系统群发邮件”。</li>
 </ul>
@@ -833,8 +837,8 @@
 </ul>
 <h2 id="需求启发"><a href="#需求启发" class="headerlink" title="需求启发"></a>需求启发</h2><p>需求模型的质量依赖于需求的素材。从涉众处获取需求素材的工作叫做需求启发。</p>
 <h3 id="需求启发要点"><a href="#需求启发要点" class="headerlink" title="需求启发要点"></a>需求启发要点</h3><ul>
-<li>需求的一个启发障碍是知识的诅咒(Curse of Knowledge)，意思是:一旦知道某个东西，就很 难想像不知道它会是什么样子。（人类误判心理学中有提到：错误衡量易得性倾向)</li>
-<li>需求启发的另一个障碍是做和定义的不同。涉众会做一件事情，不代表他能够把这件事定义出来 教给其他人。</li>
+<li>需求的一个启发障碍是知识的诅咒(Curse of Knowledge)，意思是：一旦知道某个东西，就很难想像不知道它会是什么样子。</li>
+<li>需求启发的另一个障碍是做和定义的不同。涉众会做一件事情，不代表他能够把这件事定义出来教给其他人。</li>
 </ul>
 <h4 id="和涉众交流的形式应该采用视图，而不是模型。"><a href="#和涉众交流的形式应该采用视图，而不是模型。" class="headerlink" title="和涉众交流的形式应该采用视图，而不是模型。"></a>和涉众交流的形式应该采用视图，而不是模型。</h4><h4 id="和涉众交流的内容应该聚焦涉众利益，而不是需求。"><a href="#和涉众交流的内容应该聚焦涉众利益，而不是需求。" class="headerlink" title="和涉众交流的内容应该聚焦涉众利益，而不是需求。"></a>和涉众交流的内容应该聚焦涉众利益，而不是需求。</h4><ul>
 <li>涉众没有资格提供需求。</li>
@@ -842,10 +846,10 @@
 <li>涉众没有责任提供需求。</li>
 </ul>
 <h3 id="需求启发手段"><a href="#需求启发手段" class="headerlink" title="需求启发手段"></a>需求启发手段</h3><h4 id="研究资料"><a href="#研究资料" class="headerlink" title="研究资料"></a>研究资料</h4><ul>
-<li>研究资料往往是需求启发的第一步，目的是为了获取核心域的初步知识，为下一步的启发工作作 知识准备。</li>
+<li>研究资料往往是需求启发的第一步，目的是为了获取核心域的初步知识，为下一步的启发工作做知识准备。</li>
 </ul>
 <h4 id="问卷调查"><a href="#问卷调查" class="headerlink" title="问卷调查"></a>问卷调查</h4><h4 id="访谈"><a href="#访谈" class="headerlink" title="访谈"></a>访谈</h4><h5 id="涉众"><a href="#涉众" class="headerlink" title="涉众"></a>涉众</h5><ul>
-<li>选择的涉众代表必须名副其实，不要把“代表”等同于“主管”。例如，要访谈车间的操 作工，那就要选真正的操作工，不能用车间主任来做代表。</li>
+<li>选择的涉众代表必须名副其实，不要把“代表”等同于“主管”。例如，要访谈车间的操作工，那就要选真正的操作工，不能用车间主任来做代表。</li>
 </ul>
 <h5 id="需求人员"><a href="#需求人员" class="headerlink" title="需求人员"></a>需求人员</h5><ul>
 <li>需求人员的态度要让涉众觉得自己被尊重。</li>
@@ -1043,7 +1047,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1054,7 +1058,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1065,7 +1069,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1129,7 +1133,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建模和UML"><span class="nav-number">1.</span> <span class="nav-text">建模和UML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利润-需求-设计"><span class="nav-number">1.1.</span> <span class="nav-text">利润 = 需求 - 设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模工作流"><span class="nav-number">1.2.</span> <span class="nav-text">建模工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模和敏捷"><span class="nav-number">1.3.</span> <span class="nav-text">建模和敏捷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模之愿景"><span class="nav-number">2.</span> <span class="nav-text">业务建模之愿景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是愿景"><span class="nav-number">2.1.</span> <span class="nav-text">什么是愿景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位目标组织和老大"><span class="nav-number">2.2.</span> <span class="nav-text">定位目标组织和老大</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位目标人群和老大"><span class="nav-number">2.2.1.</span> <span class="nav-text">【步骤】定位目标人群和老大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位机构范围和老大"><span class="nav-number">2.2.2.</span> <span class="nav-text">【步骤】定位机构范围和老大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位目标机构"><span class="nav-number">2.2.3.</span> <span class="nav-text">【步骤】定位目标机构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提炼改进目标"><span class="nav-number">2.3.</span> <span class="nav-text">提炼改进目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模-之-业务用例图"><span class="nav-number">3.</span> <span class="nav-text">业务建模 之 业务用例图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别业务执行者"><span class="nav-number">3.1.</span> <span class="nav-text">【步骤】识别业务执行者</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#业务执行者"><span class="nav-number">3.1.1.</span> <span class="nav-text">业务执行者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务工人和业务实体"><span class="nav-number">3.1.2.</span> <span class="nav-text">业务工人和业务实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别业务执行者"><span class="nav-number">3.1.3.</span> <span class="nav-text">识别业务执行者</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别业务用例"><span class="nav-number">3.2.</span> <span class="nav-text">【步骤】识别业务用例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确理解价值"><span class="nav-number">3.2.1.</span> <span class="nav-text">正确理解价值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边界框问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">边界框问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别业务用例的思路和常犯错误"><span class="nav-number">3.2.3.</span> <span class="nav-text">识别业务用例的思路和常犯错误</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模-之-业务序列图"><span class="nav-number">4.</span> <span class="nav-text">业务建模 之 业务序列图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列图和活动图比较"><span class="nav-number">4.1.</span> <span class="nav-text">序列图和活动图比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务序列图要点"><span class="nav-number">4.2.</span> <span class="nav-text">业务序列图要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#消息代表责任分配而不是数据流动"><span class="nav-number">4.2.1.</span> <span class="nav-text">消息代表责任分配而不是数据流动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象级别是系统之间的协作"><span class="nav-number">4.2.2.</span> <span class="nav-text">抽象级别是系统之间的协作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只画核心域相关的系统"><span class="nav-number">4.2.3.</span> <span class="nav-text">只画核心域相关的系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#把时间看作特殊的业务实体"><span class="nav-number">4.2.4.</span> <span class="nav-text">把时间看作特殊的业务实体</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为业务对象分配合适的责任"><span class="nav-number">4.2.4.1.</span> <span class="nav-text">为业务对象分配合适的责任</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误1-把想象中的改进当成现状"><span class="nav-number">4.2.5.</span> <span class="nav-text">错误1:把想象中的改进当成现状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误2-把“现状”误解为“纯手工”"><span class="nav-number">4.2.6.</span> <span class="nav-text">错误2:把“现状”误解为“纯手工”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误3-把“现状”误解为“本开发团队未参与之前”"><span class="nav-number">4.2.7.</span> <span class="nav-text">错误3:把“现状”误解为“本开发团队未参与之前”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误4-把“现状”误解为“规范”"><span class="nav-number">4.2.8.</span> <span class="nav-text">错误4:把“现状”误解为“规范”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误5-“我是创新，没有现状-”"><span class="nav-number">4.2.9.</span> <span class="nav-text">错误5:“我是创新，没有现状!”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误6-“我做产品，没有现状"><span class="nav-number">4.2.10.</span> <span class="nav-text">错误6:“我做产品，没有现状!</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】改进业务序列图"><span class="nav-number">4.3.</span> <span class="nav-text">【步骤】改进业务序列图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式1-物流变成信息流"><span class="nav-number">4.3.1.</span> <span class="nav-text">改进模式1:物流变成信息流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式2-改善信息流转"><span class="nav-number">4.3.2.</span> <span class="nav-text">改进模式2:改善信息流转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式3-封装领域逻辑"><span class="nav-number">4.3.3.</span> <span class="nav-text">改进模式3:封装领域逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阿布思考法"><span class="nav-number">4.3.4.</span> <span class="nav-text">阿布思考法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求-之-系统用例图"><span class="nav-number">5.</span> <span class="nav-text">需求 之 系统用例图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统执行者要点"><span class="nav-number">5.1.</span> <span class="nav-text">系统执行者要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统是能独立对外提供服务的整体"><span class="nav-number">5.1.1.</span> <span class="nav-text">系统是能独立对外提供服务的整体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统边界是责任的边界"><span class="nav-number">5.1.2.</span> <span class="nav-text">系统边界是责任的边界</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统执行者和系统有交互"><span class="nav-number">5.1.3.</span> <span class="nav-text">系统执行者和系统有交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交互是功能性交互"><span class="nav-number">5.1.4.</span> <span class="nav-text">交互是功能性交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统执行者可以是人或非人系统"><span class="nav-number">5.1.5.</span> <span class="nav-text">系统执行者可以是人或非人系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别系统执行者"><span class="nav-number">5.2.</span> <span class="nav-text">【步骤】识别系统执行者</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从业务序列图映射系统执行者"><span class="nav-number">5.2.1.</span> <span class="nav-text">从业务序列图映射系统执行者</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统用例要点"><span class="nav-number">5.3.</span> <span class="nav-text">系统用例要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#价值是买卖的平衡点"><span class="nav-number">5.3.1.</span> <span class="nav-text">价值是买卖的平衡点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#价值不等于“可以这样做”"><span class="nav-number">5.3.2.</span> <span class="nav-text">价值不等于“可以这样做”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增删改查用例的根源是从设计映射需求"><span class="nav-number">5.3.3.</span> <span class="nav-text">增删改查用例的根源是从设计映射需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从设计映射需求错误二-“复用”用例"><span class="nav-number">5.3.4.</span> <span class="nav-text">从设计映射需求错误二:“复用”用例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统用例不存在层次问题"><span class="nav-number">5.3.5.</span> <span class="nav-text">系统用例不存在层次问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用例的命名是动宾结构"><span class="nav-number">5.3.6.</span> <span class="nav-text">用例的命名是动宾结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别系统用例"><span class="nav-number">5.4.</span> <span class="nav-text">【步骤】识别系统用例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求-之-系统用例规约"><span class="nav-number">6.</span> <span class="nav-text">需求 之 系统用例规约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置条件和后置条件"><span class="nav-number">6.1.</span> <span class="nav-text">前置条件和后置条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前置条件、后置条件必须是系统能检测的。"><span class="nav-number">6.1.1.</span> <span class="nav-text">前置条件、后置条件必须是系统能检测的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置条件必须是用例开始前系统能检测到的。"><span class="nav-number">6.1.2.</span> <span class="nav-text">前置条件必须是用例开始前系统能检测到的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置后置条件是状态，不是动作。"><span class="nav-number">6.1.3.</span> <span class="nav-text">前置后置条件是状态，不是动作。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置后置条件要用核心域词汇描述。"><span class="nav-number">6.1.4.</span> <span class="nav-text">前置后置条件要用核心域词汇描述。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“已登录”不应作为前置条件。"><span class="nav-number">6.1.5.</span> <span class="nav-text">“已登录”不应作为前置条件。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#涉众利益"><span class="nav-number">6.2.</span> <span class="nav-text">涉众利益</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#涉众利益来源"><span class="nav-number">6.2.1.</span> <span class="nav-text">涉众利益来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寻找涉众利益"><span class="nav-number">6.2.2.</span> <span class="nav-text">寻找涉众利益</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#善于积累涉众利益"><span class="nav-number">6.2.3.</span> <span class="nav-text">善于积累涉众利益</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本路径"><span class="nav-number">6.3.</span> <span class="nav-text">基本路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按照交互四步曲书写"><span class="nav-number">6.3.1.</span> <span class="nav-text">按照交互四步曲书写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只写系统能感知和承诺的内容"><span class="nav-number">6.3.2.</span> <span class="nav-text">只写系统能感知和承诺的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用主动语句理清责任"><span class="nav-number">6.3.3.</span> <span class="nav-text">使用主动语句理清责任</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主语只能是主执行者或系统"><span class="nav-number">6.3.4.</span> <span class="nav-text">主语只能是主执行者或系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用核心域术语描述"><span class="nav-number">6.3.5.</span> <span class="nav-text">使用核心域术语描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要涉及界面细节"><span class="nav-number">6.3.6.</span> <span class="nav-text">不要涉及界面细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要涉及交互细节"><span class="nav-number">6.3.7.</span> <span class="nav-text">不要涉及交互细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需求是“不这样不行”"><span class="nav-number">6.3.8.</span> <span class="nav-text">需求是“不这样不行”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展路径"><span class="nav-number">6.4.</span> <span class="nav-text">扩展路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#能感知和要处理的意外才是扩展。"><span class="nav-number">6.4.1.</span> <span class="nav-text">能感知和要处理的意外才是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计技能不足导致的错误不是扩展。"><span class="nav-number">6.4.2.</span> <span class="nav-text">设计技能不足导致的错误不是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不引起交互行为变化的选择不是扩展。"><span class="nav-number">6.4.3.</span> <span class="nav-text">不引起交互行为变化的选择不是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#界面跳转不是扩展。"><span class="nav-number">6.4.4.</span> <span class="nav-text">界面跳转不是扩展。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充约束"><span class="nav-number">6.5.</span> <span class="nav-text">补充约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字段列表"><span class="nav-number">6.5.1.</span> <span class="nav-text">字段列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务规则"><span class="nav-number">6.5.2.</span> <span class="nav-text">业务规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#质量需求"><span class="nav-number">6.5.3.</span> <span class="nav-text">质量需求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可用性"><span class="nav-number">6.5.3.1.</span> <span class="nav-text">可用性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#性能"><span class="nav-number">6.5.3.2.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可靠性"><span class="nav-number">6.5.3.3.</span> <span class="nav-text">可靠性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可支持性"><span class="nav-number">6.5.3.4.</span> <span class="nav-text">可支持性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计约束"><span class="nav-number">6.5.4.</span> <span class="nav-text">设计约束</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求启发"><span class="nav-number">7.</span> <span class="nav-text">需求启发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求启发要点"><span class="nav-number">7.1.</span> <span class="nav-text">需求启发要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#和涉众交流的形式应该采用视图，而不是模型。"><span class="nav-number">7.1.1.</span> <span class="nav-text">和涉众交流的形式应该采用视图，而不是模型。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#和涉众交流的内容应该聚焦涉众利益，而不是需求。"><span class="nav-number">7.1.2.</span> <span class="nav-text">和涉众交流的内容应该聚焦涉众利益，而不是需求。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求启发手段"><span class="nav-number">7.2.</span> <span class="nav-text">需求启发手段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#研究资料"><span class="nav-number">7.2.1.</span> <span class="nav-text">研究资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问卷调查"><span class="nav-number">7.2.2.</span> <span class="nav-text">问卷调查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访谈"><span class="nav-number">7.2.3.</span> <span class="nav-text">访谈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#涉众"><span class="nav-number">7.2.3.1.</span> <span class="nav-text">涉众</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#需求人员"><span class="nav-number">7.2.3.2.</span> <span class="nav-text">需求人员</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题"><span class="nav-number">7.2.3.3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境"><span class="nav-number">7.2.3.4.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#观察"><span class="nav-number">7.2.3.5.</span> <span class="nav-text">观察</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#研究竞争对手"><span class="nav-number">7.2.3.6.</span> <span class="nav-text">研究竞争对手</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求人员的素质培养"><span class="nav-number">7.3.</span> <span class="nav-text">需求人员的素质培养</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建模和UML"><span class="nav-number">1.</span> <span class="nav-text">建模和UML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利润-需求-设计"><span class="nav-number">1.1.</span> <span class="nav-text">利润 = 需求 - 设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模工作流"><span class="nav-number">1.2.</span> <span class="nav-text">建模工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模和敏捷"><span class="nav-number">1.3.</span> <span class="nav-text">建模和敏捷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模之愿景"><span class="nav-number">2.</span> <span class="nav-text">业务建模之愿景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是愿景"><span class="nav-number">2.1.</span> <span class="nav-text">什么是愿景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位目标组织和老大"><span class="nav-number">2.2.</span> <span class="nav-text">定位目标组织和老大</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位目标人群和老大"><span class="nav-number">2.2.1.</span> <span class="nav-text">【步骤】定位目标人群和老大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位机构范围和老大"><span class="nav-number">2.2.2.</span> <span class="nav-text">【步骤】定位机构范围和老大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【步骤】定位目标机构"><span class="nav-number">2.2.3.</span> <span class="nav-text">【步骤】定位目标机构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提炼改进目标"><span class="nav-number">2.3.</span> <span class="nav-text">提炼改进目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模-之-业务用例图"><span class="nav-number">3.</span> <span class="nav-text">业务建模 之 业务用例图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别业务执行者"><span class="nav-number">3.1.</span> <span class="nav-text">【步骤】识别业务执行者</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#业务执行者"><span class="nav-number">3.1.1.</span> <span class="nav-text">业务执行者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务工人和业务实体"><span class="nav-number">3.1.2.</span> <span class="nav-text">业务工人和业务实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别业务执行者"><span class="nav-number">3.1.3.</span> <span class="nav-text">识别业务执行者</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别业务用例"><span class="nav-number">3.2.</span> <span class="nav-text">【步骤】识别业务用例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确理解价值"><span class="nav-number">3.2.1.</span> <span class="nav-text">正确理解价值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边界框问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">边界框问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别业务用例的思路和常犯错误"><span class="nav-number">3.2.3.</span> <span class="nav-text">识别业务用例的思路和常犯错误</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务建模-之-业务序列图"><span class="nav-number">4.</span> <span class="nav-text">业务建模 之 业务序列图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列图和活动图比较"><span class="nav-number">4.1.</span> <span class="nav-text">序列图和活动图比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务序列图要点"><span class="nav-number">4.2.</span> <span class="nav-text">业务序列图要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#消息代表责任分配而不是数据流动"><span class="nav-number">4.2.1.</span> <span class="nav-text">消息代表责任分配而不是数据流动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象级别是系统之间的协作"><span class="nav-number">4.2.2.</span> <span class="nav-text">抽象级别是系统之间的协作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只画核心域相关的系统"><span class="nav-number">4.2.3.</span> <span class="nav-text">只画核心域相关的系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#把时间看作特殊的业务实体"><span class="nav-number">4.2.4.</span> <span class="nav-text">把时间看作特殊的业务实体</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为业务对象分配合适的责任"><span class="nav-number">4.2.4.1.</span> <span class="nav-text">为业务对象分配合适的责任</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】现状业务序列图"><span class="nav-number">4.3.</span> <span class="nav-text">【步骤】现状业务序列图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误1-把想象中的改进当成现状"><span class="nav-number">4.3.1.</span> <span class="nav-text">错误1:把想象中的改进当成现状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误2-把“现状”误解为“纯手工”"><span class="nav-number">4.3.2.</span> <span class="nav-text">错误2:把“现状”误解为“纯手工”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误3-把“现状”误解为“本开发团队未参与之前”"><span class="nav-number">4.3.3.</span> <span class="nav-text">错误3:把“现状”误解为“本开发团队未参与之前”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误4-把“现状”误解为“规范”"><span class="nav-number">4.3.4.</span> <span class="nav-text">错误4:把“现状”误解为“规范”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误5-“我是创新，没有现状-”"><span class="nav-number">4.3.5.</span> <span class="nav-text">错误5:“我是创新，没有现状!”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误6-“我做产品，没有现状"><span class="nav-number">4.3.6.</span> <span class="nav-text">错误6:“我做产品，没有现状!</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】改进业务序列图"><span class="nav-number">4.4.</span> <span class="nav-text">【步骤】改进业务序列图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式1-物流变成信息流"><span class="nav-number">4.4.1.</span> <span class="nav-text">改进模式1:物流变成信息流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式2：改善信息流转"><span class="nav-number">4.4.2.</span> <span class="nav-text">改进模式2：改善信息流转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式3-封装领域逻辑"><span class="nav-number">4.4.3.</span> <span class="nav-text">改进模式3:封装领域逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阿布思考法"><span class="nav-number">4.4.4.</span> <span class="nav-text">阿布思考法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求-之-系统用例图"><span class="nav-number">5.</span> <span class="nav-text">需求 之 系统用例图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统执行者要点"><span class="nav-number">5.1.</span> <span class="nav-text">系统执行者要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统是能独立对外提供服务的整体"><span class="nav-number">5.1.1.</span> <span class="nav-text">系统是能独立对外提供服务的整体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统边界是责任的边界"><span class="nav-number">5.1.2.</span> <span class="nav-text">系统边界是责任的边界</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统执行者和系统有交互"><span class="nav-number">5.1.3.</span> <span class="nav-text">系统执行者和系统有交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交互是功能性交互"><span class="nav-number">5.1.4.</span> <span class="nav-text">交互是功能性交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统执行者可以是人或非人系统"><span class="nav-number">5.1.5.</span> <span class="nav-text">系统执行者可以是人或非人系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别系统执行者"><span class="nav-number">5.2.</span> <span class="nav-text">【步骤】识别系统执行者</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从业务序列图映射系统执行者"><span class="nav-number">5.2.1.</span> <span class="nav-text">从业务序列图映射系统执行者</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统用例要点"><span class="nav-number">5.3.</span> <span class="nav-text">系统用例要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#价值是买卖的平衡点"><span class="nav-number">5.3.1.</span> <span class="nav-text">价值是买卖的平衡点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#价值不等于“可以这样做”"><span class="nav-number">5.3.2.</span> <span class="nav-text">价值不等于“可以这样做”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增删改查用例的根源是从设计映射需求"><span class="nav-number">5.3.3.</span> <span class="nav-text">增删改查用例的根源是从设计映射需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从设计映射需求错误二-“复用”用例"><span class="nav-number">5.3.4.</span> <span class="nav-text">从设计映射需求错误二:“复用”用例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统用例不存在层次问题"><span class="nav-number">5.3.5.</span> <span class="nav-text">系统用例不存在层次问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用例的命名是动宾结构"><span class="nav-number">5.3.6.</span> <span class="nav-text">用例的命名是动宾结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【步骤】识别系统用例"><span class="nav-number">5.4.</span> <span class="nav-text">【步骤】识别系统用例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求-之-系统用例规约"><span class="nav-number">6.</span> <span class="nav-text">需求 之 系统用例规约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置条件和后置条件"><span class="nav-number">6.1.</span> <span class="nav-text">前置条件和后置条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前置条件、后置条件必须是系统能检测的。"><span class="nav-number">6.1.1.</span> <span class="nav-text">前置条件、后置条件必须是系统能检测的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置条件必须是用例开始前系统能检测到的。"><span class="nav-number">6.1.2.</span> <span class="nav-text">前置条件必须是用例开始前系统能检测到的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置后置条件是状态，不是动作。"><span class="nav-number">6.1.3.</span> <span class="nav-text">前置后置条件是状态，不是动作。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前置后置条件要用核心域词汇描述。"><span class="nav-number">6.1.4.</span> <span class="nav-text">前置后置条件要用核心域词汇描述。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“已登录”不应作为前置条件。"><span class="nav-number">6.1.5.</span> <span class="nav-text">“已登录”不应作为前置条件。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#涉众利益"><span class="nav-number">6.2.</span> <span class="nav-text">涉众利益</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#涉众利益来源"><span class="nav-number">6.2.1.</span> <span class="nav-text">涉众利益来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寻找涉众利益"><span class="nav-number">6.2.2.</span> <span class="nav-text">寻找涉众利益</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#善于积累涉众利益"><span class="nav-number">6.2.3.</span> <span class="nav-text">善于积累涉众利益</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本路径"><span class="nav-number">6.3.</span> <span class="nav-text">基本路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按照交互四步曲书写"><span class="nav-number">6.3.1.</span> <span class="nav-text">按照交互四步曲书写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#只写系统能感知和承诺的内容"><span class="nav-number">6.3.2.</span> <span class="nav-text">只写系统能感知和承诺的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用主动语句理清责任"><span class="nav-number">6.3.3.</span> <span class="nav-text">使用主动语句理清责任</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主语只能是主执行者或系统"><span class="nav-number">6.3.4.</span> <span class="nav-text">主语只能是主执行者或系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用核心域术语描述"><span class="nav-number">6.3.5.</span> <span class="nav-text">使用核心域术语描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要涉及界面细节"><span class="nav-number">6.3.6.</span> <span class="nav-text">不要涉及界面细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要涉及交互细节"><span class="nav-number">6.3.7.</span> <span class="nav-text">不要涉及交互细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需求是“不这样不行”"><span class="nav-number">6.3.8.</span> <span class="nav-text">需求是“不这样不行”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展路径"><span class="nav-number">6.4.</span> <span class="nav-text">扩展路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#能感知和要处理的意外才是扩展。"><span class="nav-number">6.4.1.</span> <span class="nav-text">能感知和要处理的意外才是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计技能不足导致的错误不是扩展。"><span class="nav-number">6.4.2.</span> <span class="nav-text">设计技能不足导致的错误不是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不引起交互行为变化的选择不是扩展。"><span class="nav-number">6.4.3.</span> <span class="nav-text">不引起交互行为变化的选择不是扩展。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#界面跳转不是扩展。"><span class="nav-number">6.4.4.</span> <span class="nav-text">界面跳转不是扩展。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充约束"><span class="nav-number">6.5.</span> <span class="nav-text">补充约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字段列表"><span class="nav-number">6.5.1.</span> <span class="nav-text">字段列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务规则"><span class="nav-number">6.5.2.</span> <span class="nav-text">业务规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#质量需求"><span class="nav-number">6.5.3.</span> <span class="nav-text">质量需求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可用性"><span class="nav-number">6.5.3.1.</span> <span class="nav-text">可用性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#性能"><span class="nav-number">6.5.3.2.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可靠性"><span class="nav-number">6.5.3.3.</span> <span class="nav-text">可靠性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可支持性"><span class="nav-number">6.5.3.4.</span> <span class="nav-text">可支持性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计约束"><span class="nav-number">6.5.4.</span> <span class="nav-text">设计约束</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求启发"><span class="nav-number">7.</span> <span class="nav-text">需求启发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求启发要点"><span class="nav-number">7.1.</span> <span class="nav-text">需求启发要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#和涉众交流的形式应该采用视图，而不是模型。"><span class="nav-number">7.1.1.</span> <span class="nav-text">和涉众交流的形式应该采用视图，而不是模型。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#和涉众交流的内容应该聚焦涉众利益，而不是需求。"><span class="nav-number">7.1.2.</span> <span class="nav-text">和涉众交流的内容应该聚焦涉众利益，而不是需求。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求启发手段"><span class="nav-number">7.2.</span> <span class="nav-text">需求启发手段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#研究资料"><span class="nav-number">7.2.1.</span> <span class="nav-text">研究资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问卷调查"><span class="nav-number">7.2.2.</span> <span class="nav-text">问卷调查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访谈"><span class="nav-number">7.2.3.</span> <span class="nav-text">访谈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#涉众"><span class="nav-number">7.2.3.1.</span> <span class="nav-text">涉众</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#需求人员"><span class="nav-number">7.2.3.2.</span> <span class="nav-text">需求人员</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题"><span class="nav-number">7.2.3.3.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境"><span class="nav-number">7.2.3.4.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#观察"><span class="nav-number">7.2.3.5.</span> <span class="nav-text">观察</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#研究竞争对手"><span class="nav-number">7.2.3.6.</span> <span class="nav-text">研究竞争对手</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求人员的素质培养"><span class="nav-number">7.3.</span> <span class="nav-text">需求人员的素质培养</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1152,7 +1156,7 @@
         <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

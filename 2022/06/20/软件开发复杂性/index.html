@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="软件,开发,复杂性,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="软件的复杂性是一个基本特征，而不是偶然如此。从根本上来说，我们可以掌握这种复杂性，但不能消除这种复杂性。   对公司来讲，做业务要有利润。利润=收入-成本。在软件开发中，需求解决【提升收入】的问题，设计解决【降低成本】的问题。公式可以改为【利润=需求-设计】 研发团队能做的是设计好的方案，【降低成本】。但好的方案不是唾手可得，有难度。为什么有难度？因为软件开发是复杂的。为什么是复杂的，复杂在哪儿">
+<meta name="keywords" content="软件,开发,复杂性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件开发复杂性">
+<meta property="og:url" content="http://yoursite.com/2022/06/20/软件开发复杂性/index.html">
+<meta property="og:site_name" content="Stay Hungry">
+<meta property="og:description" content="软件的复杂性是一个基本特征，而不是偶然如此。从根本上来说，我们可以掌握这种复杂性，但不能消除这种复杂性。   对公司来讲，做业务要有利润。利润=收入-成本。在软件开发中，需求解决【提升收入】的问题，设计解决【降低成本】的问题。公式可以改为【利润=需求-设计】 研发团队能做的是设计好的方案，【降低成本】。但好的方案不是唾手可得，有难度。为什么有难度？因为软件开发是复杂的。为什么是复杂的，复杂在哪儿">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/image-20230118162528384.png">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180417/1df5da33bfb54242b02899cf7beeea54.jpeg">
+<meta property="og:image" content="http://yoursite.com/img/image-20230118163840124.png">
+<meta property="og:updated_time" content="2023-02-04T14:16:54.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件开发复杂性">
+<meta name="twitter:description" content="软件的复杂性是一个基本特征，而不是偶然如此。从根本上来说，我们可以掌握这种复杂性，但不能消除这种复杂性。   对公司来讲，做业务要有利润。利润=收入-成本。在软件开发中，需求解决【提升收入】的问题，设计解决【降低成本】的问题。公式可以改为【利润=需求-设计】 研发团队能做的是设计好的方案，【降低成本】。但好的方案不是唾手可得，有难度。为什么有难度？因为软件开发是复杂的。为什么是复杂的，复杂在哪儿">
+<meta name="twitter:image" content="http://yoursite.com/img/image-20230118162528384.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/06/20/软件开发复杂性/">
+
+
+
+
+
+  <title>软件开发复杂性 | Stay Hungry</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stay Hungry</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/20/软件开发复杂性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于大帅">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件开发复杂性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-20T16:02:18+08:00">
+                2022-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/06/20/软件开发复杂性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/06/20/软件开发复杂性/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2022/06/20/软件开发复杂性/" class="leancloud_visitors" data-flag-title="软件开发复杂性">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>软件的复杂性是一个基本特征，而不是偶然如此。从根本上来说，我们可以掌握这种复杂性，但不能消除这种复杂性。</p>
+</blockquote>
+<ul>
+<li>对公司来讲，做业务要有利润。利润=收入-成本。在软件开发中，需求解决【提升收入】的问题，设计解决【降低成本】的问题。公式可以改为【利润=需求-设计】</li>
+<li>研发团队能做的是设计好的方案，【降低成本】。但好的方案不是唾手可得，有难度。为什么有难度？因为软件开发是复杂的。为什么是复杂的，复杂在哪儿？如何掌控？</li>
+</ul>
+<a id="more"></a>
+<h2 id="复杂性来源"><a href="#复杂性来源" class="headerlink" title="复杂性来源"></a>复杂性来源</h2><ul>
+<li><strong>问题域的复杂性</strong>：包括需求及质量要求。需求已经比较复杂了，还要在此基础上考虑质量要求(性能、可用性、安全、正确性、扩展性等)。再加上出方案时“随心所欲”，时间越久问题越复杂。</li>
+<li><strong>可变性：</strong> 需求可以随意变动且不能通过模型预测，即使有一套方法能够自动生成代码，也是基于模型匹配的基础上。但真实世界的需求不可能和目标模型匹配，<strong>所以软件行业还是一个劳动密集型的产业。</strong></li>
+<li><strong>一致性：</strong> 因为是劳动密集型产业，团队人数多，管理开发过程就有很大挑战，挑战在于维持设计的一致性和完整性。 </li>
+<li><strong>不可见性：</strong> 产品是具体的，代码是抽象的。方案是否合理？代码行数是不是太多？代码质量怎么样？监控告警是否全面？效能如何 等，缺少可视化工具呈现，存在较多盲区。就像装修一样，外面看着挺好，墙背后的各种线、水电气等 都是盲区，诸多隐患没被发现。</li>
+</ul>
+<h2 id="如何控制复杂性"><a href="#如何控制复杂性" class="headerlink" title="如何控制复杂性"></a>如何控制复杂性</h2><h3 id="1-问题域的复杂性"><a href="#1-问题域的复杂性" class="headerlink" title="1.问题域的复杂性"></a>1.问题域的复杂性</h3><h4 id="1-1需求的复杂性"><a href="#1-1需求的复杂性" class="headerlink" title="1.1需求的复杂性"></a>1.1需求的复杂性</h4><ul>
+<li>问题：<ul>
+<li>需求规则没人知道，只能靠口口相传。</li>
+<li>分不清用例、步骤、规则，理解需求时揉在一起，不够清晰。</li>
+<li>不知道如何拆分需求，做不到尽早交付价值。</li>
+<li>没有想清楚交付什么价值，大部分情况下用例(价值)是不变的，变得是步骤和规则(实现价值的方式)</li>
+</ul>
+</li>
+<li>解决1：使用工具沉淀需求。目前互联网公司“流行”的做法是口口相传，沉淀远远不够。沉淀需求对于在技术层面做业务监控、可用性监控等有很大意义。</li>
+<li>解决2：使用面向对象方法，从业务建模开始找到用例，画出用例图。用例图很好解答了 哪个组织/系统 对谁(涉众)提供了什么价值(用例)三个问题。想清楚价值，可以帮助判断方案能否达成价值以及是否有更好的方案。</li>
+</ul>
+<p><img src="/img/image-20230118162528384.png" alt="image-20230118162528384"></p>
+<h4 id="1-2技术的复杂性"><a href="#1-2技术的复杂性" class="headerlink" title="1.2技术的复杂性"></a>1.2技术的复杂性</h4><p>技术的复杂性在于既要完成需求，又要考虑质量要求，<strong>技术复杂性=需求复杂性X质量要求(性能、可用性、安全、扩展性、正确性等)</strong></p>
+<ul>
+<li>问题1：忽视质量要求。需求已经比较复杂了，设计满足需求的方案可能已经精疲力竭了，哪顾得上质量要求。</li>
+<li>建议：给时间+模板+把关。</li>
+</ul>
+<hr>
+<ul>
+<li>问题2：对问题域不够了解，设计的方案偏离真实世界，导致不断“重构”。美其名曰重构，可能是迭代不下去了，怎么保证重构后的不被重构呢？</li>
+<li>建议1：不急于出设计，在设计之前先 <strong>分析</strong> ，先调查研究问题。没有充分理解问题，解决方案很可能是错的。就像面试，没弄懂面试官的问题，回答大概率是错的，做对也是蒙的。</li>
+<li>建议2：【设计】之前画一下【分析类图】，找出对象及之间的关系，也是可视化的过程，比在脑子里硬想要高效。设计方案以及评审时就不用死盯着内容很多且不精确的PRD了。</li>
+</ul>
+<hr>
+<ul>
+<li><p>问题3：知识爆炸。业务规则及实现要看代码及口口相传。混淆的名词及代词影响正确性和效率。混淆的各种名词，沟通时使用各种代词，“他们” “我们”，涉及的系统多了就跟不上讲的人思路了</p>
+</li>
+<li><p>建议：增加<strong>分析</strong>流程，输出精准的、简洁的、可以理解的现实世界的模型。最重要的是分析类图，其次是分析序列图。</p>
+<ul>
+<li><strong>分析类图：关注数据，从现实世界捕获对系统重要的概念及关系。</strong></li>
+<li><strong>分析序列图:关注协作，分配职责，完成用例。</strong> 讲流程时就不用说他们、我们了，把这个图丢出去就够了。</li>
+<li><p><strong>状态机图：关注时序，对象的生命周期及状态流转条件。</strong></p>
+<p>不要觉得这个没用或者很简单，画的过程中一定会有很多疑问：</p>
+</li>
+</ul>
+<ol>
+<li>该不该画这个类？这是类还是属性？是哪个类的属性？</li>
+<li>该不该连线？多重性是什么？</li>
+<li>是泛化还是枚举？是泛化还是关联？</li>
+<li>反映了现实世界吗？</li>
+<li>这个操作该由哪个类完成？</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>问题4：未能区分真正的复杂还是由“随心所欲”引入的复杂。</p>
+<ul>
+<li><p>既然已经认识到复杂是无法避免的，就不要再引入“随心所欲”的复杂了。扪心自问，平时说的系统复杂，有多少是我们自己引入的？</p>
+</li>
+<li><p>追求设计出“简单”的方案。“简单”是指对用的人或者对以后简单，而不是思考过程简单。“简单”绝不是忽视复杂性，相反要付出巨大的努力，还大概率做不到。比如交互设计领域，iOS足够简单，四岁小孩都会用，为什么其他公司设计不出来更好的呢？</p>
+<p>  我们做技术方案也类似：</p>
+<ul>
+<li>当解决方案很容易想到时，要警惕，是不是草率了，这次简单了，以后是不是麻烦了？</li>
+<li>当解决方案很复杂时，不要洋洋得意，要反思，是不是有更好的没有找到？或者这样想：让一个更厉害的人来做，是不是能设计出更“简单”的方案。</li>
+<li>做减法，加法导致东西越来越多，多就会带来复杂性。</li>
+</ul>
+</li>
+<li><p>把系统做复杂不是本事，做复杂谁都可以，四岁小孩儿随意画的画也能很复杂(图1)</p>
+</li>
+<li><p>不要图1的复杂，要图2的复杂：结果可以是复杂的，但复杂的结果可以由“简单”的方案演化出来。像大自然、语言、围棋等，由简单的元素就能演化出复杂的结果。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180417/1df5da33bfb54242b02899cf7beeea54.jpeg" alt="看到宝宝乱写乱画，你会上去制止吗？"></p>
+<p><img src="/img/image-20230118163840124.png" alt="image-20230118163840124" style="zoom:150%;"></p>
+<h3 id="2-一致性"><a href="#2-一致性" class="headerlink" title="2.一致性"></a>2.一致性</h3><ul>
+<li>要专业。引入的“随心所欲”复杂性，本质是因为自身不专业，下面的例子一定不陌生：<ul>
+<li>相同变量名，不同含义</li>
+<li>相同含义，不同变量名</li>
+<li>单位不一致</li>
+<li>中英文不一致</li>
+<li>工程命名方式不一致</li>
+<li>迷惑的变量名</li>
+<li>工程命名方式不一致</li>
+<li>变量名与业务语义不一致</li>
+</ul>
+</li>
+</ul>
+<p>看上去都是很小的点，多了会不会有千疮百孔的感觉？如果觉得这些case很小，系统中是否存在更大的不一致？比如注释与实现不一致，实现与设计不一致，<strong>设计与真实世界不一致</strong>(这可能是最大的不一致)。</p>
+<ul>
+<li>不要重复：保持一致的有效方式是只有一个。但重复经常发生，导致不一致：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>重复的类型</th>
+<th><strong>解释</strong></th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>强加的重复</td>
+<td>环境似乎要求重复，别无选择</td>
+<td>代码 vs 注释 vs 文档<br>周报 vs 周会<br>MySQL VS Redis VS ES</td>
+</tr>
+<tr>
+<td>无意的重复</td>
+<td>没有意识到在重复</td>
+<td>派生信息，存了出生年月又存年龄<br> 类名已经表明对象了，方法名还要加上对象名：XXClass.createXX。<br></td>
+</tr>
+<tr>
+<td>无耐心的重复</td>
+<td>偷懒，因为这样可能更容易</td>
+<td>重复代码<br>上面提到的不专业的例子</td>
+</tr>
+<tr>
+<td>开发者之间的重复</td>
+<td>同一团队（或不同团队）重复了同样的信息</td>
+<td>重复的轮子<br>业务语义相同的常量各团队都定义了一份</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>建议：<ul>
+<li>避免破窗：发现一个改一个。就怕习以为常了，没意识到是债务。</li>
+<li>用业务语言设计、写码，避免出现无业务语义的产物。如果在设计前，画了【分析类图】，可以避免很多问题。</li>
+<li>第一种重复要慎重，二、三、四要避免。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-可变性"><a href="#3-可变性" class="headerlink" title="3.可变性"></a>3.可变性</h3><ul>
+<li>没想到好方法。人是不靠谱的，尽量用工具替代人。是个长期过程，平时多留意可以沉淀出工具的地方。</li>
+</ul>
+<h3 id="4-不可见性"><a href="#4-不可见性" class="headerlink" title="4.不可见性"></a><strong>4.不可见性</strong></h3><ul>
+<li>提升研发效率需要配套相关的可视化工具，如各种可视化监控，各种报表统计等。方便大家了解研发过程、研发结果的各种数据。</li>
+</ul>
+<p><strong>总结：</strong></p>
+<ul>
+<li>利润=需求-设计，设计就是成本。工作时想想是在增加成本还是【降低成本】？目标是做一个“简单”的方案，“简单”符合人性，也符合自然规律。</li>
+<li>为了做出“简单”的方案，要充分理解问题。在【设计】之前先【分析】，输出【分析类图】【分析序列图】。【分析】是把思考放在前头，由【分析】驱动设计，不是问题驱动，也不是重构驱动。</li>
+<li>复杂不能消除，只能被管理。避免引入“随心所欲”的复杂，“随心所欲”是不专业的表现。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat_pay.jpeg" alt="于大帅 wechat" style="width: 200px; max-width: 100%;">
+    <div>可以白嫖我的颜值，不能白嫖我的才华，打赏😆😆！！!</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏完了加微信白嫖颜值😁😁！！！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_ercode.jpeg" alt="于大帅 WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件/" rel="tag"># 软件</a>
+          
+            <a href="/tags/开发/" rel="tag"># 开发</a>
+          
+            <a href="/tags/复杂性/" rel="tag"># 复杂性</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/30/产品思维-1/" rel="next" title="产品思维">
+                <i class="fa fa-chevron-left"></i> 产品思维
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/12/10/设计模式初学者指南/" rel="prev" title="设计模式初学者指南">
+                设计模式初学者指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="于大帅">
+          <p class="site-author-name" itemprop="name">于大帅</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MasterTF" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5892078423" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/tianfang-yu-6b706296/" target="_blank" title="LinkedIn">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂性来源"><span class="nav-number">1.</span> <span class="nav-text">复杂性来源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何控制复杂性"><span class="nav-number">2.</span> <span class="nav-text">如何控制复杂性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-问题域的复杂性"><span class="nav-number">2.1.</span> <span class="nav-text">1.问题域的复杂性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1需求的复杂性"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1需求的复杂性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2技术的复杂性"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2技术的复杂性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-一致性"><span class="nav-number">2.2.</span> <span class="nav-text">2.一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-可变性"><span class="nav-number">2.3.</span> <span class="nav-text">3.可变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-不可见性"><span class="nav-number">2.4.</span> <span class="nav-text">4.不可见性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">于大帅</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://mastertf-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2022/06/20/软件开发复杂性/';
+          this.page.identifier = '2022/06/20/软件开发复杂性/';
+          this.page.title = '软件开发复杂性';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://mastertf-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ktTDwm3aRUPalCDojHrT4I5k-gzGzoHsz", "cbwEPEqmLTkyREMfrBvV2aQu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
