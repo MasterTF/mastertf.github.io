@@ -2784,7 +2784,7 @@
     <title>设计模式初学者指南</title>
     <url>/2022/12/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%9D%E5%AD%A6%E8%80%85%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<blockquote>
-<p>不要期望简单地在代码中即兴使用设计模式就会得到好的代码，这样做不会使程序得到太大改进，甚至可能让程序变得更糟</p>
+<p>不要期望简单地在代码中即兴使用设计模式就会得到好的代码，这样做不会使程序得到太大改进，甚至可能让程序变得更糟。</p>
 </blockquote>
 <p><img src="/img/设计模式.png" style="zoom:225%;"></p>
 <a id="more"></a>
@@ -3736,7 +3736,7 @@
     <title>王慧文清华产品课</title>
     <url>/2021/03/21/%E7%8E%8B%E6%85%A7%E6%96%87%E6%B8%85%E5%8D%8E%E4%BA%A7%E5%93%81%E8%AF%BE/</url>
     <content><![CDATA[<blockquote>
-<p>投入的合理性取决于对市场体量的判断。如果判断对了且尽早投入，就获得了战略先机;但判断错了，在一个不够大的市场里投入太多钱，或者在一个足够大的市场里投入不足，就会掉到坑里</p>
+<p>投入的合理性取决于对市场体量的判断。如果判断对了且尽早投入，就获得了战略先机；判断错了，在一个不够大的市场里投入太多钱，或者在一个足够大的市场里投入不足，就会掉到坑里。</p>
 </blockquote>
 <p><img src="/img/王慧文.png" alt="王慧文" style="zoom:150%;"></p>
 <a id="more"></a>
@@ -3879,7 +3879,7 @@
     <title>UML和模式应用</title>
     <url>/2021/03/16/UML%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<blockquote>
-<p><strong>什么是分析和设计</strong><br>分析和设计可以概括为：做正确的事(分析)和正确的做事(设计)</p>
+<p>什么是分析和设计<br>分析和设计可以概括为：做正确的事(分析)和正确的做事(设计)。</p>
 </blockquote>
 <p><img src="/img/uml.png" alt="uml"></p>
 <a id="more"></a>
@@ -4138,12 +4138,19 @@
   <entry>
     <title>浅谈产品思维</title>
     <url>/2021/02/22/%E6%B5%85%E8%B0%88%E4%BA%A7%E5%93%81%E6%80%9D%E7%BB%B4/</url>
-    <content><![CDATA[<h2 id="产品需求从哪里来"><a href="#产品需求从哪里来" class="headerlink" title="产品需求从哪里来"></a>产品需求从哪里来</h2><ol>
+    <content><![CDATA[<blockquote>
+<p>需求从哪里来:</p>
+<ul>
+<li>马斯洛需求层次</li>
+<li>七宗罪：暴食、懒惰、贪婪、淫欲、愤怒、嫉妒、骄傲</li>
+</ul>
+</blockquote>
+<p><img src="/img/image-20240824175905458.png" alt="image-20240824175905458" style="zoom: 100%;"></p>
+<a id="more"></a>
+<h2 id="产品需求从哪里来"><a href="#产品需求从哪里来" class="headerlink" title="产品需求从哪里来"></a>产品需求从哪里来</h2><ol>
 <li>马斯洛需求层次</li>
 <li>七宗罪：暴食、懒惰、贪婪、淫欲、愤怒、嫉妒、骄傲</li>
 </ol>
-<p><img src="/img/image-20240824175905458.png" alt="image-20240824175905458" style="zoom: 100%;"></p>
-<a id="more"></a>
 <h3 id="关于机会的判断"><a href="#关于机会的判断" class="headerlink" title="关于机会的判断"></a>关于机会的判断</h3><ol>
 <li>痛点：痛点是恐惧</li>
 <li>痒点：痒点是满足虚拟自我(想象中那个理想的自己)</li>
